@@ -22,7 +22,7 @@ Korku ve zaman yönetimi türlerini harmanlayan bağımsız oyun. Overcooked'un 
 ## 🚀 Kurulum
 
 ```bash
-git clone https://github.com/[your-username]/taste-of-fear.git
+git clone https://github.com/alihaktan35/taste-of-fear.git
 cd taste-of-fear
 git lfs install
 git lfs pull
