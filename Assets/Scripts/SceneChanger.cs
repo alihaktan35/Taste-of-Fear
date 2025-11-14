@@ -32,4 +32,25 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene("order01");
     }
+    
+    // OptionsMenu (Settings) sahnesini aç
+    public void OpenSettings()
+    {
+        SceneManager.LoadScene("optionsMenu");
+    }
+    
+    // Ana menüye geri dön
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu"); // Ana sahnenizin adını buraya yazın
+    }
+    
+    // Oyundan çık
+    public void QuitGame()
+    {
+        Application.Quit();
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }
