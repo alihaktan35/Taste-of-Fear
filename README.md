@@ -58,15 +58,13 @@ docs: dokümantasyon
 ## 👥 Ekip
 | Rol | İsim |
 |-----|------|
-| Producer | Ali Haktan Sığın |
-| Game Designer | Şilan Yalçınkaya |
-| Programmer | Melisa Demirbaş, Zeynel Zeren |
-| Artist | Berat Biçen |
-| Animator | Yiğit Emre Çay |
-| Sound Designer | Emin Emre Yalavuç |
+| Programmer | Ali Haktan Sığın, Berat Biçen |
+| Game Story | Şilan Yalçınkaya, Melisa Demirbaş |
+| Drawings | Zeynel Zeren, Emin Emre Yalavuç |
+| Sound Designer | Yiğit Emre Çay |
 
 ## 🔧 Teknik
-- **Motor:** Unity (URP)
+- **Motor:** Unity
 - **Dil:** C#
 - **Hedef:** 1920×1080, 60 FPS
 - **Platform:** PC (Steam)
