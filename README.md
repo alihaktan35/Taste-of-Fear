@@ -58,10 +58,10 @@ docs: dokümantasyon
 ## 👥 Ekip
 | Rol | İsim |
 |-----|------|
-| Programmer | Ali Haktan Sığın, Berat Biçen |
-| Game Story | Şilan Yalçınkaya, Melisa Demirbaş |
-| Drawings | Zeynel Zeren, Emin Emre Yalavuç |
-| Sound Designer | Yiğit Emre Çay |
+| Game Development | Ali Haktan Sığın, Berat Biçen |
+| Story & Writing | Şilan Yalçınkaya, Melisa Demirbaş |
+| Visual Art | Zeynel Zeren, Emin Emre Yalavuç |
+| Audio Design | Yiğit Emre Çay |
 
 ## 🔧 Teknik
 - **Motor:** Unity
