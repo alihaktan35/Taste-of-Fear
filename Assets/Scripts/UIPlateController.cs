@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIPlateController : MonoBehaviour, IDropHandler
 {
     public GameObject hamburgerPrefab;
+    public GameObject instructionText; // Reference to the instruction text to hide when complete
 
     // Required ingredient names (must match the Image GameObject names exactly)
     private readonly List<string> requiredIngredients = new List<string>
@@ -118,6 +119,12 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     void CraftHamburger()
     {
         Debug.Log("Recipe complete! Hamburger ready.");
+
+        // Hide instruction text
+        if (instructionText != null)
+        {
+            instructionText.SetActive(false);
+        }
 
         // Destroy all ingredient objects that are on the plate
         foreach (GameObject ingredientObj in ingredientObjectsOnPlate)
