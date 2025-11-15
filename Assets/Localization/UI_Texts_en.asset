@@ -30,6 +30,26 @@ MonoBehaviour:
     m_Localized: QUIT
     m_Metadata:
       m_Items: []
+  - m_Id: 216911818752
+    m_Localized: TASTE OF FEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 271786056704
+    m_Localized: BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326660135936
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381534215168
+    m_Localized: 'SOUND: ON'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436408294400
+    m_Localized: 'SOUND: OFF'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

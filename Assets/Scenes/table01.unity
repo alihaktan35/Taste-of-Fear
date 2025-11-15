@@ -662,8 +662,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 325d4f3c285dbe346b21958afb33e5b4, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   hamburgerPrefab: {fileID: 4517941519711839008, guid: 773a005b286e7624593dfc3472dd00f6, type: 3}
   instructionText: {fileID: 1252008521}
 --- !u!114 &1126321802
@@ -948,8 +948,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 270}
-  m_SizeDelta: {x: 1400, y: 120}
+  m_AnchoredPosition: {x: 0, y: 253.77759}
+  m_SizeDelta: {x: 1400, y: 152.4449}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252008523
 MonoBehaviour:
@@ -961,8 +961,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
@@ -984,7 +984,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "The order is a Hamburger.\nDrag the 4 ingredients on the table to the plate to make it."
+  m_Text: 'The order is a Hamburger.
+
+    Drag the 4 ingredients on the table to
+    the plate to make it.'
 --- !u!222 &1252008524
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -27,6 +27,26 @@ MonoBehaviour:
     m_Key: btn_quit
     m_Metadata:
       m_Items: []
+  - m_Id: 216911818752
+    m_Key: title_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 271786056704
+    m_Key: btn_back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326660135936
+    m_Key: title_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381534215168
+    m_Key: sound_on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436408294400
+    m_Key: sound_off
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
