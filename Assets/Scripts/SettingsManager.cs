@@ -1,19 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 
 public class SettingsManager : MonoBehaviour
 {
     [Header("Language")]
     public Button languageButton;
     public Text languageButtonText; // veya TextMeshProUGUI
-    
+
     [Header("Sound")]
     public Button soundButton;
     public Text soundButtonText; // veya TextMeshProUGUI
-    
+
     private bool isTurkish = true;
     private bool isSoundOn = true;
+
+    // Localized strings for sound button
+    private LocalizedString soundOnString = new LocalizedString("UI_Texts", "sound_on");
+    private LocalizedString soundOffString = new LocalizedString("UI_Texts", "sound_off");
     
     void Start()
     {
@@ -74,11 +79,18 @@ public class SettingsManager : MonoBehaviour
     // UI'ı Güncelle
     void UpdateUI()
     {
-        // Dil butonu
+        // Dil butonu - shows the current language name (not localized)
         languageButtonText.text = isTurkish ? "Türkçe" : "English";
-        
-        // Ses butonu
-        soundButtonText.text = isSoundOn ? "SOUND: ON" : "SOUND: OFF";
+
+        // Ses butonu - uses localized strings
+        if (isSoundOn)
+        {
+            soundButtonText.text = soundOnString.GetLocalizedString();
+        }
+        else
+        {
+            soundButtonText.text = soundOffString.GetLocalizedString();
+        }
     }
     
     // Ayarları Yükle
