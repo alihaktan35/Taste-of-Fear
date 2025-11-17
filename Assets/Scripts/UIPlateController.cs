@@ -2,54 +2,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIPlateController : MonoBehaviour, IDropHandler
 {
-    public GameObject hamburgerPrefab;
-    public GameObject instructionText; // Reference to the instruction text to hide when complete
+    [Header("Recipe System")]
+    public RecipeData currentRecipe; // Set by TableSceneManager
 
-    // Required ingredient names (must match the Image GameObject names exactly)
-    private readonly List<string> requiredIngredients = new List<string>
-    {
-        "BreadImage",
-        "WormsImage",
-        "PotionImage",
-        "MeatSliceImage"
-    };
+    [Header("UI References")]
+    public Image plateImage; // The plate image that shows the final dish
 
-    private List<string> ingredientsOnPlate = new List<string>();
+    private Dictionary<string, int> ingredientsOnPlate = new Dictionary<string, int>();
     private List<GameObject> ingredientObjectsOnPlate = new List<GameObject>();
 
     // Called when a UI object is dropped onto this plate
     public void OnDrop(PointerEventData eventData)
     {
         // Check if the dragged object is an ingredient
-        if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<UIDraggableItem>() != null)
+        if (eventData.pointerDrag != null)
         {
-            string originalName = eventData.pointerDrag.gameObject.name;
-            string ingredientName = originalName.Replace("(Clone)", "").Trim();
-
-            Debug.Log($"Dropped item: '{originalName}' -> cleaned: '{ingredientName}'");
-            Debug.Log($"Current ingredients on plate: {string.Join(", ", ingredientsOnPlate)}");
-            Debug.Log($"Required ingredients: {string.Join(", ", requiredIngredients)}");
-
-            // Check if this is a valid ingredient
-            if (!requiredIngredients.Contains(ingredientName))
+            UIDraggableItem draggedItem = eventData.pointerDrag.GetComponent<UIDraggableItem>();
+            if (draggedItem != null && draggedItem.ingredientName != null)
             {
-                Debug.LogWarning($"'{ingredientName}' is not a required ingredient!");
-                return;
-            }
+                string ingredientName = draggedItem.ingredientName;
 
-            // Check if we already have this ingredient
-            if (!ingredientsOnPlate.Contains(ingredientName))
-            {
-                ingredientsOnPlate.Add(ingredientName);
+                Debug.Log($"Dropped ingredient: {ingredientName}");
+
+                // Add ingredient to plate
+                if (ingredientsOnPlate.ContainsKey(ingredientName))
+                {
+                    ingredientsOnPlate[ingredientName]++;
+                }
+                else
+                {
+                    ingredientsOnPlate[ingredientName] = 1;
+                }
+
+                // Get the dragged GameObject
                 GameObject ingredient = eventData.pointerDrag.gameObject;
                 ingredientObjectsOnPlate.Add(ingredient);
 
-                Debug.Log($"Added '{ingredientName}' to plate. Total: {ingredientsOnPlate.Count}/{requiredIngredients.Count}");
-
-                // Move ingredient to plate position instead of destroying it
+                // Move ingredient to plate position
                 RectTransform ingredientRect = ingredient.GetComponent<RectTransform>();
                 RectTransform plateRect = GetComponent<RectTransform>();
 
@@ -58,75 +51,53 @@ public class UIPlateController : MonoBehaviour, IDropHandler
                     // Set parent to plate's parent (same canvas level)
                     ingredientRect.SetParent(plateRect.parent, false);
 
-                    // Position ingredient on the plate with slight offset based on count
-                    Vector2 offset = new Vector2(0, (ingredientsOnPlate.Count - 1) * 10); // Stack with 10 pixel offset
-                    ingredientRect.anchoredPosition = plateRect.anchoredPosition + offset;
+                    // Position ingredient on the plate with random slight offset
+                    Vector2 randomOffset = new Vector2(
+                        Random.Range(-20f, 20f),
+                        Random.Range(-20f, 20f)
+                    );
+                    ingredientRect.anchoredPosition = plateRect.anchoredPosition + randomOffset;
 
-                    // Scale down the ingredient slightly to fit on plate
-                    ingredientRect.localScale = new Vector3(0.5f, 0.5f, 1f);
+                    // Scale down the ingredient to fit on plate
+                    ingredientRect.localScale = new Vector3(0.3f, 0.3f, 1f);
 
-                    // Disable raycasting on ingredient so it doesn't block the plate
-                    Image ingredientImage = ingredient.GetComponent<Image>();
-                    if (ingredientImage != null)
-                    {
-                        ingredientImage.raycastTarget = false;
-                    }
-
-                    // Disable dragging for this ingredient
-                    UIDraggableItem draggable = ingredient.GetComponent<UIDraggableItem>();
-                    if (draggable != null)
-                    {
-                        draggable.enabled = false;
-                    }
+                    // Mark as placed on plate
+                    draggedItem.MarkAsPlacedOnPlate();
                 }
 
+                Debug.Log($"Ingredients on plate: {GetIngredientsSummary()}");
+
+                // Check if recipe is complete
                 CheckForRecipe();
-            }
-            else
-            {
-                Debug.LogWarning($"'{ingredientName}' already on plate!");
             }
         }
     }
 
     void CheckForRecipe()
     {
-        Debug.Log($"Checking recipe: {ingredientsOnPlate.Count} of {requiredIngredients.Count} ingredients");
-
-        if (ingredientsOnPlate.Count != requiredIngredients.Count)
+        if (currentRecipe == null)
         {
+            Debug.LogWarning("No recipe set for this cooking session!");
             return;
         }
 
-        bool hasAllIngredients = true;
-        foreach (string required in requiredIngredients)
+        // Check if the ingredients match the recipe
+        if (currentRecipe.MatchesRecipe(ingredientsOnPlate))
         {
-            if (!ingredientsOnPlate.Contains(required))
-            {
-                hasAllIngredients = false;
-                Debug.LogWarning($"Missing required ingredient: {required}");
-                break;
-            }
+            Debug.Log($"Recipe complete: {currentRecipe.recipeName}");
+            CompleteDish();
         }
-
-        if (hasAllIngredients)
+        else
         {
-            Debug.Log("All ingredients present! Crafting hamburger...");
-            CraftHamburger();
+            Debug.Log("Ingredients don't match recipe yet.");
         }
     }
 
-    void CraftHamburger()
+    void CompleteDish()
     {
-        Debug.Log("Recipe complete! Hamburger ready.");
+        Debug.Log($"Dish completed: {currentRecipe.recipeName}");
 
-        // Hide instruction text
-        if (instructionText != null)
-        {
-            instructionText.SetActive(false);
-        }
-
-        // Destroy all ingredient objects that are on the plate
+        // Clear all ingredient objects from plate
         foreach (GameObject ingredientObj in ingredientObjectsOnPlate)
         {
             if (ingredientObj != null)
@@ -134,20 +105,41 @@ public class UIPlateController : MonoBehaviour, IDropHandler
                 Destroy(ingredientObj);
             }
         }
+        ingredientObjectsOnPlate.Clear();
 
-        // Create hamburger at plate position
-        GameObject craftedHamburger = Instantiate(hamburgerPrefab, transform.position, Quaternion.identity);
-        craftedHamburger.transform.SetParent(transform.parent, false);
-
-        // Adjust hamburger RectTransform if it's a UI element
-        RectTransform hamburgerRect = craftedHamburger.GetComponent<RectTransform>();
-        if (hamburgerRect != null)
+        // Show the final dish on the plate
+        if (plateImage != null && currentRecipe.dishSprite != null)
         {
-            hamburgerRect.anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            hamburgerRect.sizeDelta = new Vector2(256, 212);
+            plateImage.sprite = currentRecipe.dishSprite;
+            plateImage.enabled = true;
         }
 
-        ingredientsOnPlate.Clear();
-        ingredientObjectsOnPlate.Clear();
+        // Wait a moment then end scene
+        Invoke("EndScene", 2f);
+    }
+
+    void EndScene()
+    {
+        // TODO: Return to order scene or next scene
+        Debug.Log("Scene complete! Returning to previous scene...");
+        // For now, just reload the scene or go to a specific scene
+        // SceneManager.LoadScene("order01");
+    }
+
+    string GetIngredientsSummary()
+    {
+        string summary = "";
+        foreach (KeyValuePair<string, int> kvp in ingredientsOnPlate)
+        {
+            summary += $"{kvp.Key}:{kvp.Value} ";
+        }
+        return summary;
+    }
+
+    // Public method to set the recipe (called by TableSceneManager)
+    public void SetRecipe(RecipeData recipe)
+    {
+        currentRecipe = recipe;
+        Debug.Log($"Recipe set to: {recipe.recipeName}");
     }
 }
