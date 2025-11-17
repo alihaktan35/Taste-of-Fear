@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Canavar Kalbi Izgara
   m_EditorClassIdentifier: 
   recipeName: Canavar Kalbi Izgara
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -6507992324613974569, guid: 6f150f36aca3347fbb0c6875c974a095, type: 3}
   ingredients:
   - ingredientName: "et (pi\u015Fmi\u015F)"
     quantity: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Beyin Salatas\u0131"
   m_EditorClassIdentifier: 
   recipeName: "Beyin Salatas\u0131"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -3998104703494323335, guid: 179b3eaa7f9094b1aaa19c59d3b726e6, type: 3}
   ingredients:
   - ingredientName: beyin
     quantity: 1

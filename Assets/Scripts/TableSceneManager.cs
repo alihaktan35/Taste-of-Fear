@@ -13,7 +13,7 @@ public class TableSceneManager : MonoBehaviour
     public UIPlateController plateController;
 
     [Header("Instruction Text Template")]
-    public string instructionTemplate = "XXXX YAPINIZ"; // Template with XXXX as placeholder
+    public string instructionTemplate = "The order is a XXXX.\nDrag the 4 ingredients on the table to the plate to make it."; // Template with XXXX as placeholder
 
     private RecipeData currentRecipe;
 
@@ -55,11 +55,23 @@ public class TableSceneManager : MonoBehaviour
 
         Debug.Log($"Setting up recipe: {currentRecipe.recipeName}");
 
-        // Update instruction text with recipe name in uppercase
+        // Calculate total number of ingredients needed
+        int totalIngredients = 0;
+        foreach (RecipeIngredient ingredient in currentRecipe.ingredients)
+        {
+            totalIngredients += ingredient.quantity;
+        }
+
+        // Update instruction text with recipe name and ingredient count
         if (instructionText != null)
         {
             string recipeNameUpper = currentRecipe.recipeName.ToUpper();
-            instructionText.text = instructionTemplate.Replace("XXXX", recipeNameUpper);
+            string text = instructionTemplate.Replace("XXXX", recipeNameUpper);
+
+            // Replace "4 ingredients" with actual count
+            text = text.Replace("4 ingredients", totalIngredients + " ingredients");
+
+            instructionText.text = text;
         }
 
         // Set the recipe in the plate controller

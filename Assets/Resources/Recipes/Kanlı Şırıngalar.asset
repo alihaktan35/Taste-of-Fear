@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Kanl\u0131 \u015E\u0131r\u0131ngalar"
   m_EditorClassIdentifier: 
   recipeName: "Kanl\u0131 \u015E\u0131r\u0131ngalar"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -422481139990061644, guid: a0e46e153ef664429995d148158e8524, type: 3}
   ingredients:
   - ingredientName: "\u015F\u0131r\u0131nga"
     quantity: 4

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kesik Damar Spagetti
   m_EditorClassIdentifier: 
   recipeName: Kesik Damar Spagetti
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: 8768995501272267, guid: 109f99cbdad014fdca1314a343e1f5c9, type: 3}
   ingredients:
   - ingredientName: kara spagetti
     quantity: 2

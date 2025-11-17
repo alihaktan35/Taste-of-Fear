@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Dokuna\xE7 G\xFCveci"
   m_EditorClassIdentifier: 
   recipeName: "Dokuna\xE7 G\xFCveci"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -4106131218039624375, guid: 050d528853c5e4030a663297d4cc6672, type: 3}
   ingredients:
   - ingredientName: "dokuna\xE7"
     quantity: 4

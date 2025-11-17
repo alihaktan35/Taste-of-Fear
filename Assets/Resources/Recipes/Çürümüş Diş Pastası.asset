@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\xC7\xFCr\xFCm\xFC\u015F Di\u015F Pastas\u0131"
   m_EditorClassIdentifier: 
   recipeName: "\xC7\xFCr\xFCm\xFC\u015F Di\u015F Pastas\u0131"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -6261767794736399926, guid: 2ab6b33c216ff41a298872a582471c76, type: 3}
   ingredients:
   - ingredientName: "\xE7\xFCr\xFCm\xFC\u015F di\u015Fler"
     quantity: 4

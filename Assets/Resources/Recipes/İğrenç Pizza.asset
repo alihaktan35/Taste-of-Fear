@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccc6994e1045b4d9681e12f6e9a33a34, type: 3}
-  m_Name: "\u0130\u011Fren\xE7 Pizza"
+  m_Name: "I\u0307g\u0306renc\u0327 Pizza"
   m_EditorClassIdentifier: 
   recipeName: "\u0130\u011Fren\xE7 Pizza"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -1968251753886680769, guid: 57e30b117b9a54773bb47d0f35a31621, type: 3}
   ingredients:
   - ingredientName: "\xE7\xFCr\xFCk ekmek"
     quantity: 2

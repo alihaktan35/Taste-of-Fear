@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Kurt\xE7uk Kanepesi"
   m_EditorClassIdentifier: 
   recipeName: "Kurt\xE7uk Kanepesi"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: -5598076696940629599, guid: 0f037b6ca25124f10a31746a5b0d53cd, type: 3}
   ingredients:
   - ingredientName: "kurt\xE7uklar"
     quantity: 4

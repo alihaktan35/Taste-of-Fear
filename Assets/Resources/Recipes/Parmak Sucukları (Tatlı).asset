@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Parmak Sucuklar\u0131 (Tatl\u0131)"
   m_EditorClassIdentifier: 
   recipeName: "Parmak Sucuklar\u0131 (Tatl\u0131)"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: 3583866977486602384, guid: 2ac66d79e16154c79af550fd2dd6ce74, type: 3}
   ingredients:
   - ingredientName: parmak
     quantity: 4

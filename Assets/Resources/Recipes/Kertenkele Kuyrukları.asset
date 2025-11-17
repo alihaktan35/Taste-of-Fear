@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Kertenkele Kuyruklar\u0131"
   m_EditorClassIdentifier: 
   recipeName: "Kertenkele Kuyruklar\u0131"
-  dishSprite: {fileID: 0}
+  dishSprite: {fileID: 4050282365929171485, guid: e5b00e48d0cbe446290581cf51c0c058, type: 3}
   ingredients:
   - ingredientName: "kertenkele kuyru\u011Fu"
     quantity: 4

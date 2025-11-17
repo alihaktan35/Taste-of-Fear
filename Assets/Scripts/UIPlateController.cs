@@ -48,18 +48,23 @@ public class UIPlateController : MonoBehaviour, IDropHandler
 
                 if (ingredientRect != null && plateRect != null)
                 {
-                    // Set parent to plate's parent (same canvas level)
+                    // Set parent to Canvas (plateRect.parent) NOT to PlateImage itself
+                    // This is CRITICAL - ingredients must be siblings of PlateImage, not children
+                    // They will render AFTER PlateImage because SetAsLastSibling() puts them at the end
                     ingredientRect.SetParent(plateRect.parent, false);
 
                     // Position ingredient on the plate with random slight offset
                     Vector2 randomOffset = new Vector2(
-                        Random.Range(-20f, 20f),
-                        Random.Range(-20f, 20f)
+                        Random.Range(-50f, 50f),
+                        Random.Range(-30f, 30f)
                     );
                     ingredientRect.anchoredPosition = plateRect.anchoredPosition + randomOffset;
 
                     // Scale down the ingredient to fit on plate
-                    ingredientRect.localScale = new Vector3(0.3f, 0.3f, 1f);
+                    ingredientRect.localScale = new Vector3(0.5f, 0.5f, 1f);
+
+                    // CRITICAL: This makes ingredient render AFTER PlateImage (on top of it)
+                    ingredientRect.SetAsLastSibling();
 
                     // Mark as placed on plate
                     draggedItem.MarkAsPlacedOnPlate();
@@ -106,12 +111,25 @@ public class UIPlateController : MonoBehaviour, IDropHandler
             }
         }
         ingredientObjectsOnPlate.Clear();
+        ingredientsOnPlate.Clear();
 
         // Show the final dish on the plate
         if (plateImage != null && currentRecipe.dishSprite != null)
         {
             plateImage.sprite = currentRecipe.dishSprite;
             plateImage.enabled = true;
+
+            // Make sure the plate image is visible and properly sized
+            RectTransform plateRect = plateImage.GetComponent<RectTransform>();
+            if (plateRect != null)
+            {
+                // Optionally adjust size to fit the dish image better
+                plateRect.sizeDelta = new Vector2(400, 400);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Cannot display dish - PlateImage or dishSprite is null!");
         }
 
         // Wait a moment then end scene
