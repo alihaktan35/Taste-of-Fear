@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc6994e1045b4d9681e12f6e9a33a34, type: 3}
+  m_Name: "G\xF6zK\xFCresi\xC7orbas\u0131Tarifi"
+  m_EditorClassIdentifier: 
+  recipeName: "G\xF6z K\xFCresi \xC7orbas\u0131"
+  dishSprite: {fileID: 3557770993379071762, guid: e297f7a2aba5f1e4899ed9ad93bd2826, type: 3}
+  ingredients:
+  - ingredientName: "g\xF6z"
+    quantity: 2
+  - ingredientName: kara yosun
+    quantity: 1
+  - ingredientName: "p\u0131ht\u0131la\u015Fm\u0131\u015F kan \u015Fi\u015Fe"
+    quantity: 3
