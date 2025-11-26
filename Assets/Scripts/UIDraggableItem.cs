@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// Bu script'i kullandığınız nesnede AudioSource bileşeninin olmasını sağlar (zorunlu kılınabilir, ancak bu kodda manuel kontrol ediyoruz)
 public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private RectTransform rectTransform;
@@ -11,12 +12,19 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
     private Vector2 originalPosition; // Original position to return if not dropped on plate
     private bool isClone = false; // Is this object a clone?
 
+    // YENİ: Ses kaynağını tutacak değişken
+    private AudioSource sesKaynagi; 
+
     public string ingredientName; // Name of the ingredient (e.g., "asit", "göz")
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+        
+        // YENİ: Objeye eklenmiş AudioSource bileşenini al
+        // Sesin çalabilmesi için her bir malzeme objesinde (balçık, asit, vb.) Audio Source bileşeni olmalıdır.
+        sesKaynagi = GetComponent<AudioSource>(); 
 
         // Set ingredient name from GameObject name if not set
         if (string.IsNullOrEmpty(ingredientName))
@@ -24,9 +32,27 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
             ingredientName = gameObject.name;
         }
     }
+    
+    // YENİ: Sesi çalma fonksiyonu
+    private void CalSesiOynat() 
+    {
+        if (sesKaynagi != null)
+        {
+            // Oynayan sesi durdurup baştan başlatır (hızlı tıklamalar için ideal)
+            if (sesKaynagi.isPlaying)
+            {
+                sesKaynagi.Stop();
+            }
+            sesKaynagi.Play();
+            Debug.Log(gameObject.name + " sesi çalındı."); // Sesin tetiklendiğini kontrol etmek için
+        }
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        // YENİ: Sesi, sürükleme olayı başlamadan hemen önce çal!
+        CalSesiOynat();
+
         // If this is the original ingredient (not a clone), create a clone to drag
         if (!isClone)
         {
