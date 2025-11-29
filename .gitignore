@@ -83,6 +83,9 @@ InitTestScene*.unity*
 
 # macOS
 .DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
 
 # VS Code settings (personal preferences)
 .vscode/
