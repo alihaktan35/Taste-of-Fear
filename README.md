@@ -17,11 +17,11 @@ Korku ve zaman yönetimi türlerini harmanlayan bağımsız oyun. Overcooked'un 
 
 ### Mutfak Sahnesi
 ![Mutfak Görünümü](demo-images/2.png)
-*Sipariş alma ve pişirme mekaniği - Tezgahın arkasında korku bekliyor*
+*Sipariş alma mekaniği - Tezgahın arkasında korku bekliyor*
 
 ### Oynanış
 ![Oynanış Ekranı](demo-images/3.png)
-*Zamana karşı yarış - Order #1 siparişini tamamla, hayatta kal*
+*Zamana karşı yarış - Siparişi tamamla, hayatta kal*
 
 ## ✨ Ana Özellikler
 - 🍳 Dinamik mutfak ve sipariş yönetimi
@@ -38,22 +38,6 @@ git lfs install
 git lfs pull
 ```
 Unity Hub'dan projeyi açın (Unity 2022.3+)
-
-## 🛠 Geliştirme
-### Branch Stratejisi
-- `main`: Stabil kod
-- `develop`: Aktif geliştirme
-- `feature/*`: Yeni özellikler
-- `bugfix/*`: Hata düzeltmeleri
-
-### Commit Formatı
-```
-type(scope): açıklama
-
-feat: yeni özellik
-fix: hata düzeltmesi
-docs: dokümantasyon
-```
 
 ## 👥 Ekip
 | Rol | İsim |
