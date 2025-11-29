@@ -3,16 +3,16 @@ guid: ca08e4e16273b2448a4bbebdeff242e9
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
+  fontSize: 256
+  forceTextureCase: -1
   characterSpacing: 0
-  characterPadding: 1
+  characterPadding: 5
   includeFontData: 1
   fontNames:
   - Shlop
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1
