@@ -3337,7 +3337,7 @@ GameObject:
   - component: {fileID: 888705627}
   - component: {fileID: 888705628}
   m_Layer: 5
-  m_Name: GameManager
+  m_Name: RecipeBookManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
