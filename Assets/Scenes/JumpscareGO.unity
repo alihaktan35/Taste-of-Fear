@@ -426,8 +426,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ' YOU FAILED!!!!!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
-  m_sharedMaterial: {fileID: -699112959996641730, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 66fac5c823532dc46bf33e0a03c2f1e7, type: 2}
+  m_sharedMaterial: {fileID: -5992283433593769740, guid: 66fac5c823532dc46bf33e0a03c2f1e7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
