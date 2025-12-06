@@ -1,68 +1,68 @@
 using UnityEngine;
-using TMPro; // TextMeshPro kullandýðýnýz için bu zorunludur
-using UnityEngine.UI; // UI elemanlarý için
+using TMPro; // TextMeshPro kullandiginiz icin bu zorunludur
+using UnityEngine.UI; // UI elemanlari icin
 
 public class RecipeBookManager : MonoBehaviour
 {
-    // === UI Referanslarý ===
+    // === UI Referanslari ===
     public GameObject recipeBookPanel;
     public TextMeshProUGUI recipeNameText;
     public TextMeshProUGUI ingredientsListText;
     public Button nextPageButton;
     public Button previousPageButton;
 
-    // Tarif Veri Yapýsý (Yemek Adý ve Malzemeler)
+    // Tarif Veri Yapisi (Yemek Adi ve Malzemeler)
     [System.Serializable]
     public struct Recipe
     {
         public string recipeName;
-        [TextArea(3, 10)] // Unity Inspector'da daha geniþ bir metin alaný saðlar
+        [TextArea(3, 10)] // Unity Inspector'da daha genis bir metin alani saglar
         public string ingredients;
     }
 
-    // Tüm tariflerin listesi
+    // Tum tariflerin listesi
     public Recipe[] allRecipes;
 
-    // Þu anda görüntülenen tarifin indeksi
+    // Su anda goruntulenentarifin indeksi
     private int currentPageIndex = 0;
 
     void Start()
     {
-        // Panel baþlangýçta kapalý olmalý
+        // Panel baslangicta kapali olmali
         recipeBookPanel.SetActive(false);
 
-        // Buton dinleyicilerini atama (Inspector'dan da yapýlabilir)
+        // Buton dinleyicilerini atama (Inspector'dan da yapilabilir)
         nextPageButton.onClick.AddListener(NextPage);
         previousPageButton.onClick.AddListener(PreviousPage);
 
-        // Ýlk tarifi yükle
+        // Ilk tarifi yukle
         if (allRecipes.Length > 0)
         {
             UpdatePageContent();
         }
         else
         {
-            Debug.LogError("Tarif listesi boþ! Lütfen tarifleri girin.");
+            Debug.LogError("Tarif listesi bos! Lutfen tarifleri girin.");
         }
     }
 
-    // Tarif Kitabýný Açma/Kapama fonksiyonu
+    // Tarif Kitabini Acma/Kapama fonksiyonu
     public void ToggleRecipeBook()
     {
-        // Panel açýksa kapat, kapalýysa aç
+        // Panel aciksa kapat, kapaliysa ac
         bool isCurrentlyActive = recipeBookPanel.activeSelf;
         recipeBookPanel.SetActive(!isCurrentlyActive);
 
-        // Opsiyonel: Kitap açýldýðýnda oyunu duraklatabilirsiniz.
+        // Opsiyonel: Kitap acildiginda oyunu duraklatabilirsiniz.
         // if (recipeBookPanel.activeSelf) Time.timeScale = 0f;
         // else Time.timeScale = 1f;
     }
 
-    // Sonraki sayfaya geçme
+    // Sonraki sayfaya gecme
     private void NextPage()
     {
         currentPageIndex++;
-        // Döngüsel geçiþ (son sayfadan sonra ilk sayfaya döner)
+        // Dongusel gecis (son sayfadan sonra ilk sayfaya doner)
         if (currentPageIndex >= allRecipes.Length)
         {
             currentPageIndex = 0;
@@ -70,11 +70,11 @@ public class RecipeBookManager : MonoBehaviour
         UpdatePageContent();
     }
 
-    // Önceki sayfaya geçme
+    // Onceki sayfaya gecme
     private void PreviousPage()
     {
         currentPageIndex--;
-        // Döngüsel geçiþ (ilk sayfadan önce son sayfaya döner)
+        // Dongusel gecis (ilk sayfadan once son sayfaya doner)
         if (currentPageIndex < 0)
         {
             currentPageIndex = allRecipes.Length - 1;
@@ -82,17 +82,18 @@ public class RecipeBookManager : MonoBehaviour
         UpdatePageContent();
     }
 
-    // Sayfa içeriðini güncelleme
+    // Sayfa icerigini guncelleme
     private void UpdatePageContent()
     {
         Recipe currentRecipe = allRecipes[currentPageIndex];
 
-        // Sayfa numarasýný ve tarif adýný güncelle
-        recipeNameText.text = $"Tarif #{currentPageIndex + 1} - {currentRecipe.recipeName}";
+        // Sayfa numarasini ve tarif adini guncelle - Alt satira alindi
+        recipeNameText.text = $"Tarif #{currentPageIndex + 1}\n{currentRecipe.recipeName}";
 
-        // Malzeme listesini güncelle
-        ingredientsListText.text = currentRecipe.ingredients;
+        // Malzeme listesini guncelle - Buyuk X'leri kucuk x'e cevir
+        string formattedIngredients = currentRecipe.ingredients.Replace("X ", "x ");
+        ingredientsListText.text = formattedIngredients;
 
-        // Butonlarý devre dýþý býrakýp/etkinleþtirmeyi de ekleyebilirsiniz (döngüsel yapmazsanýz)
+        // Butonlari devre disi birakip/etkinlestirmeyi de ekleyebilirsiniz (dongusel yapmazsaniz)
     }
 }
