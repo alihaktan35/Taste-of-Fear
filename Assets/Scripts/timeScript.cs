@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI; // Legacy Text için gerekli
+using UnityEngine.SceneManagement; // Scene management için gerekli
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -12,10 +13,15 @@ public class CountdownTimer : MonoBehaviour
     public float warningTime = 30f;
     public Color normalColor = Color.white;
     public Color warningColor = Color.red;
-    
+
+    [Header("Scene Settings")]
+    [Tooltip("Süre bittiğinde gidilecek sahne adı")]
+    public string jumpscareSceneName = "jumpscare";
+
     private float currentTime;
     private Text timerText;
     private bool isWarningPhase = false;
+    private bool timerEnded = false;
     
     void Start()
     {
@@ -39,13 +45,13 @@ public class CountdownTimer : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             UpdateTimerDisplay();
-            
+
             // 30 saniyenin altına düştüğünde yanıp sönmeyi başlat
             if (currentTime <= warningTime && !isWarningPhase)
             {
                 isWarningPhase = true;
             }
-            
+
             // Her saniyede renk değiştir
             if (isWarningPhase)
             {
@@ -60,7 +66,7 @@ public class CountdownTimer : MonoBehaviour
                 }
             }
         }
-        else
+        else if (!timerEnded)
         {
             currentTime = 0;
             timerText.color = warningColor; // Süre bittiğinde kırmızı kalsın
@@ -78,7 +84,29 @@ public class CountdownTimer : MonoBehaviour
     
     void TimerEnded()
     {
-        Debug.Log("Süre bitti!");
+        timerEnded = true;
+        Debug.Log("Time's up! Loading jumpscare scene...");
+
+        // Load jumpscare scene
+        SceneManager.LoadScene(jumpscareSceneName);
+    }
+
+    // Public method to check if time is up
+    public bool IsTimeUp()
+    {
+        return timerEnded;
+    }
+
+    // Public method to get remaining time
+    public float GetRemainingTime()
+    {
+        return currentTime;
+    }
+
+    // Public method to stop timer (when recipe is completed successfully)
+    public void StopTimer()
+    {
         enabled = false;
+        Debug.Log("Timer stopped - recipe completed!");
     }
 }

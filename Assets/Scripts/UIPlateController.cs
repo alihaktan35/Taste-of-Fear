@@ -11,6 +11,7 @@ public class UIPlateController : MonoBehaviour, IDropHandler
 
     [Header("UI References")]
     public Image plateImage; // The plate image that shows the final dish
+    public CountdownTimer countdownTimer; // Reference to the timer
 
     private Dictionary<string, int> ingredientsOnPlate = new Dictionary<string, int>();
     private List<GameObject> ingredientObjectsOnPlate = new List<GameObject>();
@@ -101,6 +102,12 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     void CompleteDish()
     {
         Debug.Log($"Dish completed: {currentRecipe.recipeName}");
+
+        // Stop the timer - recipe completed successfully!
+        if (countdownTimer != null)
+        {
+            countdownTimer.StopTimer();
+        }
 
         // Clear all ingredient objects from plate
         foreach (GameObject ingredientObj in ingredientObjectsOnPlate)
