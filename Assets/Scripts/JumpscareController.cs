@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class JumpscareController : MonoBehaviour
 {
-    // Inspector'da atama yapmak için public deðiþkenler
+    // Public variables for Inspector assignment
     public Image vampire1Image;
     public GameObject vampire2Object;
     public AudioSource jumpscareAudio;
     public string mainMenuSceneName = "startMenu";
 
-    // TextMeshProUGUI tipinde deðiþken
+    // TextMeshProUGUI variable
     public TextMeshProUGUI failedText;
 
-    // Ayarlanabilir zamanlayýcýlar
+    // Adjustable timers
     public float fadeInTime = 2f;
     public float waitBeforeScareTime = 0.5f;
     public float scareDisplayTime = 6.0f;
@@ -23,16 +23,16 @@ public class JumpscareController : MonoBehaviour
 
     void Start()
     {
-        // Baþlangýçta Text nesnesini Alpha deðeri ile gizle (SetActive kullanmýyoruz)
+        // Hide Text object at start using Alpha value (not using SetActive)
         if (failedText != null)
         {
             Color c = failedText.color;
-            c.a = 0f; // Alpha'yý 0 yaparak gizle
+            c.a = 0f; // Hide by setting Alpha to 0
             failedText.color = c;
         }
         else
         {
-            Debug.LogError("HATA: Failed Text Inspector'da atanmamýþ!");
+            Debug.LogError("ERROR: Failed Text not assigned in Inspector!");
         }
 
         StartCoroutine(JumpscareRoutine());
@@ -42,10 +42,10 @@ public class JumpscareController : MonoBehaviour
     {
         float timer = 0f;
 
-        // 1. GÖRSEL 1: Sakin Vampirin Yavaþça Görünmesi (Fade In)
+        // 1. VISUAL 1: Calm Vampire Slowly Appears (Fade In)
         if (vampire1Image == null)
         {
-            Debug.LogError("Vampire 1 Image atanmadý! Jumpscare iptal ediliyor.");
+            Debug.LogError("Vampire 1 Image not assigned! Jumpscare cancelled.");
             yield break;
         }
 
@@ -62,10 +62,10 @@ public class JumpscareController : MonoBehaviour
         color.a = 1f;
         vampire1Image.color = color;
 
-        // 2. KISA BEKLEME
+        // 2. SHORT WAIT
         yield return new WaitForSeconds(waitBeforeScareTime);
 
-        // 3. JUMPSCARE ANI
+        // 3. JUMPSCARE MOMENT
         vampire1Image.gameObject.SetActive(false);
 
         if (vampire2Object != null)
@@ -78,35 +78,35 @@ public class JumpscareController : MonoBehaviour
             jumpscareAudio.Play();
         }
 
-        // 4. JUMPSCARE SONU: Belirtilen süre kadar ekranda tut
+        // 4. JUMPSCARE END: Keep on screen for specified time
         yield return new WaitForSeconds(scareDisplayTime);
 
-        // 4.5: "YOU FAILED" Yazýsýný Göster
+        // 4.5: Show "YOU FAILED" Text
 
         if (failedText != null)
         {
-            // YENÝ EKLEME: Vampire 2'yi kapat ve metni göster
+            // NEW ADDITION: Close Vampire 2 and show text
             if (vampire2Object != null)
             {
-                vampire2Object.SetActive(false); // <--- VAMPÝRE 2 KAPATILDI!
+                vampire2Object.SetActive(false); // <--- VAMPIRE 2 CLOSED!
             }
 
             failedText.text = "YOU FAILED";
 
-            // Text'i Alpha'yý 1 yaparak görünür yap
+            // Make text visible by setting Alpha to 1
             Color c = failedText.color;
             c.a = 1f;
             failedText.color = c;
 
-            Debug.Log("Yazý ve kapanýþ komutlarý uygulandý.");
+            Debug.Log("Text and close commands applied.");
 
             yield return new WaitForSeconds(textDisplayTime);
         }
         else
         {
-            Debug.LogError("FAILEDTEXT NULL! Inspector atamasý yanlýþ!");
+            Debug.LogError("FAILEDTEXT NULL! Inspector assignment is wrong!");
         }
 
-        // Sahne burada kalacak. (Veya isterseniz buradan sahne geçiþi yapabilirsiniz)
+        // Scene will stay here. (Or you can add scene transition from here if you want)
     }
 }
