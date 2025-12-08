@@ -345,7 +345,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Zehirli Mantar Sepeti
+          m_StringArgument: Kesik Damar Spagetti
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1153400022
@@ -521,6 +521,7 @@ MonoBehaviour:
 
     Drag the 4 ingredients on the table
     to the plate to make it.'
+  currentRecipeName: 
 --- !u!4 &1279720029
 Transform:
   m_ObjectHideFlags: 0
@@ -1221,7 +1222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6594603699599502552, guid: 40c64a1f4f673dc44833acf9078d1549, type: 3}
+  m_Sprite: {fileID: -3482338339729833064, guid: 1d2c2fd351dfe494796f1ba0d2eba5d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

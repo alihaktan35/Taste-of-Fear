@@ -15,6 +15,9 @@ public class TableSceneManager : MonoBehaviour
     [Header("Instruction Text Template")]
     public string instructionTemplate = "The order is a XXXX.\nDrag the 4 ingredients on the table to the plate to make it."; // Template with XXXX as placeholder
 
+    [Header("Debug Info")]
+    [SerializeField] private string currentRecipeName; // Inspector'da görünür hali
+
     private RecipeData currentRecipe;
 
     void Start()
@@ -52,6 +55,9 @@ public class TableSceneManager : MonoBehaviour
             Debug.LogError("No recipe to set up!");
             return;
         }
+
+        // Update debug info for Inspector
+        currentRecipeName = currentRecipe.recipeName;
 
         Debug.Log($"Setting up recipe: {currentRecipe.recipeName}");
 

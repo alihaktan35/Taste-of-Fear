@@ -15,6 +15,7 @@ public class RecipeData : ScriptableObject
     [Header("Recipe Info")]
     public string recipeName; // Turkish name (e.g., "Göz Küresi Çorbası")
     public Sprite dishSprite; // Final dish image
+    public bool isPoisonous = false; // Zehirli mantar sepeti gibi özel tarifler için
 
     [Header("Ingredients")]
     public List<RecipeIngredient> ingredients = new List<RecipeIngredient>();

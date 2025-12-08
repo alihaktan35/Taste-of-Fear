@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIPlateController : MonoBehaviour, IDropHandler
 {
+    public static bool WasPoisonousDishMade = false; // Static variable to track if poisonous dish was made
+
     [Header("Recipe System")]
     public RecipeData currentRecipe; // Set by TableSceneManager
 
@@ -103,6 +105,17 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     {
         Debug.Log($"Dish completed: {currentRecipe.recipeName}");
 
+        // Check if this is a poisonous dish
+        if (currentRecipe.isPoisonous)
+        {
+            WasPoisonousDishMade = true;
+            Debug.Log("WARNING: Poisonous dish was made!");
+        }
+        else
+        {
+            WasPoisonousDishMade = false;
+        }
+
         // Stop the timer - recipe completed successfully!
         if (countdownTimer != null)
         {
@@ -147,7 +160,6 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     {
         // TODO: Return to order scene or next scene
         Debug.Log("Scene complete! Returning to previous scene...");
-        // For now, just reload the scene or go to a specific scene
         // SceneManager.LoadScene("order01");
     }
 
