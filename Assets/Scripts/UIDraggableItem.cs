@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 // Bu script'i kullandığınız nesnede AudioSource bileşeninin olmasını sağlar (zorunlu kılınabilir, ancak bu kodda manuel kontrol ediyoruz)
 public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
@@ -50,15 +51,28 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log($"[Drag] OnPointerDown on '{ingredientName}', isClone={isClone}");
+
+        if (!isClone)
+        {
+            Debug.Log($"[ORIGINAL] Before clone - active={gameObject.activeSelf}, position={rectTransform.localPosition}, parent={transform.parent.name}");
+        }
+
         // YENİ: Sesi, sürükleme olayı başlamadan hemen önce çal!
         CalSesiOynat();
 
         // If this is the original ingredient (not a clone), create a clone to drag
         if (!isClone)
         {
+            Debug.Log($"[Drag] Creating clone of '{ingredientName}'...");
+
             // Create a clone
             draggedClone = Instantiate(gameObject, transform.parent);
-            draggedClone.name = gameObject.name; // Keep same name (remove "(Clone)" suffix)
+            draggedClone.name = gameObject.name + "_CLONE"; // Mark as clone with different name
+
+            Debug.Log($"[Drag] Clone created! Clone ID={draggedClone.GetInstanceID()}, Original ID={gameObject.GetInstanceID()}");
+            Debug.Log($"[Drag] Original stays at position {rectTransform.localPosition}");
+            Debug.Log($"[ORIGINAL] After clone - active={gameObject.activeSelf}, position={rectTransform.localPosition}, parent={transform.parent.name}");
 
             // Set up the clone
             UIDraggableItem cloneDraggable = draggedClone.GetComponent<UIDraggableItem>();
@@ -142,6 +156,8 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         // Only process for clones
         if (!isClone)
         {
+            Debug.Log($"[ORIGINAL] OnPointerUp - active={gameObject.activeSelf}, position={rectTransform.localPosition}, parent={transform.parent.name}");
+
             // Forward to clone
             if (draggedClone != null)
             {
@@ -152,25 +168,64 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
             }
             draggedClone = null;
+
+            Debug.Log($"[ORIGINAL] After forwarding to clone - active={gameObject.activeSelf}, position={rectTransform.localPosition}");
             return;
         }
 
-        // Check if dropped on plate
-        bool droppedOnPlate = false;
+        Debug.Log($"[CLONE] OnPointerUp called for '{ingredientName}' (ID: {gameObject.GetInstanceID()})");
 
-        if (eventData.pointerEnter != null)
+        // Check if dropped on plate by raycasting at pointer position
+        bool droppedOnPlate = false;
+        UIPlateController foundPlate = null;
+
+        // Perform a raycast at the pointer position to find all UI elements underneath
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = eventData.position;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+        Debug.Log($"[Drag] Raycast found {raycastResults.Count} objects at drop position");
+
+        // Check all raycasted objects for a UIPlateController
+        foreach (RaycastResult result in raycastResults)
         {
-            UIPlateController plate = eventData.pointerEnter.GetComponent<UIPlateController>();
+            Debug.Log($"[Drag]   - Raycast hit: {result.gameObject.name} (ID: {result.gameObject.GetInstanceID()})");
+
+            UIPlateController plate = result.gameObject.GetComponent<UIPlateController>();
             if (plate != null)
             {
+                Debug.Log($"[Drag] ✓ Found plate on '{result.gameObject.name}'!");
+                foundPlate = plate;
                 droppedOnPlate = true;
-                // The plate's OnDrop will handle this
+                break;
             }
+        }
+
+        // If plate found, drop the ingredient on it
+        if (droppedOnPlate && foundPlate != null)
+        {
+            Debug.Log($"[Drag] Calling plate.OnDrop for ingredient '{ingredientName}'");
+
+            // CRITICAL FIX: eventData.pointerDrag points to the ORIGINAL, not the clone!
+            // We need to replace it with the clone (this.gameObject) before calling OnDrop
+            GameObject originalPointerDrag = eventData.pointerDrag;
+            eventData.pointerDrag = this.gameObject; // Set to clone
+
+            Debug.Log($"[Drag] Fixed pointerDrag: was '{originalPointerDrag.name}' (ID:{originalPointerDrag.GetInstanceID()}), now '{eventData.pointerDrag.name}' (ID:{eventData.pointerDrag.GetInstanceID()})");
+
+            foundPlate.OnDrop(eventData);
+        }
+        else
+        {
+            Debug.LogWarning($"[Drag] No plate found at drop position for '{ingredientName}'");
         }
 
         // If not dropped on plate, destroy the clone
         if (!droppedOnPlate)
         {
+            Debug.Log($"[Drag] Ingredient '{ingredientName}' not dropped on plate - destroying clone");
             Destroy(gameObject);
         }
     }
@@ -178,14 +233,17 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
     // Mark this clone as being placed on the plate
     public void MarkAsPlacedOnPlate()
     {
+        Debug.Log($"[Drag] MarkAsPlacedOnPlate called for '{ingredientName}' - disabling raycasts");
+
         // Disable dragging
         enabled = false;
 
-        // Disable raycast target so it doesn't interfere with future drags
-        Image img = GetComponent<Image>();
-        if (img != null)
+        // Disable ALL Graphic components' raycast targets so they don't interfere with future drags
+        UnityEngine.UI.Graphic[] graphics = GetComponentsInChildren<UnityEngine.UI.Graphic>(true);
+        foreach (UnityEngine.UI.Graphic graphic in graphics)
         {
-            img.raycastTarget = false;
+            graphic.raycastTarget = false;
+            Debug.Log($"[Drag]   - Disabled raycast on {graphic.gameObject.name} ({graphic.GetType().Name})");
         }
     }
 }

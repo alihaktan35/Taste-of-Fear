@@ -21,15 +21,19 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     // Called when a UI object is dropped onto this plate
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log("[Plate] OnDrop called!");
+
         // Check if the dragged object is an ingredient
         if (eventData.pointerDrag != null)
         {
+            Debug.Log($"[Plate] pointerDrag object: {eventData.pointerDrag.name}");
+
             UIDraggableItem draggedItem = eventData.pointerDrag.GetComponent<UIDraggableItem>();
             if (draggedItem != null && draggedItem.ingredientName != null)
             {
                 string ingredientName = draggedItem.ingredientName;
 
-                Debug.Log($"Dropped ingredient: {ingredientName}");
+                Debug.Log($"[Plate] Dropped ingredient: '{ingredientName}' onto plate");
 
                 // Add ingredient to plate
                 if (ingredientsOnPlate.ContainsKey(ingredientName))
@@ -51,6 +55,10 @@ public class UIPlateController : MonoBehaviour, IDropHandler
 
                 if (ingredientRect != null && plateRect != null)
                 {
+                    // IMPORTANT: Disable raycasts FIRST before moving to plate
+                    // This prevents the ingredient from blocking future drags
+                    draggedItem.MarkAsPlacedOnPlate();
+
                     // Set parent to Canvas (plateRect.parent) NOT to PlateImage itself
                     // This is CRITICAL - ingredients must be siblings of PlateImage, not children
                     // They will render AFTER PlateImage because SetAsLastSibling() puts them at the end
@@ -63,14 +71,11 @@ public class UIPlateController : MonoBehaviour, IDropHandler
                     );
                     ingredientRect.anchoredPosition = plateRect.anchoredPosition + randomOffset;
 
-                    // Scale down the ingredient to fit on plate
-                    ingredientRect.localScale = new Vector3(0.5f, 0.5f, 1f);
+                    // Scale down the ingredient to fit on plate (smaller to avoid clutter)
+                    ingredientRect.localScale = new Vector3(0.2f, 0.2f, 1f);
 
                     // CRITICAL: This makes ingredient render AFTER PlateImage (on top of it)
                     ingredientRect.SetAsLastSibling();
-
-                    // Mark as placed on plate
-                    draggedItem.MarkAsPlacedOnPlate();
                 }
 
                 Debug.Log($"Ingredients on plate: {GetIngredientsSummary()}");
@@ -78,6 +83,14 @@ public class UIPlateController : MonoBehaviour, IDropHandler
                 // Check if recipe is complete
                 CheckForRecipe();
             }
+            else
+            {
+                Debug.LogWarning("[Plate] Dropped object is not a valid ingredient or has no ingredientName!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[Plate] OnDrop called but pointerDrag is null!");
         }
     }
 
@@ -85,31 +98,41 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     {
         if (currentRecipe == null)
         {
-            Debug.LogWarning("No recipe set for this cooking session!");
+            Debug.LogWarning("[Plate] No recipe set for this cooking session!");
             return;
+        }
+
+        Debug.Log($"[Plate] Checking recipe '{currentRecipe.recipeName}'...");
+        Debug.Log($"[Plate] Current ingredients on plate: {GetIngredientsSummary()}");
+        Debug.Log($"[Plate] Required ingredients for recipe:");
+        foreach (var ingredient in currentRecipe.ingredients)
+        {
+            Debug.Log($"[Plate]   - {ingredient.quantity}x {ingredient.ingredientName}");
         }
 
         // Check if the ingredients match the recipe
         if (currentRecipe.MatchesRecipe(ingredientsOnPlate))
         {
-            Debug.Log($"Recipe complete: {currentRecipe.recipeName}");
+            Debug.Log($"[Plate] ✓ Recipe complete: {currentRecipe.recipeName}");
             CompleteDish();
         }
         else
         {
-            Debug.Log("Ingredients don't match recipe yet.");
+            Debug.Log("[Plate] ✗ Ingredients don't match recipe yet.");
         }
     }
 
     void CompleteDish()
     {
-        Debug.Log($"Dish completed: {currentRecipe.recipeName}");
+        Debug.Log($"[Plate] ========================================");
+        Debug.Log($"[Plate] DISH COMPLETED: {currentRecipe.recipeName}");
+        Debug.Log($"[Plate] ========================================");
 
         // Check if this is a poisonous dish
         if (currentRecipe.isPoisonous)
         {
             WasPoisonousDishMade = true;
-            Debug.Log("WARNING: Poisonous dish was made!");
+            Debug.Log("[Plate] WARNING: Poisonous dish was made!");
         }
         else
         {
@@ -143,8 +166,17 @@ public class UIPlateController : MonoBehaviour, IDropHandler
             RectTransform plateRect = plateImage.GetComponent<RectTransform>();
             if (plateRect != null)
             {
-                // Optionally adjust size to fit the dish image better
+                // Adjust size to fit the dish image better
                 plateRect.sizeDelta = new Vector2(400, 400);
+
+                // Move dish upward on Y axis so it's more visible
+                Vector2 currentPos = plateRect.anchoredPosition;
+                plateRect.anchoredPosition = new Vector2(currentPos.x, currentPos.y + 120f);
+
+                // Make dish render on top of all ingredients (last sibling = rendered last = on top)
+                plateRect.SetAsLastSibling();
+
+                Debug.Log($"[Plate] Dish positioned at: {plateRect.anchoredPosition}");
             }
         }
         else
