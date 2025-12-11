@@ -21,9 +21,10 @@ Korku ve zaman yönetimi türlerini harmanlayan bağımsız oyun. Overcooked'un 
 
 ### Oynanış
 ![Oynanış Ekranı](demo-images/3.png)
-
-<video src="https://github.com/user-attachments/assets/e6ba5f65-c82a-425d-8094-c8e519a60f5b" controls="controls" muted loop width="640" height="360"></video>
 *Zamana karşı yarış - Siparişi tamamla, hayatta kal*
+
+# Yemek Yapma Mekaniği:
+<video src="https://github.com/user-attachments/assets/e6ba5f65-c82a-425d-8094-c8e519a60f5b" controls="controls" muted loop width="640" height="360"></video>
 
 ## ✨ Ana Özellikler
 - 🍳 Dinamik mutfak ve sipariş yönetimi
