@@ -59,10 +59,10 @@ public class KarakterBelirme : MonoBehaviour
 
     void KonusmaBalonuGoster()
     {
-        // ÖNEMLÝ: Baðlantýlarýn Kontrolü (Hala atanmamýþsa Log Error verir)
+        // Baðlantýlarýn Kontrolü
         if (konusmaBalonuObjesi == null || metinAlani == null)
         {
-            Debug.LogError("Konuþma balonu veya metin alaný Inspector'da atanmadý!");
+            Debug.LogError("Konuþma balonu veya metin alaný Inspector'da atanmadý! Lütfen baðlantýlarý kontrol edin.");
             return;
         }
 
@@ -70,9 +70,9 @@ public class KarakterBelirme : MonoBehaviour
 
         if (rastgeleMetinler.Length == 0)
         {
-            // Metin dizisi boþsa, sadece uyarý ver ve metni boþ býrak
-            Debug.LogWarning("Rastgele metin dizisi Inspector'da boþ býrakýldý. Konuþma balonu boþ gösteriliyor.");
-            secilenMetin = ""; // <<-- BURASI DEÐÝÞTÝRÝLDÝ ("Selam..." yerine boþ string)
+            // Metin dizisi boþsa, uyarý ver ve metni boþ býrak
+            Debug.LogWarning("Rastgele metin dizisi Inspector'da boþ býrakýldý! Konuþma balonu boþ gösteriliyor.");
+            secilenMetin = "";
         }
         else
         {
@@ -82,7 +82,10 @@ public class KarakterBelirme : MonoBehaviour
         }
 
         // Balonu görünür yap ve metni ata
-        konusmaBalonuObjesi.SetActive(true);
+        konusmaBalonuObjesi.SetActive(true); // <<-- BURASI ONU AÇIK TUTAN YER
         metinAlani.text = secilenMetin;
+
+        // Bu fonksiyonda, konuþma balonunu kapatan (SetActive(false)) hiçbir kod yoktur.
+        // Baþka bir script kapatmýyorsa, açýk kalacaktýr.
     }
 }
