@@ -1,28 +1,35 @@
 using UnityEngine;
-using UnityEngine.UI; // Image bileþenini kullanmak için gerekli!
-using System.Collections; // Coroutine (zamanla iþlem) için gerekli
+using UnityEngine.UI;
+using System.Collections;
+using TMPro;
 
 public class KarakterBelirme : MonoBehaviour
 {
-    // Inspector'da ayarlanacak deðiþken:
-    public float belirmeSuresi = 2.0f; // Belirmenin ne kadar süreceði (saniye)
+    // Inspector'da ayarlanacak deðiþkenler:
+    public float belirmeSuresi = 3.0f; // Karakterin görünme süresi
+
+    // Konuþma Balonu Deðiþkenleri
+    public GameObject konusmaBalonuObjesi;
+    public TMP_Text metinAlani;
+
+    [TextArea]
+    public string[] rastgeleMetinler; // Inspector'da buraya metinlerinizi gireceksiniz
+
 
     private Image karakterImage;
     private Color renk;
 
     void Start()
     {
-        // 1. Karakterin Image bileþenini al
         karakterImage = GetComponent<Image>();
 
-        // 2. Baþlangýç rengini kaydet
         renk = karakterImage.color;
 
-        // 3. Karakteri baþlangýçta tamamen görünmez yap (Alfa = 0)
+        // Baþlangýçta tamamen görünmez yap
         renk.a = 0f;
         karakterImage.color = renk;
 
-        // 4. Belirme iþlemini baþlat
+        // Belirme iþlemini baþlat
         StartCoroutine(FadeIn());
     }
 
@@ -30,28 +37,52 @@ public class KarakterBelirme : MonoBehaviour
     {
         float gecenZaman = 0f;
 
-        // Geçen zaman, belirme süresinden az olduðu sürece devam et
         while (gecenZaman < belirmeSuresi)
         {
-            // Oraný hesapla (0.0'dan 1.0'a doðru artacak)
             float alfaOrani = gecenZaman / belirmeSuresi;
 
-            // Yeni alfa deðerini ata
             renk.a = alfaOrani;
             karakterImage.color = renk;
 
-            // Zamaný ilerlet
             gecenZaman += Time.deltaTime;
 
-            yield return null; // Bir sonraki kareye kadar bekle
+            yield return null;
         }
 
-        // Belirme bittiðinde, tam görünür olduðundan emin ol (alfa=1)
+        // Belirme bittiðinde, tam görünür olduðundan emin ol
         renk.a = 1f;
         karakterImage.color = renk;
 
-        Debug.Log("Karakter tamamen belirdi.");
+        // Konuþma Balonunu göster fonksiyonunu çaðýr
+        KonusmaBalonuGoster();
     }
 
-    
+    void KonusmaBalonuGoster()
+    {
+        // ÖNEMLÝ: Baðlantýlarýn Kontrolü (Hala atanmamýþsa Log Error verir)
+        if (konusmaBalonuObjesi == null || metinAlani == null)
+        {
+            Debug.LogError("Konuþma balonu veya metin alaný Inspector'da atanmadý!");
+            return;
+        }
+
+        string secilenMetin = "";
+
+        if (rastgeleMetinler.Length == 0)
+        {
+            // Metin dizisi boþsa, sadece uyarý ver ve metni boþ býrak
+            Debug.LogWarning("Rastgele metin dizisi Inspector'da boþ býrakýldý. Konuþma balonu boþ gösteriliyor.");
+            secilenMetin = ""; // <<-- BURASI DEÐÝÞTÝRÝLDÝ ("Selam..." yerine boþ string)
+        }
+        else
+        {
+            // Dizi doluysa, rastgele metin seç
+            int rastgeleIndex = Random.Range(0, rastgeleMetinler.Length);
+            secilenMetin = rastgeleMetinler[rastgeleIndex];
+        }
+
+        // Balonu görünür yap ve metni ata
+        konusmaBalonuObjesi.SetActive(true);
+        metinAlani.text = secilenMetin;
+    }
 }
