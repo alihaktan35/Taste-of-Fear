@@ -3,29 +3,26 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-// Bu script'i kullandığınız nesnede AudioSource bileşeninin olmasını sağlar (zorunlu kılınabilir, ancak bu kodda manuel kontrol ediyoruz)
+/// <summary>
+/// Makes UI ingredient items draggable with clone-based drag system
+/// </summary>
 public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private Vector2 pointerOffset;
-    private GameObject draggedClone; // Clone that will be dragged
-    private Vector2 originalPosition; // Original position to return if not dropped on plate
-    private bool isClone = false; // Is this object a clone?
+    private GameObject draggedClone;
+    private Vector2 originalPosition;
+    private bool isClone = false;
+    private AudioSource audioSource;
 
-    // YENİ: Ses kaynağını tutacak değişken
-    private AudioSource sesKaynagi; 
-
-    public string ingredientName; // Name of the ingredient (e.g., "asit", "göz")
+    public string ingredientName;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
-        
-        // YENİ: Objeye eklenmiş AudioSource bileşenini al
-        // Sesin çalabilmesi için her bir malzeme objesinde (balçık, asit, vb.) Audio Source bileşeni olmalıdır.
-        sesKaynagi = GetComponent<AudioSource>(); 
+        audioSource = GetComponent<AudioSource>();
 
         // Set ingredient name from GameObject name if not set
         if (string.IsNullOrEmpty(ingredientName))
@@ -33,46 +30,34 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
             ingredientName = gameObject.name;
         }
     }
-    
-    // YENİ: Sesi çalma fonksiyonu
-    private void CalSesiOynat() 
+
+    /// <summary>
+    /// Plays the ingredient sound effect
+    /// </summary>
+    private void PlaySound()
     {
-        if (sesKaynagi != null)
+        if (audioSource != null)
         {
-            // Oynayan sesi durdurup baştan başlatır (hızlı tıklamalar için ideal)
-            if (sesKaynagi.isPlaying)
+            // Stop and restart sound for rapid clicks
+            if (audioSource.isPlaying)
             {
-                sesKaynagi.Stop();
+                audioSource.Stop();
             }
-            sesKaynagi.Play();
-            Debug.Log(gameObject.name + " sesi çalındı."); // Sesin tetiklendiğini kontrol etmek için
+            audioSource.Play();
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log($"[Drag] OnPointerDown on '{ingredientName}', isClone={isClone}");
-
-        if (!isClone)
-        {
-            Debug.Log($"[ORIGINAL] Before clone - active={gameObject.activeSelf}, position={rectTransform.localPosition}, parent={transform.parent.name}");
-        }
-
-        // YENİ: Sesi, sürükleme olayı başlamadan hemen önce çal!
-        CalSesiOynat();
+        // Play sound when picking up ingredient
+        PlaySound();
 
         // If this is the original ingredient (not a clone), create a clone to drag
         if (!isClone)
         {
-            Debug.Log($"[Drag] Creating clone of '{ingredientName}'...");
-
             // Create a clone
             draggedClone = Instantiate(gameObject, transform.parent);
-            draggedClone.name = gameObject.name + "_CLONE"; // Mark as clone with different name
-
-            Debug.Log($"[Drag] Clone created! Clone ID={draggedClone.GetInstanceID()}, Original ID={gameObject.GetInstanceID()}");
-            Debug.Log($"[Drag] Original stays at position {rectTransform.localPosition}");
-            Debug.Log($"[ORIGINAL] After clone - active={gameObject.activeSelf}, position={rectTransform.localPosition}, parent={transform.parent.name}");
+            draggedClone.name = gameObject.name + "_CLONE";
 
             // Set up the clone
             UIDraggableItem cloneDraggable = draggedClone.GetComponent<UIDraggableItem>();
@@ -156,8 +141,6 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         // Only process for clones
         if (!isClone)
         {
-            Debug.Log($"[ORIGINAL] OnPointerUp - active={gameObject.activeSelf}, position={rectTransform.localPosition}, parent={transform.parent.name}");
-
             // Forward to clone
             if (draggedClone != null)
             {
@@ -168,12 +151,8 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
             }
             draggedClone = null;
-
-            Debug.Log($"[ORIGINAL] After forwarding to clone - active={gameObject.activeSelf}, position={rectTransform.localPosition}");
             return;
         }
-
-        Debug.Log($"[CLONE] OnPointerUp called for '{ingredientName}' (ID: {gameObject.GetInstanceID()})");
 
         // Check if dropped on plate by raycasting at pointer position
         bool droppedOnPlate = false;
@@ -186,17 +165,12 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, raycastResults);
 
-        Debug.Log($"[Drag] Raycast found {raycastResults.Count} objects at drop position");
-
         // Check all raycasted objects for a UIPlateController
         foreach (RaycastResult result in raycastResults)
         {
-            Debug.Log($"[Drag]   - Raycast hit: {result.gameObject.name} (ID: {result.gameObject.GetInstanceID()})");
-
             UIPlateController plate = result.gameObject.GetComponent<UIPlateController>();
             if (plate != null)
             {
-                Debug.Log($"[Drag] ✓ Found plate on '{result.gameObject.name}'!");
                 foundPlate = plate;
                 droppedOnPlate = true;
                 break;
@@ -206,35 +180,24 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         // If plate found, drop the ingredient on it
         if (droppedOnPlate && foundPlate != null)
         {
-            Debug.Log($"[Drag] Calling plate.OnDrop for ingredient '{ingredientName}'");
-
             // CRITICAL FIX: eventData.pointerDrag points to the ORIGINAL, not the clone!
             // We need to replace it with the clone (this.gameObject) before calling OnDrop
-            GameObject originalPointerDrag = eventData.pointerDrag;
-            eventData.pointerDrag = this.gameObject; // Set to clone
-
-            Debug.Log($"[Drag] Fixed pointerDrag: was '{originalPointerDrag.name}' (ID:{originalPointerDrag.GetInstanceID()}), now '{eventData.pointerDrag.name}' (ID:{eventData.pointerDrag.GetInstanceID()})");
-
+            eventData.pointerDrag = this.gameObject;
             foundPlate.OnDrop(eventData);
-        }
-        else
-        {
-            Debug.LogWarning($"[Drag] No plate found at drop position for '{ingredientName}'");
         }
 
         // If not dropped on plate, destroy the clone
         if (!droppedOnPlate)
         {
-            Debug.Log($"[Drag] Ingredient '{ingredientName}' not dropped on plate - destroying clone");
             Destroy(gameObject);
         }
     }
 
-    // Mark this clone as being placed on the plate
+    /// <summary>
+    /// Marks this ingredient as placed on the plate, disabling raycasts to prevent interference
+    /// </summary>
     public void MarkAsPlacedOnPlate()
     {
-        Debug.Log($"[Drag] MarkAsPlacedOnPlate called for '{ingredientName}' - disabling raycasts");
-
         // Disable dragging
         enabled = false;
 
@@ -243,7 +206,6 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         foreach (UnityEngine.UI.Graphic graphic in graphics)
         {
             graphic.raycastTarget = false;
-            Debug.Log($"[Drag]   - Disabled raycast on {graphic.gameObject.name} ({graphic.GetType().Name})");
         }
     }
 }

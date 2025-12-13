@@ -2,14 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Singleton - Oyunun akisini yoneten ana manager
-/// Karakter ve yemek secimini, siparis takibini, high score yonetimini yapar
-/// DontDestroyOnLoad ile sahneler arasi korunur
+/// Singleton - Main game flow manager
+/// Handles character/recipe selection, order tracking, and high score management
+/// Persists across scenes with DontDestroyOnLoad
 /// </summary>
 public class GameFlowManager : MonoBehaviour
 {
-    // Singleton instance
     private static GameFlowManager _instance;
+
+    /// <summary>
+    /// Gets the singleton instance of GameFlowManager
+    /// </summary>
     public static GameFlowManager Instance
     {
         get
@@ -54,7 +57,7 @@ public class GameFlowManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton kontrolu
+        // Singleton pattern - destroy duplicates
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
@@ -63,77 +66,71 @@ public class GameFlowManager : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
-
-        // Kaydedilmis verileri yukle
         LoadGameData();
-
-        Debug.Log($"[GameFlowManager] Initialized - High Score: {highScore}, Total Orders: {totalOrders}");
     }
 
     /// <summary>
-    /// Yeni bir tur icin rastgele karakter ve yemek secer
+    /// Prepares a new order by randomly selecting a character and recipe
     /// </summary>
     public void PrepareNewOrder()
     {
-        // Rastgele karakter sec
+        // Select random character
         if (characterDatabase != null)
         {
             currentCharacter = characterDatabase.GetRandomCharacter();
             if (currentCharacter == null)
             {
-                Debug.LogError("[GameFlowManager] Karakter secilemedi! CharacterDatabase kontrol edin.");
+                Debug.LogError("[GameFlowManager] Failed to select character!");
                 return;
             }
         }
         else
         {
-            Debug.LogError("[GameFlowManager] CharacterDatabase atanmamis!");
+            Debug.LogError("[GameFlowManager] CharacterDatabase not assigned!");
             return;
         }
 
-        // Rastgele yemek sec (kullanilmamis olanlardan)
+        // Select random recipe (from unused ones)
         if (recipeDatabase != null)
         {
             currentRecipe = SelectRandomRecipe();
             if (currentRecipe == null)
             {
-                Debug.LogError("[GameFlowManager] Yemek secilemedi! RecipeDatabase kontrol edin.");
+                Debug.LogError("[GameFlowManager] Failed to select recipe!");
                 return;
             }
         }
         else
         {
-            Debug.LogError("[GameFlowManager] RecipeDatabase atanmamis!");
+            Debug.LogError("[GameFlowManager] RecipeDatabase not assigned!");
             return;
         }
-
-        Debug.Log($"[GameFlowManager] Yeni siparis hazirlandi: {currentCharacter.characterName} - {currentRecipe.recipeName}");
     }
 
     /// <summary>
-    /// Kullanilmamis yemeklerden rastgele birini secer
-    /// Tum yemekler kullanildiysa listeyi sifirlar ve tekrar baslar
+    /// Selects a random recipe from unused ones
+    /// If all recipes are used, clears the list and starts over
     /// </summary>
+    /// <returns>Selected recipe or null if database is empty</returns>
     private RecipeData SelectRandomRecipe()
     {
         if (recipeDatabase.allRecipes.Count == 0)
         {
-            Debug.LogError("[GameFlowManager] RecipeDatabase'de yemek yok!");
+            Debug.LogError("[GameFlowManager] RecipeDatabase is empty!");
             return null;
         }
 
-        // Tum yemekler kullanildiysa listeyi sifirla
+        // Reset used recipes list if all have been used
         if (usedRecipeNames.Count >= recipeDatabase.allRecipes.Count)
         {
-            Debug.Log($"[GameFlowManager] Tum {recipeDatabase.allRecipes.Count} yemek kullanildi! Liste sifirlaniyor...");
             usedRecipeNames.Clear();
         }
 
-        // Kullanilmamis yemeklerin listesini olustur
+        // Build list of unused recipes
         List<RecipeData> availableRecipes = new List<RecipeData>();
         foreach (RecipeData recipe in recipeDatabase.allRecipes)
         {
-            // Türkçe karakter desteği için manuel karşılaştırma
+            // Turkish character support - manual comparison
             bool alreadyUsed = false;
             foreach (string usedName in usedRecipeNames)
             {
@@ -150,68 +147,51 @@ public class GameFlowManager : MonoBehaviour
             }
         }
 
-        // Eger kullanilmamis yemek yoksa (hata durumu), listeyi sifirla
+        // Fallback: if no unused recipes found (error case), reset list
         if (availableRecipes.Count == 0)
         {
-            Debug.LogWarning("[GameFlowManager] Kullanilmamis yemek bulunamadi, liste sifirlaniyor...");
             usedRecipeNames.Clear();
             availableRecipes = new List<RecipeData>(recipeDatabase.allRecipes);
         }
 
-        // Rastgele bir yemek sec
-        int randomIndex = Random.Range(0, availableRecipes.Count);
+        // Select random recipe
+        int randomIndex = UnityEngine.Random.Range(0, availableRecipes.Count);
         RecipeData selectedRecipe = availableRecipes[randomIndex];
 
-        // Kullanilan yemeklere ekle
+        // Mark as used
         usedRecipeNames.Add(selectedRecipe.recipeName);
-
-        Debug.Log($"[GameFlowManager] Yemek secildi: {selectedRecipe.recipeName} (Kullanilan: {usedRecipeNames.Count}/{recipeDatabase.allRecipes.Count})");
 
         return selectedRecipe;
     }
 
     /// <summary>
-    /// Siparis basarili oldugundan cagrilir (successful sahnesinden)
+    /// Called when an order is completed successfully
     /// </summary>
     public void OnOrderSuccess()
     {
         successfulOrders++;
         totalOrders++;
-
-        Debug.Log($"[GameFlowManager] Siparis BASARILI! (Basarili: {successfulOrders}, Basarisiz: {failedOrders}, Toplam: {totalOrders})");
-
-        // High score kontrolu
         UpdateHighScore();
-
-        // Verileri kaydet
         SaveGameData();
     }
 
     /// <summary>
-    /// Siparis basarisiz oldugundan cagrilir (jumpscare sahnesinden)
-    /// Skoru sifiirlar!
+    /// Called when an order fails (jumpscare)
+    /// Resets the score!
     /// </summary>
     public void OnOrderFailed()
     {
         failedOrders++;
         totalOrders++;
 
-        Debug.Log($"[GameFlowManager] Siparis BASARISIZ! (Basarili: {successfulOrders}, Basarisiz: {failedOrders}, Toplam: {totalOrders})");
-
-        // SKOR SIFIRLAMA (jumpscare durumunda)
-        int currentScore = ScoreManager.Instance.GetScore();
-        Debug.Log($"[GameFlowManager] Skor sifirlaniyor! (Onceki skor: {currentScore})");
+        // Reset score on jumpscare
         ScoreManager.Instance.ResetScore();
-
-        // High score kontrolu (sifirlanmadan once)
         UpdateHighScore();
-
-        // Verileri kaydet
         SaveGameData();
     }
 
     /// <summary>
-    /// Guncel skoru high score ile karsilastirir ve gerekirse gunceller
+    /// Compares current score with high score and updates if necessary
     /// </summary>
     private void UpdateHighScore()
     {
@@ -220,14 +200,13 @@ public class GameFlowManager : MonoBehaviour
         if (currentScore > highScore)
         {
             highScore = currentScore;
-            Debug.Log($"[GameFlowManager] *** YENi HIGH SCORE: {highScore} ***");
             PlayerPrefs.SetInt(HIGH_SCORE_KEY, highScore);
             PlayerPrefs.Save();
         }
     }
 
     /// <summary>
-    /// Oyun verilerini yukler (PlayerPrefs)
+    /// Loads game data from PlayerPrefs
     /// </summary>
     private void LoadGameData()
     {
@@ -235,12 +214,10 @@ public class GameFlowManager : MonoBehaviour
         totalOrders = PlayerPrefs.GetInt(TOTAL_ORDERS_KEY, 0);
         successfulOrders = PlayerPrefs.GetInt(SUCCESSFUL_ORDERS_KEY, 0);
         failedOrders = PlayerPrefs.GetInt(FAILED_ORDERS_KEY, 0);
-
-        Debug.Log($"[GameFlowManager] Veriler yuklendi - High Score: {highScore}, Total: {totalOrders}, Success: {successfulOrders}, Failed: {failedOrders}");
     }
 
     /// <summary>
-    /// Oyun verilerini kaydeder (PlayerPrefs)
+    /// Saves game data to PlayerPrefs
     /// </summary>
     private void SaveGameData()
     {
@@ -248,28 +225,29 @@ public class GameFlowManager : MonoBehaviour
         PlayerPrefs.SetInt(SUCCESSFUL_ORDERS_KEY, successfulOrders);
         PlayerPrefs.SetInt(FAILED_ORDERS_KEY, failedOrders);
         PlayerPrefs.Save();
-
-        Debug.Log($"[GameFlowManager] Veriler kaydedildi.");
     }
 
     /// <summary>
-    /// High score'u dondurur
+    /// Gets the current high score
     /// </summary>
+    /// <returns>High score value</returns>
     public int GetHighScore()
     {
         return highScore;
     }
 
     /// <summary>
-    /// Istatistikleri dondurur
+    /// Gets order statistics
     /// </summary>
+    /// <returns>Tuple containing successful, failed, and total order counts</returns>
     public (int successful, int failed, int total) GetOrderStatistics()
     {
         return (successfulOrders, failedOrders, totalOrders);
     }
 
     /// <summary>
-    /// Oyun verilerini tamamen sifirlar (yeni oyun baslatildiginda)
+    /// Resets all game data (called when starting new game)
+    /// Note: High score is preserved
     /// </summary>
     public void ResetGameData()
     {
@@ -278,9 +256,6 @@ public class GameFlowManager : MonoBehaviour
         totalOrders = 0;
         usedRecipeNames.Clear();
         ScoreManager.Instance.ResetScore();
-
         SaveGameData();
-
-        Debug.Log("[GameFlowManager] Oyun verileri sifirlandi (High score korundu).");
     }
 }

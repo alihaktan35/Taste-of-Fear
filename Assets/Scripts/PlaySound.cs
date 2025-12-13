@@ -1,35 +1,39 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // !!! Bu satırı ekleyin
+using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(AudioSource))] 
-public class PlaySound : MonoBehaviour, IPointerClickHandler // !!! Bu arayüzü ekleyin
+/// <summary>
+/// Plays a sound effect when the UI element is clicked
+/// </summary>
+[RequireComponent(typeof(AudioSource))]
+public class PlaySound : MonoBehaviour, IPointerClickHandler
 {
-    private AudioSource sesKaynagi;
+    private AudioSource audioSource;
 
     void Start()
     {
-        sesKaynagi = GetComponent<AudioSource>();
-        // Debug.Log("Script başladı."); // Kontrol amaçlı
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // ARTIK OnMouseDown() Kullanmıyoruz. Yerine IPointerClickHandler arayüzünden gelen bu fonksiyonu kullanıyoruz:
+    /// <summary>
+    /// Handles UI click event and plays sound
+    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Tıklandığında buraya düşüp düşmediğini kontrol et
-        Debug.Log(gameObject.name + " TIKLANDI (UI Olayı)."); 
-        
-        CalSesiOynat();
+        PlayAudioClip();
     }
 
-    private void CalSesiOynat() 
+    /// <summary>
+    /// Plays the audio clip (stops and restarts if already playing)
+    /// </summary>
+    private void PlayAudioClip()
     {
-        if (sesKaynagi != null)
+        if (audioSource != null)
         {
-            if (sesKaynagi.isPlaying)
+            if (audioSource.isPlaying)
             {
-                sesKaynagi.Stop();
+                audioSource.Stop();
             }
-            sesKaynagi.Play(); 
+            audioSource.Play();
         }
     }
 }

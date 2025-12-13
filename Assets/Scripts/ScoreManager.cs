@@ -1,23 +1,24 @@
 using UnityEngine;
 
 /// <summary>
-/// Singleton ScoreManager - Tum oyun boyunca skoru yonetir
-/// Sahneler arasi gecislerde korunur (DontDestroyOnLoad)
+/// Singleton ScoreManager - Manages score throughout the entire game
+/// Persists across scene transitions (DontDestroyOnLoad)
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    // Singleton instance
     private static ScoreManager _instance;
+
+    /// <summary>
+    /// Gets the singleton instance of ScoreManager
+    /// </summary>
     public static ScoreManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                // Sahnede ScoreManager var mi kontrol et
                 _instance = FindFirstObjectByType<ScoreManager>();
 
-                // Yoksa yeni bir GameObject olustur
                 if (_instance == null)
                 {
                     GameObject scoreManagerObject = new GameObject("ScoreManager");
@@ -28,15 +29,12 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Guncel skor
     private int currentScore = 0;
-
-    // PlayerPrefs key
     private const string SCORE_KEY = "GameScore";
 
     void Awake()
     {
-        // Singleton kontrolu - birden fazla instance varsa yok et
+        // Singleton pattern - destroy duplicates
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
@@ -44,52 +42,49 @@ public class ScoreManager : MonoBehaviour
         }
 
         _instance = this;
-        DontDestroyOnLoad(gameObject); // Sahneler arasi korunur
-
-        // Kaydedilmis skoru yukle
+        DontDestroyOnLoad(gameObject);
         LoadScore();
-
-        Debug.Log($"[ScoreManager] Initialized with score: {currentScore}");
     }
 
     /// <summary>
-    /// Skora puan ekler
+    /// Adds points to the current score
     /// </summary>
+    /// <param name="points">Points to add</param>
     public void AddScore(int points)
     {
         currentScore += points;
         SaveScore();
-        Debug.Log($"[ScoreManager] Added {points} points. Total score: {currentScore}");
     }
 
     /// <summary>
-    /// Guncel skoru dondurur
+    /// Gets the current score
     /// </summary>
+    /// <returns>Current score value</returns>
     public int GetScore()
     {
         return currentScore;
     }
 
     /// <summary>
-    /// Skoru 6 haneli string olarak dondurur (ornek: 000200)
+    /// Gets the score formatted as 6-digit string (e.g., 000200)
     /// </summary>
+    /// <returns>Formatted score string</returns>
     public string GetScoreFormatted()
     {
-        return currentScore.ToString("D6");
+        return currentScore.ToString($"D{GameConstants.SCORE_DISPLAY_DIGITS}");
     }
 
     /// <summary>
-    /// Skoru sifirlar (yeni oyun baslatildiginda)
+    /// Resets the score to zero (called when starting new game or after jumpscare)
     /// </summary>
     public void ResetScore()
     {
         currentScore = 0;
         SaveScore();
-        Debug.Log("[ScoreManager] Score reset to 0");
     }
 
     /// <summary>
-    /// Skoru PlayerPrefs'e kaydeder
+    /// Saves the score to PlayerPrefs
     /// </summary>
     private void SaveScore()
     {
@@ -98,7 +93,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Skoru PlayerPrefs'ten yukler
+    /// Loads the score from PlayerPrefs
     /// </summary>
     private void LoadScore()
     {
@@ -106,24 +101,21 @@ public class ScoreManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Kalan sureye gore skor hesaplar ve ekler
-    /// Formul: Kalan Saniye x 10
+    /// Calculates and adds time bonus based on remaining time
+    /// Formula: Floor(remaining seconds) × 10
     /// </summary>
+    /// <param name="remainingTimeInSeconds">Remaining time in seconds</param>
+    /// <returns>Time bonus points awarded</returns>
     public int CalculateAndAddTimeBonus(float remainingTimeInSeconds)
     {
-        // Kalan sureyi tam sayiya cevir ve 10 ile carp
-        int timeBonus = Mathf.FloorToInt(remainingTimeInSeconds) * 10;
+        int timeBonus = Mathf.FloorToInt(remainingTimeInSeconds) * GameConstants.TIME_BONUS_MULTIPLIER;
 
         if (remainingTimeInSeconds <= 0)
         {
-            Debug.LogWarning($"[ScoreManager] *** WARNING: No time remaining! ({remainingTimeInSeconds:F2}s) - No points awarded! ***");
+            Debug.LogWarning("[ScoreManager] No time remaining - no points awarded!");
         }
 
         AddScore(timeBonus);
-
-        Debug.Log($"[ScoreManager] Time bonus: {remainingTimeInSeconds:F2}s remaining = {timeBonus} points");
-        Debug.Log($"[ScoreManager] Calculation: Floor({remainingTimeInSeconds:F2}) × 10 = {Mathf.FloorToInt(remainingTimeInSeconds)} × 10 = {timeBonus}");
-
         return timeBonus;
     }
 }

@@ -21,23 +21,18 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     private Dictionary<string, int> ingredientsOnPlate = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
     private List<GameObject> ingredientObjectsOnPlate = new List<GameObject>();
 
-    // Called when a UI object is dropped onto this plate
+    /// <summary>
+    /// Called when a UI object is dropped onto this plate
+    /// </summary>
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("[Plate] OnDrop called!");
-
         // Check if the dragged object is an ingredient
         if (eventData.pointerDrag != null)
         {
-            Debug.Log($"[Plate] pointerDrag object: {eventData.pointerDrag.name}");
-
             UIDraggableItem draggedItem = eventData.pointerDrag.GetComponent<UIDraggableItem>();
             if (draggedItem != null && draggedItem.ingredientName != null)
             {
                 string ingredientName = draggedItem.ingredientName;
-
-                Debug.Log($"[Plate] Dropped ingredient: '{ingredientName}' onto plate");
-                Debug.Log($"[Plate] Ingredient name bytes: {System.Text.Encoding.UTF8.GetByteCount(ingredientName)} bytes, length: {ingredientName.Length}");
 
                 // Add ingredient to plate
                 if (ingredientsOnPlate.ContainsKey(ingredientName))
@@ -82,19 +77,13 @@ public class UIPlateController : MonoBehaviour, IDropHandler
                     ingredientRect.SetAsLastSibling();
                 }
 
-                Debug.Log($"Ingredients on plate: {GetIngredientsSummary()}");
-
                 // Check if recipe is complete
                 CheckForRecipe();
             }
             else
             {
-                Debug.LogWarning("[Plate] Dropped object is not a valid ingredient or has no ingredientName!");
+                Debug.LogWarning("[Plate] Dropped object is not a valid ingredient!");
             }
-        }
-        else
-        {
-            Debug.LogWarning("[Plate] OnDrop called but pointerDrag is null!");
         }
     }
 
@@ -102,74 +91,47 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     {
         if (currentRecipe == null)
         {
-            Debug.LogWarning("[Plate] No recipe set for this cooking session!");
+            Debug.LogWarning("[Plate] No recipe set!");
             return;
-        }
-
-        Debug.Log($"[Plate] Checking recipe '{currentRecipe.recipeName}'...");
-        Debug.Log($"[Plate] Current ingredients on plate: {GetIngredientsSummary()}");
-        Debug.Log($"[Plate] Required ingredients for recipe:");
-        foreach (var ingredient in currentRecipe.ingredients)
-        {
-            Debug.Log($"[Plate]   - {ingredient.quantity}x {ingredient.ingredientName}");
         }
 
         // Check if the ingredients match the recipe
         if (currentRecipe.MatchesRecipe(ingredientsOnPlate))
         {
-            Debug.Log($"[Plate] ✓ Recipe complete: {currentRecipe.recipeName}");
             CompleteDish();
-        }
-        else
-        {
-            Debug.Log("[Plate] ✗ Ingredients don't match recipe yet.");
         }
     }
 
     void CompleteDish()
     {
-        Debug.Log($"[Plate] ========================================");
-        Debug.Log($"[Plate] DISH COMPLETED: {currentRecipe.recipeName}");
-        Debug.Log($"[Plate] ========================================");
+        Debug.Log($"[Plate] Dish completed: {currentRecipe.recipeName}");
 
         // Check if this is a poisonous dish
-        if (currentRecipe.isPoisonous)
-        {
-            WasPoisonousDishMade = true;
-            Debug.Log("[Plate] WARNING: Poisonous dish was made!");
-        }
-        else
-        {
-            WasPoisonousDishMade = false;
-        }
+        WasPoisonousDishMade = currentRecipe.isPoisonous;
 
         // Get remaining time BEFORE stopping timer for score calculation
         float remainingTime = 0f;
         if (countdownTimer != null)
         {
             remainingTime = countdownTimer.GetRemainingTime();
-            Debug.Log($"[Plate] *** REMAINING TIME: {remainingTime:F2} seconds ***");
             countdownTimer.StopTimer();
         }
         else
         {
-            Debug.LogWarning("[Plate] countdownTimer is NULL! Cannot get remaining time.");
+            Debug.LogWarning("[Plate] Timer reference is missing!");
         }
 
-        // Calculate and add time bonus score (remaining seconds x 10)
+        // Calculate and add time bonus score
         int earnedPoints = ScoreManager.Instance.CalculateAndAddTimeBonus(remainingTime);
-        Debug.Log($"[Plate] *** EARNED POINTS: {earnedPoints} (from {remainingTime:F2}s remaining) ***");
-        Debug.Log($"[Plate] *** TOTAL SCORE NOW: {ScoreManager.Instance.GetScoreFormatted()} ***");
 
         // Update score UI if available
         if (scoreUIManager != null)
         {
             scoreUIManager.OnScoreAdded(earnedPoints);
-            Debug.Log("[Plate] ScoreUIManager updated.");
         }
         else
         {
-            Debug.LogWarning("[Plate] scoreUIManager is NULL! UI won't update automatically.");
+            Debug.LogWarning("[Plate] ScoreUIManager reference is missing!");
         }
 
         // Clear all ingredient objects from plate
@@ -194,30 +156,31 @@ public class UIPlateController : MonoBehaviour, IDropHandler
             if (plateRect != null)
             {
                 // Adjust size to fit the dish image better
-                plateRect.sizeDelta = new Vector2(400, 400);
+                plateRect.sizeDelta = GameConstants.DISH_SIZE;
 
                 // Move dish upward on Y axis so it's more visible
                 Vector2 currentPos = plateRect.anchoredPosition;
-                plateRect.anchoredPosition = new Vector2(currentPos.x, currentPos.y + 120f);
+                plateRect.anchoredPosition = new Vector2(currentPos.x, currentPos.y + GameConstants.DISH_Y_OFFSET);
 
-                // Make dish render on top of all ingredients (last sibling = rendered last = on top)
+                // Make dish render on top of all ingredients
                 plateRect.SetAsLastSibling();
-
-                Debug.Log($"[Plate] Dish positioned at: {plateRect.anchoredPosition}");
             }
         }
         else
         {
-            Debug.LogWarning("Cannot display dish - PlateImage or dishSprite is null!");
+            Debug.LogWarning("[Plate] Cannot display dish - missing reference!");
         }
 
         // Wait a moment then end scene
-        Invoke("EndScene", 2f);
+        StartCoroutine(EndSceneAfterDelay());
     }
 
-    void EndScene()
+    /// <summary>
+    /// Waits for a delay then transitions to the successful scene
+    /// </summary>
+    private System.Collections.IEnumerator EndSceneAfterDelay()
     {
-        Debug.Log("Scene complete! Loading successful scene...");
+        yield return new WaitForSeconds(GameConstants.DISH_COMPLETE_DELAY);
         SceneManager.LoadScene("successful");
     }
 
@@ -231,10 +194,12 @@ public class UIPlateController : MonoBehaviour, IDropHandler
         return summary;
     }
 
-    // Public method to set the recipe (called by TableSceneManager)
+    /// <summary>
+    /// Sets the current recipe for this cooking session
+    /// </summary>
+    /// <param name="recipe">The recipe to cook</param>
     public void SetRecipe(RecipeData recipe)
     {
         currentRecipe = recipe;
-        Debug.Log($"Recipe set to: {recipe.recipeName}");
     }
 }
