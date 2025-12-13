@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,7 +17,8 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     public CountdownTimer countdownTimer; // Reference to the timer
     public ScoreUIManager scoreUIManager; // Reference to score UI manager (optional)
 
-    private Dictionary<string, int> ingredientsOnPlate = new Dictionary<string, int>();
+    // Türkçe karakter desteği için StringComparer.OrdinalIgnoreCase kullan
+    private Dictionary<string, int> ingredientsOnPlate = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
     private List<GameObject> ingredientObjectsOnPlate = new List<GameObject>();
 
     // Called when a UI object is dropped onto this plate
@@ -35,6 +37,7 @@ public class UIPlateController : MonoBehaviour, IDropHandler
                 string ingredientName = draggedItem.ingredientName;
 
                 Debug.Log($"[Plate] Dropped ingredient: '{ingredientName}' onto plate");
+                Debug.Log($"[Plate] Ingredient name bytes: {System.Text.Encoding.UTF8.GetByteCount(ingredientName)} bytes, length: {ingredientName.Length}");
 
                 // Add ingredient to plate
                 if (ingredientsOnPlate.ContainsKey(ingredientName))
@@ -67,8 +70,8 @@ public class UIPlateController : MonoBehaviour, IDropHandler
 
                     // Position ingredient on the plate with random slight offset
                     Vector2 randomOffset = new Vector2(
-                        Random.Range(-50f, 50f),
-                        Random.Range(-30f, 30f)
+                        UnityEngine.Random.Range(-50f, 50f),
+                        UnityEngine.Random.Range(-30f, 30f)
                     );
                     ingredientRect.anchoredPosition = plateRect.anchoredPosition + randomOffset;
 

@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
             if (_instance == null)
             {
                 // Sahnede ScoreManager var mi kontrol et
-                _instance = FindObjectOfType<ScoreManager>();
+                _instance = FindFirstObjectByType<ScoreManager>();
 
                 // Yoksa yeni bir GameObject olustur
                 if (_instance == null)

@@ -16,7 +16,7 @@ public class GameFlowManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<GameFlowManager>();
+                _instance = FindFirstObjectByType<GameFlowManager>();
                 if (_instance == null)
                 {
                     GameObject managerObject = new GameObject("GameFlowManager");
@@ -133,7 +133,18 @@ public class GameFlowManager : MonoBehaviour
         List<RecipeData> availableRecipes = new List<RecipeData>();
         foreach (RecipeData recipe in recipeDatabase.allRecipes)
         {
-            if (!usedRecipeNames.Contains(recipe.recipeName))
+            // Türkçe karakter desteği için manuel karşılaştırma
+            bool alreadyUsed = false;
+            foreach (string usedName in usedRecipeNames)
+            {
+                if (string.Equals(usedName, recipe.recipeName, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    alreadyUsed = true;
+                    break;
+                }
+            }
+
+            if (!alreadyUsed)
             {
                 availableRecipes.Add(recipe);
             }

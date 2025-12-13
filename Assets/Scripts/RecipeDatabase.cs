@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ public class RecipeDatabase : ScriptableObject
 {
     public List<RecipeData> allRecipes = new List<RecipeData>();
 
-    // Find a recipe by name
+    // Find a recipe by name (Türkçe karakter desteği ile)
     public RecipeData GetRecipeByName(string recipeName)
     {
-        return allRecipes.Find(recipe => recipe.recipeName == recipeName);
+        // Türkçe karakterleri doğru karşılaştırmak için StringComparison.OrdinalIgnoreCase kullan
+        return allRecipes.Find(recipe =>
+            string.Equals(recipe.recipeName, recipeName, StringComparison.OrdinalIgnoreCase));
     }
 
     // Find which recipe matches the provided ingredients

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: "G\xF6z K\xFCresi \xC7orbas\u0131"
   dishSprite: {fileID: 3557770993379071762, guid: 8869df4d7bcc644258ffa1fe6c340617, type: 3}
+  isPoisonous: 0
   ingredients:
   - ingredientName: "g\xF6z"
     quantity: 2
   - ingredientName: kara yosun
     quantity: 1
-  - ingredientName: "p\u0131ht\u0131lanm\u0131\u015F kan \u015Fi\u015Fe"
+  - ingredientName: "p\u0131ht\u0131la\u015Fm\u0131\u015F kan \u015Fi\u015Fe"
     quantity: 3

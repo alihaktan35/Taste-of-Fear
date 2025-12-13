@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: "Parmak Sucuklar\u0131 (Tatl\u0131)"
   dishSprite: {fileID: 3583866977486602384, guid: 2ac66d79e16154c79af550fd2dd6ce74, type: 3}
+  isPoisonous: 0
   ingredients:
   - ingredientName: parmak
     quantity: 4
-  - ingredientName: "p\u0131ht\u0131lanm\u0131\u015F kan \u015Fi\u015Fe"
+  - ingredientName: "p\u0131ht\u0131la\u015Fm\u0131\u015F kan \u015Fi\u015Fe"
     quantity: 1

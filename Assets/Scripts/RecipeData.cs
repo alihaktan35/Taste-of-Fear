@@ -20,23 +20,61 @@ public class RecipeData : ScriptableObject
     [Header("Ingredients")]
     public List<RecipeIngredient> ingredients = new List<RecipeIngredient>();
 
-    // Check if provided ingredients match this recipe
+    // Check if provided ingredients match this recipe (Türkçe karakter desteği ile)
     public bool MatchesRecipe(Dictionary<string, int> providedIngredients)
     {
+        Debug.Log($"[Recipe] ===== Tarif kontrolü: '{recipeName}' =====");
+        Debug.Log($"[Recipe] Tabakta {providedIngredients.Count} malzeme, tarif {ingredients.Count} malzeme gerektiriyor");
+
         // Must have exact same number of ingredient types
         if (providedIngredients.Count != ingredients.Count)
+        {
+            Debug.Log($"[Recipe] ✗ Malzeme sayısı uyuşmuyor!");
             return false;
+        }
 
         // Check each required ingredient
         foreach (RecipeIngredient recipeIng in ingredients)
         {
-            if (!providedIngredients.ContainsKey(recipeIng.ingredientName))
-                return false;
+            Debug.Log($"[Recipe] Aranan malzeme: '{recipeIng.ingredientName}' (miktar: {recipeIng.quantity})");
 
-            if (providedIngredients[recipeIng.ingredientName] != recipeIng.quantity)
+            // Türkçe karakterleri doğru karşılaştırmak için manuel kontrol
+            bool found = false;
+            int foundQuantity = 0;
+
+            foreach (var kvp in providedIngredients)
+            {
+                Debug.Log($"[Recipe]   Tabaktaki: '{kvp.Key}' (miktar: {kvp.Value}) - Karşılaştırılıyor...");
+
+                // Case-insensitive ve culture-insensitive karşılaştırma
+                if (string.Equals(kvp.Key, recipeIng.ingredientName, StringComparison.OrdinalIgnoreCase))
+                {
+                    found = true;
+                    foundQuantity = kvp.Value;
+                    Debug.Log($"[Recipe]   ✓ EŞLEŞME BULUNDU!");
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                Debug.Log($"[Recipe] ✗ Malzeme bulunamadı: '{recipeIng.ingredientName}'");
+                Debug.Log($"[Recipe] Tabaktakiler:");
+                foreach (var kvp in providedIngredients)
+                {
+                    Debug.Log($"[Recipe]   - '{kvp.Key}'");
+                }
                 return false;
+            }
+
+            if (foundQuantity != recipeIng.quantity)
+            {
+                Debug.Log($"[Recipe] ✗ Malzeme miktarı uyuşmuyor: '{recipeIng.ingredientName}' (gerekli: {recipeIng.quantity}, mevcut: {foundQuantity})");
+                return false;
+            }
         }
 
+        Debug.Log($"[Recipe] ✓✓✓ Tarif tamamlandı: '{recipeName}' ✓✓✓");
         return true;
     }
 }

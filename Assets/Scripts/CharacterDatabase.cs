@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public class CharacterDatabase : ScriptableObject
             return null;
         }
 
-        int randomIndex = Random.Range(0, allCharacters.Count);
+        int randomIndex = UnityEngine.Random.Range(0, allCharacters.Count);
         CharacterData selectedCharacter = allCharacters[randomIndex];
 
         Debug.Log($"[CharacterDatabase] Random karakter secildi: {selectedCharacter.characterName}");
@@ -31,10 +32,11 @@ public class CharacterDatabase : ScriptableObject
     }
 
     /// <summary>
-    /// Isme gore karakter bulur
+    /// Isme gore karakter bulur (Türkçe karakter desteği ile)
     /// </summary>
     public CharacterData GetCharacterByName(string characterName)
     {
-        return allCharacters.Find(character => character.characterName == characterName);
+        return allCharacters.Find(character =>
+            string.Equals(character.characterName, characterName, StringComparison.OrdinalIgnoreCase));
     }
 }
