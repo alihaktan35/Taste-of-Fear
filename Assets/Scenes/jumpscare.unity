@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 97648245}
   - component: {fileID: 97648244}
   m_Layer: 5
-  m_Name: vampire1
+  m_Name: 50sinirliCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 1168120493}
   - component: {fileID: 1168120492}
   m_Layer: 5
-  m_Name: vampire2
+  m_Name: 100sinirliCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
