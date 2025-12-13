@@ -5,10 +5,10 @@ using TMPro;
 
 public class KarakterBelirme : MonoBehaviour
 {
-    // Inspector'da ayarlanacak değişkenler:
-    public float belirmeSuresi = 3.0f; // Karakterin görünme süresi
+    // Inspector'da ayarlanacak deÄŸiÅŸkenler:
+    public float belirmeSuresi = 3.0f; // Karakterin gÃ¶rÃ¼nme sÃ¼resi
 
-    // Konuşma Balonu Değişkenleri
+    // KonuÅŸma Balonu DeÄŸiÅŸkenleri
     public GameObject konusmaBalonuObjesi;
     public TMP_Text metinAlani;
 
@@ -25,11 +25,11 @@ public class KarakterBelirme : MonoBehaviour
 
         renk = karakterImage.color;
 
-        // Başlangıçta tamamen görünmez yap
+        // BaÅŸlangÄ±Ã§ta tamamen gÃ¶rÃ¼nmez yap
         renk.a = 0f;
         karakterImage.color = renk;
 
-        // Belirme işlemini başlat
+        // Belirme iÅŸlemini baÅŸlat
         StartCoroutine(FadeIn());
     }
 
@@ -49,20 +49,20 @@ public class KarakterBelirme : MonoBehaviour
             yield return null;
         }
 
-        // Belirme bittiğinde, tam görünür olduğundan emin ol
+        // Belirme bittiÄŸinde, tam gÃ¶rÃ¼nÃ¼r olduÄŸundan emin ol
         renk.a = 1f;
         karakterImage.color = renk;
 
-        // Konuşma Balonunu göster fonksiyonunu çağır
+        // KonuÅŸma Balonunu gÃ¶ster fonksiyonunu Ã§aÄŸÄ±r
         KonusmaBalonuGoster();
     }
 
     void KonusmaBalonuGoster()
     {
-        // Bağlantıların Kontrolü
+        // BaÄŸlantÄ±larÄ±n KontrolÃ¼
         if (konusmaBalonuObjesi == null || metinAlani == null)
         {
-            Debug.LogError("Konuşma balonu veya metin alanı Inspector'da atanmadı! Lütfen bağlantıları kontrol edin.");
+            Debug.LogError("KonuÅŸma balonu veya metin alanÄ± Inspector'da atanmadÄ±! LÃ¼tfen baÄŸlantÄ±larÄ± kontrol edin.");
             return;
         }
 
@@ -70,22 +70,22 @@ public class KarakterBelirme : MonoBehaviour
 
         if (rastgeleMetinler.Length == 0)
         {
-            // Metin dizisi boşsa, uyarı ver ve metni boş bırak
-            Debug.LogWarning("Rastgele metin dizisi Inspector'da boş bırakıldı! Konuşma balonu boş gösteriliyor.");
+            // Metin dizisi boÅŸsa, uyarÄ± ver ve metni boÅŸ bÄ±rak
+            Debug.LogWarning("Rastgele metin dizisi Inspector'da boÅŸ bÄ±rakÄ±ldÄ±! KonuÅŸma balonu boÅŸ gÃ¶steriliyor.");
             secilenMetin = "";
         }
         else
         {
-            // Dizi doluysa, rastgele metin seç
+            // Dizi doluysa, rastgele metin seÃ§
             int rastgeleIndex = Random.Range(0, rastgeleMetinler.Length);
             secilenMetin = rastgeleMetinler[rastgeleIndex];
         }
 
-        // Balonu görünür yap ve metni ata
-        konusmaBalonuObjesi.SetActive(true); // <<-- BURASI ONU AÇIK TUTAN YER
+        // Balonu gÃ¶rÃ¼nÃ¼r yap ve metni ata
+        konusmaBalonuObjesi.SetActive(true); // <<-- BURASI ONU AÃ‡IK TUTAN YER
         metinAlani.text = secilenMetin;
 
-        // Bu fonksiyonda, konuşma balonunu kapatan (SetActive(false)) hiçbir kod yoktur.
-        // Başka bir script kapatmıyorsa, açık kalacaktır.
+        // Bu fonksiyonda, konuÅŸma balonunu kapatan (SetActive(false)) hiÃ§bir kod yoktur.
+        // BaÅŸka bir script kapatmÄ±yorsa, aÃ§Ä±k kalacaktÄ±r.
     }
 }
