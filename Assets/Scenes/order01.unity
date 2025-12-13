@@ -504,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterImage: {fileID: 1989073375}
   goToTableButton: {fileID: 1153400021}
+  speechBubbleText: {fileID: 1399585376}
 --- !u!4 &1182522929
 Transform:
   m_ObjectHideFlags: 0

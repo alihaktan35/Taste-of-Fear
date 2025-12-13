@@ -15,6 +15,9 @@ public class OrderSceneManager : MonoBehaviour
     [Tooltip("GO TO TABLE butonu (goToButton)")]
     public Button goToTableButton;
 
+    [Tooltip("Canvas > background > speechBubble > text_speechBubble (konusma balonu metni)")]
+    public Text speechBubbleText;
+
     void Start()
     {
         // GameFlowManager'dan yeni bir siparis hazirla
@@ -22,6 +25,9 @@ public class OrderSceneManager : MonoBehaviour
 
         // Karakter gorselini guncelle
         UpdateCharacterDisplay();
+
+        // Konusma balonu metnini guncelle
+        UpdateSpeechBubbleText();
 
         // GO TO TABLE butonuna listener ekle
         if (goToTableButton != null)
@@ -60,6 +66,65 @@ public class OrderSceneManager : MonoBehaviour
         characterImage.sprite = currentCharacter.orderSprite;
 
         Debug.Log($"[OrderSceneManager] Karakter gorseli guncellendi: {currentCharacter.characterName}");
+    }
+
+    /// <summary>
+    /// Konusma balonu metnini karakter ve siparis bilgisine gore gunceller
+    /// </summary>
+    private void UpdateSpeechBubbleText()
+    {
+        if (speechBubbleText == null)
+        {
+            Debug.LogError("[OrderSceneManager] speechBubbleText atanmamis! Inspector'dan atayin.");
+            return;
+        }
+
+        CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
+        RecipeData currentRecipe = GameFlowManager.Instance.currentRecipe;
+
+        if (currentCharacter == null || currentRecipe == null)
+        {
+            Debug.LogError("[OrderSceneManager] currentCharacter veya currentRecipe null!");
+            return;
+        }
+
+        // Karakter adini Ingilizceye cevir
+        string characterTitle = GetCharacterTitle(currentCharacter.characterName);
+
+        // Dinamik metin olustur
+        string speechText = $"Hey! It is {characterTitle}.\n" +
+                           $"Welcome to the game.\n" +
+                           $"I want {currentRecipe.recipeName}.\n" +
+                           $"When you are ready,\n" +
+                           $"press the button\n" +
+                           $"named \"Go To Table\".";
+
+        speechBubbleText.text = speechText;
+
+        Debug.Log($"[OrderSceneManager] Konusma balonu guncellendi: {characterTitle} - {currentRecipe.recipeName}");
+    }
+
+    /// <summary>
+    /// Karakter adini Ingilizce unvana cevirir
+    /// </summary>
+    private string GetCharacterTitle(string characterName)
+    {
+        switch (characterName.ToLower())
+        {
+            case "golge":
+                return "Mr. Shadow";
+            case "hayalet":
+                return "Mr. Ghost";
+            case "palyaco":
+                return "Mr. Clown";
+            case "vampir":
+                return "Mr. Vampire";
+            case "zombie":
+                return "Mr. Zombie";
+            default:
+                Debug.LogWarning($"[OrderSceneManager] Bilinmeyen karakter adi: {characterName}");
+                return "Mr. " + characterName;
+        }
     }
 
     /// <summary>
