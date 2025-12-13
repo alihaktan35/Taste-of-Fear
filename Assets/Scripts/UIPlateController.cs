@@ -190,9 +190,8 @@ public class UIPlateController : MonoBehaviour, IDropHandler
 
     void EndScene()
     {
-        // TODO: Return to order scene or next scene
-        Debug.Log("Scene complete! Returning to previous scene...");
-        // SceneManager.LoadScene("order01");
+        Debug.Log("Scene complete! Loading successful scene...");
+        SceneManager.LoadScene("successful");
     }
 
     string GetIngredientsSummary()
