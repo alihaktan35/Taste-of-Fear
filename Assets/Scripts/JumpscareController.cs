@@ -16,11 +16,12 @@ public class JumpscareController : MonoBehaviour
     public TextMeshProUGUI failedText;
 
     // Adjustable timers
-    public float fadeInTime = 2f;
-    public float waitBeforeScareTime = 0.5f;
-    public float scareDisplayTime = 6.0f;
-    public float textDisplayTime = 1.0f;
-    public float waitBeforeNextScene = 1.0f; // order01'e gecmeden once bekleme suresi
+    public float fadeInTime = 2f; // Sakin karakter belirme suresi
+    public float waitBeforeScareTime = 0.5f; // Jumpscare oncesi kisa bekleme
+    public float scareDisplayTime = 9.5f; // Jumpscare ekranda kalma suresi (sesler icin uzatildi)
+    public float textDisplayTime = 1.5f; // "YOU FAILED" text gosterme suresi
+    public float waitBeforeNextScene = 0.5f; // order01'e gecmeden once bekleme suresi
+    // TOPLAM SURE: 2 + 0.5 + 9.5 + 1.5 + 0.5 = 14 saniye
 
     void Start()
     {

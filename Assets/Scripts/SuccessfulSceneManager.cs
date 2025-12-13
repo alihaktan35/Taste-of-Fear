@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /// successful sahnesini yoneten script
 /// Siparisin basarili oldugunu gosterir
 /// Onceki karakterin "bekleme" halini gosterir
-/// 2-3 saniye sonra order01'e doner
+/// Kullanici butona basinca order01'e doner
 /// </summary>
 public class SuccessfulSceneManager : MonoBehaviour
 {
@@ -14,9 +14,8 @@ public class SuccessfulSceneManager : MonoBehaviour
     [Tooltip("Karakterin gosterilecegi Image component'i")]
     public Image characterImage;
 
-    [Header("Settings")]
-    [Tooltip("Kac saniye sonra order01'e donulsun")]
-    public float waitTimeBeforeReturn = 2.5f;
+    [Tooltip("GO TO ORDER SCENE butonu (BackButton)")]
+    public Button goToOrderButton;
 
     void Start()
     {
@@ -26,10 +25,19 @@ public class SuccessfulSceneManager : MonoBehaviour
         // Basarili siparis olarak kaydet
         GameFlowManager.Instance.OnOrderSuccess();
 
-        // Belirli sure sonra order01'e don
-        Invoke(nameof(ReturnToOrderScene), waitTimeBeforeReturn);
+        // Butona listener ekle
+        if (goToOrderButton != null)
+        {
+            goToOrderButton.onClick.RemoveAllListeners();
+            goToOrderButton.onClick.AddListener(ReturnToOrderScene);
+            Debug.Log("[SuccessfulSceneManager] GO TO ORDER SCENE butonu hazir.");
+        }
+        else
+        {
+            Debug.LogError("[SuccessfulSceneManager] goToOrderButton atanmamis!");
+        }
 
-        Debug.Log($"[SuccessfulSceneManager] Siparis basarili! {waitTimeBeforeReturn} saniye sonra order01'e donuluyor...");
+        Debug.Log($"[SuccessfulSceneManager] Siparis basarili! Butona basin...");
     }
 
     /// <summary>

@@ -376,12 +376,13 @@ MonoBehaviour:
   vampire1Image: {fileID: 97648244}
   vampire2Object: {fileID: 1168120490}
   jumpscareAudio: {fileID: 102290738}
-  mainMenuSceneName: startMenu
+  nextSceneName: order01
   failedText: {fileID: 574615275}
   fadeInTime: 2
   waitBeforeScareTime: 0.5
   scareDisplayTime: 6
   textDisplayTime: 1
+  waitBeforeNextScene: 8
 --- !u!114 &574615275
 MonoBehaviour:
   m_ObjectHideFlags: 0
