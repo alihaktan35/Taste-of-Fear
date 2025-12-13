@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class JumpscareController : MonoBehaviour
 {
     // Public variables for Inspector assignment
-    public Image vampire1Image;
-    public GameObject vampire2Object;
+    public Image vampire1Image; // 50% sinirli karakter (sakin)
+    public GameObject vampire2Object; // 100% sinirli karakter (jumpscare)
     public AudioSource jumpscareAudio;
-    public string mainMenuSceneName = "startMenu";
+    public string nextSceneName = "order01"; // Sonraki sahne (order01)
 
     // TextMeshProUGUI variable
     public TextMeshProUGUI failedText;
@@ -20,9 +20,13 @@ public class JumpscareController : MonoBehaviour
     public float waitBeforeScareTime = 0.5f;
     public float scareDisplayTime = 6.0f;
     public float textDisplayTime = 1.0f;
+    public float waitBeforeNextScene = 1.0f; // order01'e gecmeden once bekleme suresi
 
     void Start()
     {
+        // Karakter gorsellerini guncelle (dinamik olarak)
+        UpdateCharacterSprites();
+
         // Hide Text object at start using Alpha value (not using SetActive)
         if (failedText != null)
         {
@@ -35,7 +39,54 @@ public class JumpscareController : MonoBehaviour
             Debug.LogError("ERROR: Failed Text not assigned in Inspector!");
         }
 
+        // Basarisiz siparis olarak kaydet
+        GameFlowManager.Instance.OnOrderFailed();
+
         StartCoroutine(JumpscareRoutine());
+    }
+
+    /// <summary>
+    /// Karakter gorsellerini gunceller (50% ve 100% sinirli haller)
+    /// </summary>
+    private void UpdateCharacterSprites()
+    {
+        CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
+
+        if (currentCharacter == null)
+        {
+            Debug.LogError("[JumpscareController] currentCharacter null! Varsayilan gorseller kullaniliyor.");
+            return;
+        }
+
+        // 50% sinirli hali (vampire1Image)
+        if (vampire1Image != null)
+        {
+            vampire1Image.sprite = currentCharacter.angry50Sprite;
+            Debug.Log($"[JumpscareController] 50% sinirli gorsel yuklendi: {currentCharacter.characterName}");
+        }
+        else
+        {
+            Debug.LogError("[JumpscareController] vampire1Image null!");
+        }
+
+        // 100% sinirli hali (vampire2Object)
+        if (vampire2Object != null)
+        {
+            Image vampire2Image = vampire2Object.GetComponent<Image>();
+            if (vampire2Image != null)
+            {
+                vampire2Image.sprite = currentCharacter.angry100Sprite;
+                Debug.Log($"[JumpscareController] 100% sinirli gorsel yuklendi: {currentCharacter.characterName}");
+            }
+            else
+            {
+                Debug.LogError("[JumpscareController] vampire2Object'te Image component bulunamadi!");
+            }
+        }
+        else
+        {
+            Debug.LogError("[JumpscareController] vampire2Object null!");
+        }
     }
 
     IEnumerator JumpscareRoutine()
@@ -107,6 +158,10 @@ public class JumpscareController : MonoBehaviour
             Debug.LogError("FAILEDTEXT NULL! Inspector assignment is wrong!");
         }
 
-        // Scene will stay here. (Or you can add scene transition from here if you want)
+        // 5. RETURN TO ORDER SCENE
+        Debug.Log($"[JumpscareController] {waitBeforeNextScene} saniye sonra {nextSceneName} sahnesine donuluyor...");
+        yield return new WaitForSeconds(waitBeforeNextScene);
+
+        SceneManager.LoadScene(nextSceneName);
     }
 }

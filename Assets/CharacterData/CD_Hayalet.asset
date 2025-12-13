@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ae1a2ccb8344a0f91221259075c45f, type: 3}
+  m_Name: CD_Hayalet
+  m_EditorClassIdentifier: 
+  characterName: Hayalet
+  orderSprite: {fileID: -6737932633249194261, guid: 4c9f974bc14524a7ba2ae9893d203ec2, type: 3}
+  waitingSprite: {fileID: -7217275903475029496, guid: 8d31b449e99034267a7814aab3e883de, type: 3}
+  angry50Sprite: {fileID: -1523645459669054354, guid: f8131eff450df49a5b079b567ca8dbf4, type: 3}
+  angry100Sprite: {fileID: 3503912998952771177, guid: cc7d00627a08c42a4aac825b38c03ad0, type: 3}

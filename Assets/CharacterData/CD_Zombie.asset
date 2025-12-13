@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ae1a2ccb8344a0f91221259075c45f, type: 3}
+  m_Name: CD_Zombie
+  m_EditorClassIdentifier: 
+  characterName: Zombie
+  orderSprite: {fileID: -3869348749506175695, guid: 388071a0ae90448e9b81730191c52c32, type: 3}
+  waitingSprite: {fileID: -4226742758360988588, guid: 7bf6d6b01a2534651aeb860abd5ca38d, type: 3}
+  angry50Sprite: {fileID: -3062833592416695780, guid: a7b59537bc09940378e5274fe43639f3, type: 3}
+  angry100Sprite: {fileID: -4973206924600908451, guid: def9957d98ded4e81afbf661357cbda4, type: 3}

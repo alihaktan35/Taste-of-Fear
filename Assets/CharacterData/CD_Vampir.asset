@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ae1a2ccb8344a0f91221259075c45f, type: 3}
+  m_Name: CD_Vampir
+  m_EditorClassIdentifier: 
+  characterName: Vampir
+  orderSprite: {fileID: -8021602406771971395, guid: b9ca1271d3bb74a4aaf749dd27ef80bc, type: 3}
+  waitingSprite: {fileID: -2196938312991597089, guid: b8fcec64ce0a44de8a5eec05ecc1f5ac, type: 3}
+  angry50Sprite: {fileID: -509217163081319257, guid: 49877aa758a714f97a23254642ce06ea, type: 3}
+  angry100Sprite: {fileID: 2191662104599659878, guid: 027f37b0c3faf4b72b209cbb419f73d9, type: 3}
