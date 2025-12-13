@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: "\xD6r\xFCmcek Yumurtalar\u0131"
   dishSprite: {fileID: 1245762849721859130, guid: 60bcf30adf52b4aee877ac6be5dec5cf, type: 3}
+  isPoisonous: 0
   ingredients:
   - ingredientName: "\xF6r\xFCmcek"
     quantity: 1
   - ingredientName: "b\xF6cek yumurtas\u0131"
     quantity: 2
-  - ingredientName: "p\u0131ht\u0131lanm\u0131\u015F kan \u015Fi\u015Fe"
+  - ingredientName: "p\u0131ht\u0131la\u015Fm\u0131\u015F kan \u015Fi\u015Fe"
     quantity: 1
