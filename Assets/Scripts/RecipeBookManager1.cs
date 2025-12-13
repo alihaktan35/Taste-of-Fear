@@ -53,6 +53,12 @@ public class RecipeBookManager : MonoBehaviour
         bool isCurrentlyActive = recipeBookPanel.activeSelf;
         recipeBookPanel.SetActive(!isCurrentlyActive);
 
+        // Panel acildiginda en uste cikar (tum diger UI elementlerinin onunde gozuksun)
+        if (recipeBookPanel.activeSelf)
+        {
+            recipeBookPanel.transform.SetAsLastSibling();
+        }
+
         // Opsiyonel: Kitap acildiginda oyunu duraklatabilirsiniz.
         // if (recipeBookPanel.activeSelf) Time.timeScale = 0f;
         // else Time.timeScale = 1f;
