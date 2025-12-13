@@ -216,3 +216,10 @@ fmod_editor.log
 **/APIKeys.cs
 **/Secrets.json
 **/credentials.json
+
+# ====================================
+# AI Agent Documentation (Internal)
+# ====================================
+# Technical documentation for AI coding agents
+# This file contains implementation details and is regenerated as needed
+GAME_SYSTEM_DOCUMENTATION.md
