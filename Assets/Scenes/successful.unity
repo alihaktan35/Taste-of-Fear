@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterImage: {fileID: 546444801}
-  waitTimeBeforeReturn: 2.5
+  goToOrderButton: {fileID: 2008644215}
 --- !u!4 &868455660
 Transform:
   m_ObjectHideFlags: 0
