@@ -14,6 +14,7 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     [Header("UI References")]
     public Image plateImage; // The plate image that shows the final dish
     public CountdownTimer countdownTimer; // Reference to the timer
+    public ScoreUIManager scoreUIManager; // Reference to score UI manager (optional)
 
     private Dictionary<string, int> ingredientsOnPlate = new Dictionary<string, int>();
     private List<GameObject> ingredientObjectsOnPlate = new List<GameObject>();
@@ -139,10 +140,33 @@ public class UIPlateController : MonoBehaviour, IDropHandler
             WasPoisonousDishMade = false;
         }
 
-        // Stop the timer - recipe completed successfully!
+        // Get remaining time BEFORE stopping timer for score calculation
+        float remainingTime = 0f;
         if (countdownTimer != null)
         {
+            remainingTime = countdownTimer.GetRemainingTime();
+            Debug.Log($"[Plate] *** REMAINING TIME: {remainingTime:F2} seconds ***");
             countdownTimer.StopTimer();
+        }
+        else
+        {
+            Debug.LogWarning("[Plate] countdownTimer is NULL! Cannot get remaining time.");
+        }
+
+        // Calculate and add time bonus score (remaining seconds x 10)
+        int earnedPoints = ScoreManager.Instance.CalculateAndAddTimeBonus(remainingTime);
+        Debug.Log($"[Plate] *** EARNED POINTS: {earnedPoints} (from {remainingTime:F2}s remaining) ***");
+        Debug.Log($"[Plate] *** TOTAL SCORE NOW: {ScoreManager.Instance.GetScoreFormatted()} ***");
+
+        // Update score UI if available
+        if (scoreUIManager != null)
+        {
+            scoreUIManager.OnScoreAdded(earnedPoints);
+            Debug.Log("[Plate] ScoreUIManager updated.");
+        }
+        else
+        {
+            Debug.LogWarning("[Plate] scoreUIManager is NULL! UI won't update automatically.");
         }
 
         // Clear all ingredient objects from plate
