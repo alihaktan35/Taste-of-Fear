@@ -1,8 +1,11 @@
 # Taste of Fear 🔪👻
 **Mutfakta kabus gibi bir gece. Pişir, sun ve hayatta kal.**
 
+[![Website](https://img.shields.io/badge/Website-Visit%20Site-success?logo=google-chrome&logoColor=white)](https://taste-of-fear-website.vercel.app/)
 [![Unity](https://img.shields.io/badge/Unity-2022.3+-black.svg)](https://unity.com/)
 [![Platform](https://img.shields.io/badge/Platform-PC%20(Steam)-blue.svg)](https://store.steampowered.com/)
+
+## 🎮 Proje Hakkında
 
 ## 🎮 Proje Hakkında
 Korku ve zaman yönetimi türlerini harmanlayan bağımsız oyun. Overcooked'un mutfak kaosunu Five Nights at Freddy's korku mekaniğiyle birleştiren bir deneyim.
