@@ -12,6 +12,10 @@ public class JumpscareController : MonoBehaviour
     public AudioSource jumpscareAudio;
     public string nextSceneName = "order01"; // Sonraki sahne (order01)
 
+    [Header("Video Jumpscare (Optional)")]
+    public bool useVideoJumpscare = false; // Toggle between sprite and video
+    public VideoPlayerController videoPlayerController; // Reference to video player
+
     // TextMeshProUGUI variable
     public TextMeshProUGUI failedText;
 
@@ -47,16 +51,28 @@ public class JumpscareController : MonoBehaviour
     }
 
     /// <summary>
-    /// Karakter gorsellerini gunceller (50% ve 100% sinirli haller)
+    /// Karakter gorsellerini ve video klibini gunceller (50% ve 100% sinirli haller + jumpscare video)
     /// </summary>
     private void UpdateCharacterSprites()
     {
         CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
 
+        // TEST: Eger currentCharacter null ise, veritabanindan rastgele karakter sec
         if (currentCharacter == null)
         {
-            Debug.LogError("[JumpscareController] currentCharacter null! Varsayilan gorseller kullaniliyor.");
-            return;
+            Debug.LogWarning("[JumpscareController] currentCharacter null! Rastgele karakter seciliyor (TEST MODE)");
+
+            if (GameFlowManager.Instance.characterDatabase != null)
+            {
+                currentCharacter = GameFlowManager.Instance.characterDatabase.GetRandomCharacter();
+                GameFlowManager.Instance.currentCharacter = currentCharacter;
+            }
+
+            if (currentCharacter == null)
+            {
+                Debug.LogError("[JumpscareController] Hala currentCharacter null! Iptal ediliyor.");
+                return;
+            }
         }
 
         // 50% sinirli hali (vampire1Image)
@@ -88,61 +104,126 @@ public class JumpscareController : MonoBehaviour
         {
             Debug.LogError("[JumpscareController] vampire2Object null!");
         }
+
+        // Jumpscare video klibini ve chroma key ayarlarini ayarla
+        if (useVideoJumpscare && videoPlayerController != null && currentCharacter.jumpscareVideo != null)
+        {
+            // Video klibini yukle
+            videoPlayerController.videoPlayer.clip = currentCharacter.jumpscareVideo;
+
+            // Karaktere ozel chroma key ayarlarini uygula
+            videoPlayerController.keyColor = currentCharacter.greenScreenColor;
+            videoPlayerController.threshold = currentCharacter.chromaThreshold;
+            videoPlayerController.smoothness = currentCharacter.chromaSmoothness;
+            videoPlayerController.despill = currentCharacter.chromaDespill;
+            videoPlayerController.UpdateChromaKeySettings();
+
+            Debug.Log($"[JumpscareController] Jumpscare video yuklendi: {currentCharacter.characterName} - {currentCharacter.jumpscareVideo.name}");
+            Debug.Log($"[JumpscareController] Chroma key ayarlari: Threshold={currentCharacter.chromaThreshold}, Smoothness={currentCharacter.chromaSmoothness}, Despill={currentCharacter.chromaDespill}");
+        }
+        else if (useVideoJumpscare && videoPlayerController != null && currentCharacter.jumpscareVideo == null)
+        {
+            Debug.LogWarning($"[JumpscareController] {currentCharacter.characterName} icin jumpscare video atanmamis!");
+        }
     }
 
     IEnumerator JumpscareRoutine()
     {
         float timer = 0f;
 
-        // 1. VISUAL 1: Calm Vampire Slowly Appears (Fade In)
-        if (vampire1Image == null)
+        // 1. VISUAL 1: Calm Vampire Slowly Appears (Fade In) - Skip if using video only
+        if (!useVideoJumpscare || vampire1Image != null)
         {
-            Debug.LogError("Vampire 1 Image not assigned! Jumpscare cancelled.");
-            yield break;
+            if (vampire1Image == null && !useVideoJumpscare)
+            {
+                Debug.LogError("Vampire 1 Image not assigned! Jumpscare cancelled.");
+                yield break;
+            }
+
+            if (vampire1Image != null)
+            {
+                Color color = vampire1Image.color;
+
+                while (timer < fadeInTime)
+                {
+                    timer += Time.deltaTime;
+                    color.a = Mathf.Lerp(0f, 1f, timer / fadeInTime);
+                    vampire1Image.color = color;
+                    yield return null;
+                }
+
+                color.a = 1f;
+                vampire1Image.color = color;
+
+                // 2. SHORT WAIT
+                yield return new WaitForSeconds(waitBeforeScareTime);
+            }
         }
-
-        Color color = vampire1Image.color;
-
-        while (timer < fadeInTime)
+        else
         {
-            timer += Time.deltaTime;
-            color.a = Mathf.Lerp(0f, 1f, timer / fadeInTime);
-            vampire1Image.color = color;
-            yield return null;
+            Debug.Log("[JumpscareController] Skipping vampire1Image fade-in, using video jumpscare only.");
         }
-
-        color.a = 1f;
-        vampire1Image.color = color;
-
-        // 2. SHORT WAIT
-        yield return new WaitForSeconds(waitBeforeScareTime);
 
         // 3. JUMPSCARE MOMENT
-        vampire1Image.gameObject.SetActive(false);
-
-        if (vampire2Object != null)
+        if (vampire1Image != null)
         {
-            vampire2Object.SetActive(true);
+            vampire1Image.gameObject.SetActive(false);
         }
 
-        if (jumpscareAudio != null)
+        // Use video or sprite based on setting
+        if (useVideoJumpscare && videoPlayerController != null)
         {
-            jumpscareAudio.Play();
-        }
+            Debug.Log("[JumpscareController] Video jumpscare baslatiyor...");
 
-        // 4. JUMPSCARE END: Keep on screen for specified time
-        yield return new WaitForSeconds(scareDisplayTime);
+            // Play video jumpscare
+            videoPlayerController.gameObject.SetActive(true);
+            Debug.Log($"[JumpscareController] VideoDisplay aktif edildi. Active: {videoPlayerController.gameObject.activeSelf}");
+
+            videoPlayerController.PlayVideo();
+            Debug.Log("[JumpscareController] PlayVideo() cagirildi");
+
+            if (jumpscareAudio != null)
+            {
+                jumpscareAudio.Play();
+            }
+
+            // Wait for video to finish or use the specified time
+            float videoWaitTime = scareDisplayTime;
+            Debug.Log($"[JumpscareController] {videoWaitTime} saniye bekleniyor...");
+            yield return new WaitForSeconds(videoWaitTime);
+
+            // Stop and hide video
+            videoPlayerController.StopVideo();
+            videoPlayerController.gameObject.SetActive(false);
+            Debug.Log("[JumpscareController] Video durduruldu ve gizlendi");
+        }
+        else
+        {
+            // Use original sprite jumpscare
+            if (vampire2Object != null)
+            {
+                vampire2Object.SetActive(true);
+            }
+
+            if (jumpscareAudio != null)
+            {
+                jumpscareAudio.Play();
+            }
+
+            // 4. JUMPSCARE END: Keep on screen for specified time
+            yield return new WaitForSeconds(scareDisplayTime);
+
+            // Hide sprite jumpscare
+            if (vampire2Object != null)
+            {
+                vampire2Object.SetActive(false);
+            }
+        }
 
         // 4.5: Show "YOU FAILED" Text
 
         if (failedText != null)
         {
-            // NEW ADDITION: Close Vampire 2 and show text
-            if (vampire2Object != null)
-            {
-                vampire2Object.SetActive(false); // <--- VAMPIRE 2 CLOSED!
-            }
-
             failedText.text = "YOU FAILED";
 
             // Make text visible by setting Alpha to 1

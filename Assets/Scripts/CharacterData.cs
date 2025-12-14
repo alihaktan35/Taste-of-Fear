@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Video;
 
 /// <summary>
 /// Bir karakterin tum gorsellerini tutan ScriptableObject
@@ -23,4 +24,21 @@ public class CharacterData : ScriptableObject
 
     [Tooltip("100% sinirli hali (jumpscare sahnesi icin)")]
     public Sprite angry100Sprite;
+
+    [Header("Jumpscare Video")]
+    [Tooltip("Karaktere ozel jumpscare video klibi (vampir.webm, palyaco.webm, etc.)")]
+    public VideoClip jumpscareVideo;
+
+    [Header("Chroma Key Settings (Her video icin farkli yesil ton)")]
+    [Tooltip("Video'daki yesil ekranin rengi (eyedropper ile secin)")]
+    public Color greenScreenColor = new Color(0, 1, 0, 1);
+
+    [Tooltip("Ne kadar yesil kaldirilacak (0-1)")]
+    [Range(0, 1)] public float chromaThreshold = 0.4f;
+
+    [Tooltip("Kenar yumusakligi (0-1)")]
+    [Range(0, 1)] public float chromaSmoothness = 0.1f;
+
+    [Tooltip("Yesil renk dokulmesini kaldirma gucu (0-1)")]
+    [Range(0, 1)] public float chromaDespill = 0.8f;
 }

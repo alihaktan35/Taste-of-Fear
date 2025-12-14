@@ -17,3 +17,8 @@ MonoBehaviour:
   waitingSprite: {fileID: -8084340757436713232, guid: 473d15c86da324b4689c7d2c3e2fada9, type: 3}
   angry50Sprite: {fileID: 324286645194219790, guid: be6eb7a867fe849a6bf39b484ae575c5, type: 3}
   angry100Sprite: {fileID: 7009851739417667678, guid: de198fc1f37ac4c658735513145bca07, type: 3}
+  jumpscareVideo: {fileID: 32900000, guid: 41dd2ae490c7ebc499d18fdded524ea0, type: 3}
+  greenScreenColor: {r: 0.043137256, g: 0.7058824, b: 0.3254902, a: 1}
+  chromaThreshold: 0.244
+  chromaSmoothness: 0.122
+  chromaDespill: 0.888

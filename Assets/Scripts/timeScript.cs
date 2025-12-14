@@ -16,7 +16,7 @@ public class CountdownTimer : MonoBehaviour
 
     [Header("Scene Settings")]
     [Tooltip("Süre bittiğinde gidilecek sahne adı")]
-    public string jumpscareSceneName = "jumpscare";
+    public string jumpscareSceneName = "jumpscare test";
 
     private float currentTime;
     private Text timerText;
