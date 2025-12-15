@@ -6,8 +6,6 @@
 [![Platform](https://img.shields.io/badge/Platform-PC%20(Steam)-blue.svg)](https://store.steampowered.com/)
 
 ## 🎮 Proje Hakkında
-
-## 🎮 Proje Hakkında
 Korku ve zaman yönetimi türlerini harmanlayan bağımsız oyun. Overcooked'un mutfak kaosunu Five Nights at Freddy's korku mekaniğiyle birleştiren bir deneyim.
 
 **Konsept:** 1990'larda lanetli bir restoranda şef Elias Vernon olarak sipariş hazırlarken karanlıktan gelen tehditlerden kaçın.
