@@ -30,6 +30,9 @@ public class SceneChanger : MonoBehaviour
     // Order01 sahnesine direkt geçiş
     public void LoadOrder01()
     {
+        // Yeni oyun başlarken skoru ve oyun verilerini sıfırla
+        GameFlowManager.Instance.ResetGameData();
+
         SceneManager.LoadScene("order01");
     }
     
