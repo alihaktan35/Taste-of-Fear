@@ -18,6 +18,10 @@ public class OrderSceneManager : MonoBehaviour
     [Tooltip("Canvas > background > speechBubble > text_speechBubble (konusma balonu metni)")]
     public Text speechBubbleText;
 
+    [Header("Sound")]
+    [Tooltip("Karakter ses efekti oynatici (CharacterSoundPlayer script'i olan obje)")]
+    public CharacterSoundPlayer characterSoundPlayer;
+
     void Start()
     {
         // GameFlowManager'dan yeni bir siparis hazirla
@@ -28,6 +32,9 @@ public class OrderSceneManager : MonoBehaviour
 
         // Konusma balonu metnini guncelle
         UpdateSpeechBubbleText();
+
+        // Karakter giris sesini oynat
+        PlayCharacterGreetingSound();
 
         // GO TO TABLE butonuna listener ekle
         if (goToTableButton != null)
@@ -145,5 +152,20 @@ public class OrderSceneManager : MonoBehaviour
 
         // TableSceneManager'in static metodunu kullanarak table01'e gec
         TableSceneManager.LoadTableSceneWithRecipe(currentRecipe.recipeName);
+    }
+
+    /// <summary>
+    /// Karakter giris sesini oynatir
+    /// </summary>
+    private void PlayCharacterGreetingSound()
+    {
+        if (characterSoundPlayer != null)
+        {
+            characterSoundPlayer.PlayCharacterGreeting();
+        }
+        else
+        {
+            Debug.LogWarning("[OrderSceneManager] characterSoundPlayer atanmamis! Ses calmayi atliyorum.");
+        }
     }
 }
