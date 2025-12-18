@@ -109,4 +109,62 @@ public class CountdownTimer : MonoBehaviour
         enabled = false;
         Debug.Log("Timer stopped - recipe completed!");
     }
+
+    /// <summary>
+    /// Subtracts time from the countdown (used as penalty for removing ingredients)
+    /// </summary>
+    /// <param name="seconds">Number of seconds to subtract</param>
+    public void SubtractTime(float seconds)
+    {
+        currentTime -= seconds;
+
+        // Make sure time doesn't go negative
+        if (currentTime < 0)
+        {
+            currentTime = 0;
+        }
+
+        UpdateTimerDisplay();
+
+        // Show penalty visual feedback
+        StartCoroutine(ShowPenaltyFeedback());
+
+        Debug.Log($"[Timer] {seconds} seconds subtracted. Remaining time: {currentTime:F1}s");
+    }
+
+    /// <summary>
+    /// Shows red flash effect when time penalty is applied
+    /// </summary>
+    private System.Collections.IEnumerator ShowPenaltyFeedback()
+    {
+        // Store original color
+        Color originalColorBeforePenalty = timerText.color;
+
+        // Flash red multiple times for emphasis
+        for (int i = 0; i < 3; i++)
+        {
+            // Turn red
+            timerText.color = warningColor;
+            yield return new WaitForSeconds(0.2f);
+
+            // Turn back to original
+            timerText.color = originalColorBeforePenalty;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        // Stay red for a moment
+        timerText.color = warningColor;
+        yield return new WaitForSeconds(1f);
+
+        // Return to original color (unless we're in warning phase)
+        if (currentTime > warningTime)
+        {
+            timerText.color = normalColor;
+        }
+        else
+        {
+            // If in warning phase, let the normal update cycle handle the color
+            isWarningPhase = true;
+        }
+    }
 }

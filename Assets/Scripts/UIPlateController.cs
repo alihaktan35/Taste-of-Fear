@@ -75,6 +75,9 @@ public class UIPlateController : MonoBehaviour, IDropHandler
 
                     // CRITICAL: This makes ingredient render AFTER PlateImage (on top of it)
                     ingredientRect.SetAsLastSibling();
+
+                    // Add remover component for click-to-remove functionality
+                    AddRemoverComponent(ingredient, ingredientName);
                 }
 
                 // Check if recipe is complete
@@ -201,5 +204,60 @@ public class UIPlateController : MonoBehaviour, IDropHandler
     public void SetRecipe(RecipeData recipe)
     {
         currentRecipe = recipe;
+    }
+
+    /// <summary>
+    /// Adds the PlacedIngredientRemover component to enable click-to-remove
+    /// </summary>
+    private void AddRemoverComponent(GameObject ingredient, string ingredientName)
+    {
+        // Add the remover component
+        PlacedIngredientRemover remover = ingredient.AddComponent<PlacedIngredientRemover>();
+        remover.plateController = this;
+        remover.ingredientName = ingredientName;
+
+        // Re-enable raycast on the main Image so it can be clicked
+        Image ingredientImage = ingredient.GetComponent<Image>();
+        if (ingredientImage != null)
+        {
+            ingredientImage.raycastTarget = true;
+        }
+    }
+
+    /// <summary>
+    /// Removes an ingredient from the plate and applies time penalty
+    /// Called by PlacedIngredientRemover when ingredient is clicked
+    /// </summary>
+    public void RemoveIngredient(GameObject ingredientObj, string ingredientName, float timePenalty)
+    {
+        // Remove from dictionary
+        if (ingredientsOnPlate.ContainsKey(ingredientName))
+        {
+            ingredientsOnPlate[ingredientName]--;
+            if (ingredientsOnPlate[ingredientName] <= 0)
+            {
+                ingredientsOnPlate.Remove(ingredientName);
+            }
+        }
+
+        // Remove from list
+        if (ingredientObjectsOnPlate.Contains(ingredientObj))
+        {
+            ingredientObjectsOnPlate.Remove(ingredientObj);
+        }
+
+        // Apply time penalty
+        if (countdownTimer != null)
+        {
+            countdownTimer.SubtractTime(timePenalty);
+            Debug.Log($"[Plate] Ingredient '{ingredientName}' removed. Time penalty: -{timePenalty} seconds");
+        }
+        else
+        {
+            Debug.LogWarning("[Plate] Timer reference missing - cannot apply time penalty!");
+        }
+
+        // Destroy the ingredient GameObject
+        Destroy(ingredientObj);
     }
 }
