@@ -29,12 +29,16 @@ public class IntroVideoManager : MonoBehaviour
 
     void Start()
     {
-        fadePanel.alpha = 0f;
+        // Başlangıçta ekran siyah olsun
+        fadePanel.alpha = 1f;
 
         // Videoyu ekrana tam oturması için aspect ratio'yu ayarla
         videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
 
         videoPlayer.loopPointReached += OnVideoEnd;
+
+        // Sahne açılırken fade-in efekti
+        StartCoroutine(FadeIn());
     }
 
     void OnVideoEnd(VideoPlayer vp)
@@ -45,6 +49,20 @@ public class IntroVideoManager : MonoBehaviour
     public void SkipVideo()
     {
         StartCoroutine(FadeAndLoad());
+    }
+
+    IEnumerator FadeIn()
+    {
+        float t = 0f;
+
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            fadePanel.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
+            yield return null;
+        }
+
+        fadePanel.alpha = 0f;
     }
 
     IEnumerator FadeAndLoad()
