@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class IntroVideoManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    public string nextSceneName = "order01";
+    public string nextSceneName = "startMenu";
 
     void Start()
     {

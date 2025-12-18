@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 472218840}
-  nextSceneName: order01
+  nextSceneName: startMenu
 --- !u!1 &887943787
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 0}
-  nextSceneName: order01
+  nextSceneName: startMenu
 --- !u!114 &2101649868
 MonoBehaviour:
   m_ObjectHideFlags: 0
