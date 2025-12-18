@@ -30,6 +30,10 @@ public class IntroVideoManager : MonoBehaviour
     void Start()
     {
         fadePanel.alpha = 0f;
+
+        // Videoyu ekrana tam oturması için aspect ratio'yu ayarla
+        videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
+
         videoPlayer.loopPointReached += OnVideoEnd;
     }
 
