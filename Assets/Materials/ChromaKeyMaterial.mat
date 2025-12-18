@@ -30,10 +30,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Despill: 0.888
-    - _Smoothness: 0.122
-    - _Threshold: 0.244
+    - _Despill: 0.403
+    - _Smoothness: 0.297
+    - _Threshold: 0.898
     m_Colors:
-    - _KeyColor: {r: 0.043137256, g: 0.7058824, b: 0.3254902, a: 1}
+    - _KeyColor: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
