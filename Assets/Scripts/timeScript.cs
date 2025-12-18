@@ -140,7 +140,7 @@ public class CountdownTimer : MonoBehaviour
         // Store original color
         Color originalColorBeforePenalty = timerText.color;
 
-        // Flash red multiple times for emphasis
+        // Flash red 3 times - "tık tık tık"
         for (int i = 0; i < 3; i++)
         {
             // Turn red
@@ -152,11 +152,7 @@ public class CountdownTimer : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
 
-        // Stay red for a moment
-        timerText.color = warningColor;
-        yield return new WaitForSeconds(1f);
-
-        // Return to original color (unless we're in warning phase)
+        // Return to normal color immediately (unless we're in warning phase)
         if (currentTime > warningTime)
         {
             timerText.color = normalColor;
