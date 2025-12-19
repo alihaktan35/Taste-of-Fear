@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Makes UI ingredient items draggable with clone-based drag system
+/// Includes hover tooltip functionality with 1 second delay
 /// </summary>
-public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
@@ -15,6 +16,10 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
     private Vector2 originalPosition;
     private bool isClone = false;
     private AudioSource audioSource;
+
+    // Tooltip variables
+    private Coroutine showTooltipCoroutine;
+    private bool isHovering = false;
 
     public string ingredientName;
 
@@ -206,6 +211,77 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         foreach (UnityEngine.UI.Graphic graphic in graphics)
         {
             graphic.raycastTarget = false;
+        }
+    }
+
+    // ========== TOOLTIP SYSTEM ==========
+
+    /// <summary>
+    /// Called when pointer enters the ingredient area
+    /// Starts a coroutine to show tooltip after 1 second delay
+    /// </summary>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Only show tooltip for original ingredients, not clones
+        if (isClone)
+            return;
+
+        isHovering = true;
+
+        // Start coroutine to show tooltip after delay
+        if (showTooltipCoroutine != null)
+        {
+            StopCoroutine(showTooltipCoroutine);
+        }
+        showTooltipCoroutine = StartCoroutine(ShowTooltipAfterDelay(eventData));
+    }
+
+    /// <summary>
+    /// Called when pointer exits the ingredient area
+    /// Cancels tooltip and hides it if visible
+    /// </summary>
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isHovering = false;
+
+        // Cancel tooltip coroutine
+        if (showTooltipCoroutine != null)
+        {
+            StopCoroutine(showTooltipCoroutine);
+            showTooltipCoroutine = null;
+        }
+
+        // Hide tooltip
+        if (IngredientTooltip.Instance != null)
+        {
+            IngredientTooltip.Instance.HideTooltip();
+        }
+    }
+
+    /// <summary>
+    /// Coroutine that waits 1 second before showing the tooltip
+    /// Updates tooltip position while hovering
+    /// </summary>
+    private System.Collections.IEnumerator ShowTooltipAfterDelay(PointerEventData eventData)
+    {
+        // Wait for 1 second
+        yield return new WaitForSeconds(1f);
+
+        // Check if still hovering
+        if (!isHovering)
+            yield break;
+
+        // Show tooltip
+        if (IngredientTooltip.Instance != null)
+        {
+            IngredientTooltip.Instance.ShowTooltip(ingredientName, eventData.position);
+
+            // Keep updating tooltip position while hovering
+            while (isHovering)
+            {
+                IngredientTooltip.Instance.UpdateTooltipPosition(Input.mousePosition);
+                yield return null;
+            }
         }
     }
 }
