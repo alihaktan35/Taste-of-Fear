@@ -50,6 +50,30 @@ MonoBehaviour:
     m_Localized: 'SOUND: OFF'
     m_Metadata:
       m_Items: []
+  - m_Id: 491282373632
+    m_Localized: "\U0001F480 YOU PAUSED...\nBUT THEY WON'T WAIT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 546156452864
+    m_Localized: GATHER YOUR COURAGE AND CONTINUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 601030532096
+    m_Localized: I GIVE UP :(
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13479274399916032
+    m_Localized: "\U0001F480 YOU PAUSED...\nBUT THEY WON'T WAIT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13480256311648256
+    m_Localized: GATHER YOUR COURAGE AND CONTINUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13480754406219776
+    m_Localized: "I GIVE UP :(\t"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

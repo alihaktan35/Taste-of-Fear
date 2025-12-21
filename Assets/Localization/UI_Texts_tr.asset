@@ -50,6 +50,30 @@ MonoBehaviour:
     m_Localized: 'SES: KAPALI'
     m_Metadata:
       m_Items: []
+  - m_Id: 491282373632
+    m_Localized: "\U0001F480 SEN DURDUN...\nAMA ONLAR BEKLEMEZ"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 546156452864
+    m_Localized: "CESARET\u0130N\u0130 TOPLA VE DEVAM ET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 601030532096
+    m_Localized: PES ED\u0130YORUM :(
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13479274399916032
+    m_Localized: "\U0001F480 SEN DURDUN...\nAMA ONLAR BEKLEMEZ"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13480256311648256
+    m_Localized: "CESARET\u0130N\u0130 TOPLA VE DEVAM ET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13480754406219776
+    m_Localized: "PES ED\u0130YORUM :("
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

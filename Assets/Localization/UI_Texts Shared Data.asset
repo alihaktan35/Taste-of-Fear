@@ -47,6 +47,20 @@ MonoBehaviour:
     m_Key: sound_off
     m_Metadata:
       m_Items: []
+  - m_Id: 13479274399916032
+    m_Key: pause_header
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13480256311648256
+    m_Key: 'pause_resume
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13480754406219776
+    m_Key: pause_quit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
