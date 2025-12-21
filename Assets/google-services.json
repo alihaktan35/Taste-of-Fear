@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "851303189550",
+    "firebase_url": "https://tasteoffear-default-rtdb.firebaseio.com",
+    "project_id": "tasteoffear",
+    "storage_bucket": "tasteoffear.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851303189550:android:e48f019b8964145ab7e3bf",
+        "android_client_info": {
+          "package_name": "com.tasteoffear.game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOFDqMombygDRdxg8b__14qAICfBo0YCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

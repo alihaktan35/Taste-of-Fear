@@ -104,6 +104,35 @@ public static class GameConstants
     /// </summary>
     public const int SCORE_DISPLAY_DIGITS = 6;
 
+    /// <summary>
+    /// Maximum valid score for anti-cheat protection
+    /// Scores above this value will be rejected by Firebase
+    /// </summary>
+    public const int MAX_VALID_SCORE = 111111;
+
+
+    // === LEADERBOARD CONSTANTS ===
+
+    /// <summary>
+    /// Number of top scores to display in leaderboard
+    /// </summary>
+    public const int LEADERBOARD_TOP_COUNT = 10;
+
+    /// <summary>
+    /// Default username for players who haven't set one
+    /// </summary>
+    public const string DEFAULT_USERNAME = "Anonymous";
+
+    /// <summary>
+    /// Minimum username length
+    /// </summary>
+    public const int MIN_USERNAME_LENGTH = 3;
+
+    /// <summary>
+    /// Maximum username length
+    /// </summary>
+    public const int MAX_USERNAME_LENGTH = 20;
+
 
     // === TIME FORMATTING CONSTANTS ===
 

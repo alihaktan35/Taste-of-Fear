@@ -192,6 +192,7 @@ public class GameFlowManager : MonoBehaviour
 
     /// <summary>
     /// Compares current score with high score and updates if necessary
+    /// Also submits to Firebase leaderboard if new high score
     /// </summary>
     private void UpdateHighScore()
     {
@@ -202,7 +203,54 @@ public class GameFlowManager : MonoBehaviour
             highScore = currentScore;
             PlayerPrefs.SetInt(HIGH_SCORE_KEY, highScore);
             PlayerPrefs.Save();
+
+            // Submit to leaderboard (only if new high score)
+            SubmitScoreToLeaderboard(currentScore);
         }
+    }
+
+    /// <summary>
+    /// Submits the score to Firebase leaderboard
+    /// </summary>
+    /// <param name="score">Score to submit</param>
+    private void SubmitScoreToLeaderboard(int score)
+    {
+        // Wait for Firebase to initialize before submitting
+        StartCoroutine(SubmitScoreWithDelay(score, 2f));
+    }
+
+    /// <summary>
+    /// Submits score after waiting for Firebase to initialize
+    /// </summary>
+    private System.Collections.IEnumerator SubmitScoreWithDelay(int score, float initialDelay)
+    {
+        // Initial delay to give Firebase a head start
+        yield return new WaitForSeconds(initialDelay);
+
+        // Wait for Firebase to initialize (with timeout)
+        float timeoutCounter = 0f;
+        float maxTimeout = 10f; // 10 seconds max wait
+
+        while (!FirebaseManager.Instance.IsInitialized && timeoutCounter < maxTimeout)
+        {
+            yield return new WaitForSeconds(0.5f);
+            timeoutCounter += 0.5f;
+        }
+
+        // Check if initialization succeeded
+        if (!FirebaseManager.Instance.IsInitialized)
+        {
+            Debug.LogError("Firebase failed to initialize within timeout. Score not submitted.");
+            yield break;
+        }
+
+        // Get username
+        string username = UsernameManager.Instance.GetUsername();
+
+        // Submit to leaderboard
+        LeaderboardManager.Instance.SubmitScore(username, score);
+
+        Debug.Log($"Submitted score to leaderboard: {username} - {score}");
     }
 
     /// <summary>

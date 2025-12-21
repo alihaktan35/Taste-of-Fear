@@ -224,3 +224,21 @@ fmod_editor.log
 # This file contains implementation details and is regenerated as needed
 GAME_SYSTEM_DOCUMENTATION.md
 PAUSE_MENU_SETUP_GUIDE.md
+
+# ====================================
+# Firebase Unity SDK (Large Files)
+# ====================================
+# Firebase SDK is 450MB+ and should be installed manually
+# See FIREBASE_SETUP_GUIDE.md and UNITY_FIREBASE_SETUP_GUIDE.md for installation
+/[Aa]ssets/Firebase/
+/[Aa]ssets/Plugins/iOS/Firebase/
+/[Aa]ssets/Plugins/tvOS/Firebase/
+/[Aa]ssets/ExternalDependencyManager/
+/[Aa]ssets/Editor Default Resources/Firebase/
+
+# Keep Firebase config files (these are small and necessary)
+!/[Aa]ssets/google-services.json
+!/[Aa]ssets/GoogleService-Info.plist
+FIREBASE_SETUP_GUIDE.md
+FirebaseSecurityRules.json
+UNITY_FIREBASE_SETUP_GUIDE.md
