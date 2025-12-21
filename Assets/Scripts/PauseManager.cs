@@ -17,6 +17,10 @@ public class PauseManager : MonoBehaviour
     [Header("Animation Settings")]
     [SerializeField] private float fadeDuration = 0.3f;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip pauseMusic;
+    private AudioSource pauseAudioSource;
+
     private bool isPaused = false;
     private bool isTransitioning = false;
 
@@ -29,6 +33,13 @@ public class PauseManager : MonoBehaviour
             canvasGroup.alpha = 0f;
             canvasGroup.blocksRaycasts = false;
         }
+
+        // Setup pause music audio source
+        pauseAudioSource = gameObject.AddComponent<AudioSource>();
+        pauseAudioSource.clip = pauseMusic;
+        pauseAudioSource.loop = true;
+        pauseAudioSource.playOnAwake = false;
+        pauseAudioSource.ignoreListenerPause = true; // Play even when game is paused
     }
 
     private void Update()
@@ -101,12 +112,24 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         AudioListener.pause = true;
 
+        // Play pause music
+        if (pauseAudioSource != null && pauseMusic != null)
+        {
+            pauseAudioSource.Play();
+        }
+
         isTransitioning = false;
     }
 
     private IEnumerator ResumeTransition()
     {
         isTransitioning = true;
+
+        // Stop pause music
+        if (pauseAudioSource != null && pauseAudioSource.isPlaying)
+        {
+            pauseAudioSource.Stop();
+        }
 
         // Resume game immediately
         Time.timeScale = 1f;
@@ -133,6 +156,12 @@ public class PauseManager : MonoBehaviour
     {
         isTransitioning = true;
 
+        // Stop pause music
+        if (pauseAudioSource != null && pauseAudioSource.isPlaying)
+        {
+            pauseAudioSource.Stop();
+        }
+
         // Fade out faster
         float quitFadeDuration = fadeDuration * 0.5f;
         float elapsed = 0f;
@@ -153,6 +182,12 @@ public class PauseManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        // Stop pause music if playing
+        if (pauseAudioSource != null && pauseAudioSource.isPlaying)
+        {
+            pauseAudioSource.Stop();
+        }
+
         // Safety: ensure time scale is restored when scene unloads
         Time.timeScale = 1f;
         AudioListener.pause = false;

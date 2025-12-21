@@ -8264,6 +8264,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 1815603104}
   blurOverlay: {fileID: 441633578}
   fadeDuration: 0.3
+  pauseMusic: {fileID: 8300000, guid: 9c4a6be8527d2bd4fb99a9a843896a73, type: 3}
 --- !u!1 &1860777458
 GameObject:
   m_ObjectHideFlags: 0
