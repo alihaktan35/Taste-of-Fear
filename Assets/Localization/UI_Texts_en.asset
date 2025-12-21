@@ -63,15 +63,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13479274399916032
-    m_Localized: "\U0001F480 YOU PAUSED...\nBUT THEY WON'T WAIT"
+    m_Localized: 'YOU PAUSED...
+
+      BUT THEY WON''T WAIT'
     m_Metadata:
       m_Items: []
   - m_Id: 13480256311648256
-    m_Localized: GATHER YOUR COURAGE AND CONTINUE
+    m_Localized: KEEP FIGHTING
     m_Metadata:
       m_Items: []
   - m_Id: 13480754406219776
-    m_Localized: "I GIVE UP :(\t"
+    m_Localized: 'I GIVE UP :(
+
+'
     m_Metadata:
       m_Items: []
   references:

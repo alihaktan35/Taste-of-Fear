@@ -63,11 +63,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13479274399916032
-    m_Localized: "\U0001F480 SEN DURDUN...\nAMA ONLAR BEKLEMEZ"
+    m_Localized: 'SEN DURDUN...
+
+      AMA ONLAR BEKLEMEZ'
     m_Metadata:
       m_Items: []
   - m_Id: 13480256311648256
-    m_Localized: "CESARET\u0130N\u0130 TOPLA VE DEVAM ET"
+    m_Localized: "M\xDCCADELEYE DEVAM"
     m_Metadata:
       m_Items: []
   - m_Id: 13480754406219776
