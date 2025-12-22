@@ -884,43 +884,47 @@ MonoBehaviour:
     bubbleSize: {x: 1186.515, y: 632.4885}
     arrowRotation: -154.475
   - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
-    message: 
+    message: You can view the recipes by clicking on the recipe book.
     arrowPos: {x: 599, y: 121}
     bubblePos: {x: -56, y: -21}
     bubbleSize: {x: 1155.548, y: 341.3966}
     arrowRotation: 28.669
   - background: {fileID: -6639508963165645709, guid: f415c869e65285549953feb8a03d108c, type: 3}
-    message: 
+    message: Here are the recipes. Change pages to find the recipe you need.
     arrowPos: {x: -1012, y: -722}
     bubblePos: {x: 0, y: -343}
     bubbleSize: {x: 1155.548, y: 341.3966}
     arrowRotation: 0
   - background: {fileID: 6598062238682498081, guid: 0056b43682af6434abb4753990bad2c4, type: 3}
-    message: 
+    message: Once you find the necessary ingredients, you can drag and drop them
+      onto the plate.
     arrowPos: {x: -2, y: -33}
     bubblePos: {x: 6, y: 252}
     bubbleSize: {x: 1155.548, y: 341.3966}
     arrowRotation: 237.464
   - background: {fileID: -1298867634476495366, guid: 8bfbecc9f312e6546b728310ceb08311, type: 3}
-    message: 
+    message: When the mouse cursor hovers over a food ingredients, its name will
+      appear.
     arrowPos: {x: -59, y: -224}
     bubblePos: {x: -312, y: -389}
     bubbleSize: {x: 938.7772, y: 223.7212}
     arrowRotation: 386.441
   - background: {fileID: 5848174008359968192, guid: ecb950fbb0f6fff4988ec30fab5056c9, type: 3}
-    message: 
+    message: Don't worry if you accidentally drag the wrong ingredient onto the plate.
+      You can undo it by clicking on it.
     arrowPos: {x: -58, y: -281}
     bubblePos: {x: -285, y: -45}
     bubbleSize: {x: 1155.548, y: 341.3966}
     arrowRotation: 307.676
   - background: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
-    message: 
+    message: But there has to be a price. Every wrong ingredient reduces the game's
+      time.
     arrowPos: {x: -664, y: 270}
     bubblePos: {x: -328, y: -2}
     bubbleSize: {x: 1155.548, y: 341.3966}
     arrowRotation: 496.117
   - background: {fileID: -384047691540871226, guid: 5918799efdc34d543a6ea5f3cf4ac3da, type: 3}
-    message: 
+    message: 'Have fun. My advice is: don''t anger the creatures.'
     arrowPos: {x: -776, y: 939}
     bubblePos: {x: 0, y: 23}
     bubbleSize: {x: 1155.548, y: 341.3966}
@@ -978,8 +982,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 18, y: -44}
+  m_SizeDelta: {x: 576.8481, y: 202.2554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1193099540
 CanvasRenderer:
