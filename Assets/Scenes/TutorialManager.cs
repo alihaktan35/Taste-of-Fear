@@ -5,16 +5,18 @@ using TMPro;
 public class TutorialManager : MonoBehaviour
 {
     [System.Serializable]
-    public class TutorialStep // Her bir adýmýn neler içereceðini tanýmlýyoruz
+    public class TutorialStep
     {
-        public Sprite background;     // Sahne resmi
-        public string message;        // Yazýlacak açýklama
-        public Vector2 arrowPos;      // Okun konumu
-        public Vector2 bubblePos;     // Balonun konumu
-        public float arrowRotation;   // Okun dönüþ açýsý
+        public Sprite background;
+        [TextArea(3, 5)] // Yazý alanýný editörde geniþletir
+        public string message;
+        public Vector2 arrowPos;
+        public Vector2 bubblePos;
+        public Vector2 bubbleSize;    // YENÝ: Balonun geniþlik ve yüksekliði
+        public float arrowRotation;
     }
 
-    public TutorialStep[] steps;      // Tüm adýmlarý tutan liste
+    public TutorialStep[] steps;
     private int currentIndex = 0;
 
     [Header("UI Baðlantýlarý")]
@@ -23,12 +25,12 @@ public class TutorialManager : MonoBehaviour
     public RectTransform arrowRect;
     public RectTransform bubbleRect;
 
-    void Start() { UpdateUI(); } // Oyun açýlýnca ilk adýmý göster
+    void Start() { UpdateUI(); }
 
     public void Next()
     {
         if (currentIndex < steps.Length - 1) { currentIndex++; UpdateUI(); }
-        else { Debug.Log("Tutorial Bitti!"); } // Buraya ana sahneye geçiþ kodu gelecek
+        else { Debug.Log("Tutorial Bitti!"); }
     }
 
     public void Back()
@@ -39,10 +41,18 @@ public class TutorialManager : MonoBehaviour
     void UpdateUI()
     {
         TutorialStep current = steps[currentIndex];
+
         bgDisplay.sprite = current.background;
         textDisplay.text = current.message;
+
+        // Konumlarý güncelle
         arrowRect.anchoredPosition = current.arrowPos;
         bubbleRect.anchoredPosition = current.bubblePos;
+
+        // YENÝ: Boyutu güncelle (Width ve Height)
+        bubbleRect.sizeDelta = current.bubbleSize;
+
+        // Rotasyonu güncelle
         arrowRect.rotation = Quaternion.Euler(0, 0, current.arrowRotation);
     }
 }
