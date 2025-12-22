@@ -850,90 +850,72 @@ MonoBehaviour:
     bubblePos: {x: 612, y: -127}
     bubbleSize: {x: 563.6103, y: 191.2513}
     arrowRotation: 155.655
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+  - background: {fileID: -57773446560480228, guid: 226b6e4d5e7942e45afcaa5162a8f6b5, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -362, y: -202}
+    bubblePos: {x: -656, y: -364}
+    bubbleSize: {x: 563.6103, y: 191.2513}
+    arrowRotation: 16.0001
+  - background: {fileID: 6391582411394987839, guid: 5d1a851440c99ac4482ebcc4c7ccba73, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -102, y: -139}
+    bubblePos: {x: -315, y: -333}
+    bubbleSize: {x: 563.6103, y: 191.2513}
+    arrowRotation: 45.415
+  - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: 666, y: -350}
+    bubblePos: {x: 498.1, y: 107.036}
+    bubbleSize: {x: 907.81, y: 637.1794}
+    arrowRotation: -65.599
+  - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -678, y: -406}
+    bubblePos: {x: -186, y: -322}
+    bubbleSize: {x: 746.7805, y: 347.59}
+    arrowRotation: -154.475
+  - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -1012, y: -722}
+    bubblePos: {x: -10, y: -55}
+    bubbleSize: {x: 1186.515, y: 632.4885}
+    arrowRotation: -154.475
+  - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: 599, y: 121}
+    bubblePos: {x: -56, y: -21}
+    bubbleSize: {x: 1155.548, y: 341.3966}
+    arrowRotation: 28.669
+  - background: {fileID: -6639508963165645709, guid: f415c869e65285549953feb8a03d108c, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
+    arrowPos: {x: -1012, y: -722}
+    bubblePos: {x: 0, y: -343}
+    bubbleSize: {x: 1155.548, y: 341.3966}
     arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+  - background: {fileID: 6598062238682498081, guid: 0056b43682af6434abb4753990bad2c4, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -2, y: -33}
+    bubblePos: {x: 6, y: 252}
+    bubbleSize: {x: 1155.548, y: 341.3966}
+    arrowRotation: 237.464
+  - background: {fileID: 5848174008359968192, guid: ecb950fbb0f6fff4988ec30fab5056c9, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -58, y: -281}
+    bubblePos: {x: -285, y: -45}
+    bubbleSize: {x: 1155.548, y: 341.3966}
+    arrowRotation: 307.676
+  - background: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+    arrowPos: {x: -664, y: 270}
+    bubblePos: {x: -328, y: -2}
+    bubbleSize: {x: 1155.548, y: 341.3966}
+    arrowRotation: 496.117
+  - background: {fileID: -384047691540871226, guid: 5918799efdc34d543a6ea5f3cf4ac3da, type: 3}
     message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
-    message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
-    message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
-    message: 
-    arrowPos: {x: -312, y: 138}
-    bubblePos: {x: 0, y: 0}
-    bubbleSize: {x: 0, y: 0}
-    arrowRotation: 0
+    arrowPos: {x: -776, y: 939}
+    bubblePos: {x: 0, y: 23}
+    bubbleSize: {x: 1155.548, y: 341.3966}
+    arrowRotation: 496.117
   bgDisplay: {fileID: 781790075}
   textDisplay: {fileID: 1193099541}
   arrowRect: {fileID: 2801022}
