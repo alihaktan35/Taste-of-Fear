@@ -11,10 +11,18 @@ using System;
 public class FirebaseManager : MonoBehaviour
 {
     private static FirebaseManager instance;
+    private static bool isQuitting = false;
+
     public static FirebaseManager Instance
     {
         get
         {
+            // Don't create new instances when quitting
+            if (isQuitting)
+            {
+                return null;
+            }
+
             if (instance == null)
             {
                 GameObject go = new GameObject("FirebaseManager");
@@ -28,6 +36,11 @@ public class FirebaseManager : MonoBehaviour
     private FirebaseApp firebaseApp;
     private DatabaseReference databaseReference;
     private bool isInitialized = false;
+
+    /// <summary>
+    /// Event triggered when Firebase initialization completes successfully
+    /// </summary>
+    public event Action OnFirebaseInitialized;
 
     /// <summary>
     /// Returns true if Firebase is ready to use
@@ -68,6 +81,9 @@ public class FirebaseManager : MonoBehaviour
                 isInitialized = true;
 
                 Debug.Log("Firebase initialized successfully!");
+
+                // Trigger event to notify listeners
+                OnFirebaseInitialized?.Invoke();
             }
             else
             {
@@ -112,5 +128,11 @@ public class FirebaseManager : MonoBehaviour
         {
             instance = null;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        // Prevent creating new instances during shutdown
+        isQuitting = true;
     }
 }

@@ -19,6 +19,12 @@ public class LeaderboardUI : MonoBehaviour
 
     private void Start()
     {
+        // Check if managers are available (may be null during shutdown)
+        if (LeaderboardManager.Instance == null || FirebaseManager.Instance == null)
+        {
+            return;
+        }
+
         // Subscribe to leaderboard events
         LeaderboardManager.Instance.OnLeaderboardLoaded += OnLeaderboardDataLoaded;
 
@@ -28,8 +34,18 @@ public class LeaderboardUI : MonoBehaviour
             refreshButton.onClick.AddListener(RefreshLeaderboard);
         }
 
-        // Auto-load on start
-        RefreshLeaderboard();
+        // Auto-load: Wait for Firebase if not ready yet
+        if (FirebaseManager.Instance.IsInitialized)
+        {
+            // Firebase is already ready, load immediately
+            RefreshLeaderboard();
+        }
+        else
+        {
+            // Firebase not ready yet, wait for initialization
+            SetStatusText("Connecting to server...");
+            FirebaseManager.Instance.OnFirebaseInitialized += OnFirebaseReady;
+        }
     }
 
     private void OnDestroy()
@@ -40,6 +56,11 @@ public class LeaderboardUI : MonoBehaviour
             LeaderboardManager.Instance.OnLeaderboardLoaded -= OnLeaderboardDataLoaded;
         }
 
+        if (FirebaseManager.Instance != null)
+        {
+            FirebaseManager.Instance.OnFirebaseInitialized -= OnFirebaseReady;
+        }
+
         if (refreshButton != null)
         {
             refreshButton.onClick.RemoveListener(RefreshLeaderboard);
@@ -47,10 +68,28 @@ public class LeaderboardUI : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when Firebase initialization completes
+    /// </summary>
+    private void OnFirebaseReady()
+    {
+        // Unsubscribe from the event since we only need it once
+        FirebaseManager.Instance.OnFirebaseInitialized -= OnFirebaseReady;
+
+        // Now load the leaderboard
+        RefreshLeaderboard();
+    }
+
+    /// <summary>
     /// Refreshes the leaderboard by fetching latest data
     /// </summary>
     public void RefreshLeaderboard()
     {
+        // Check if managers are available (may be null during shutdown)
+        if (LeaderboardManager.Instance == null || FirebaseManager.Instance == null)
+        {
+            return;
+        }
+
         SetLoadingState(true);
         SetStatusText("Loading leaderboard...");
 
@@ -87,7 +126,9 @@ public class LeaderboardUI : MonoBehaviour
         SetStatusText($"Top {entries.Count} Players");
 
         // Spawn entry UI for each
-        string currentUsername = UsernameManager.Instance.GetUsername();
+        string currentUsername = UsernameManager.Instance != null
+            ? UsernameManager.Instance.GetUsername()
+            : "";
 
         for (int i = 0; i < entries.Count; i++)
         {

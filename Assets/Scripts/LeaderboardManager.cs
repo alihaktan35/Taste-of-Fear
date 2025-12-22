@@ -12,10 +12,18 @@ using System;
 public class LeaderboardManager : MonoBehaviour
 {
     private static LeaderboardManager instance;
+    private static bool isQuitting = false;
+
     public static LeaderboardManager Instance
     {
         get
         {
+            // Don't create new instances when quitting
+            if (isQuitting)
+            {
+                return null;
+            }
+
             if (instance == null)
             {
                 GameObject go = new GameObject("LeaderboardManager");
@@ -231,10 +239,7 @@ public class LeaderboardManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        // Clean up singleton when application quits (including exiting Play mode in editor)
-        if (instance == this)
-        {
-            Destroy(gameObject);
-        }
+        // Prevent creating new instances during shutdown
+        isQuitting = true;
     }
 }
