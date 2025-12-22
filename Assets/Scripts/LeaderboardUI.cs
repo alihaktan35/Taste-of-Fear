@@ -120,10 +120,12 @@ public class LeaderboardUI : MonoBehaviour
         if (entries == null || entries.Count == 0)
         {
             SetStatusText("No scores yet. Be the first!");
+            ShowStatusText(true);
             return;
         }
 
-        SetStatusText($"Top {entries.Count} Players");
+        // Hide status text when showing entries
+        ShowStatusText(false);
 
         // Spawn entry UI for each
         string currentUsername = UsernameManager.Instance != null
@@ -188,6 +190,19 @@ public class LeaderboardUI : MonoBehaviour
         if (statusText != null)
         {
             statusText.text = message;
+            ShowStatusText(true);
+        }
+    }
+
+    /// <summary>
+    /// Shows or hides the status text
+    /// </summary>
+    /// <param name="show">True to show, false to hide</param>
+    private void ShowStatusText(bool show)
+    {
+        if (statusText != null)
+        {
+            statusText.gameObject.SetActive(show);
         }
     }
 }
