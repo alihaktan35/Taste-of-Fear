@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -213.468}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -704, y: 92}
+  m_AnchoredPosition: {x: -0, y: -289}
   m_SizeDelta: {x: 161.3427, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2801023
@@ -539,8 +539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268, y: -498}
-  m_SizeDelta: {x: 142.5323, y: 91.1374}
+  m_AnchoredPosition: {x: 311, y: -481}
+  m_SizeDelta: {x: 208.9512, y: 78.936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &714931881
 MonoBehaviour:
@@ -672,7 +672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -866, y: -498}
+  m_AnchoredPosition: {x: -905, y: -484}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &725109421
@@ -769,6 +769,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725109419}
   m_CullTransparentMesh: 1
+--- !u!1 &752298841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752298842}
+  - component: {fileID: 752298844}
+  - component: {fileID: 752298843}
+  m_Layer: 5
+  m_Name: bgImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &752298842
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752298841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1245142234}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.01001, y: 2.9145}
+  m_SizeDelta: {x: 1920, y: 1085.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &752298843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752298841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 8416851398100619733, guid: 0fd85f71c1e974c288599a1431aafca0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &752298844
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752298841}
+  m_CullTransparentMesh: 1
 --- !u!1 &781790072
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
+  m_Sprite: {fileID: -7251139898531407440, guid: b9612506109169c4c808c88215f2f7ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -874,7 +949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steps:
-  - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
+  - background: {fileID: -7251139898531407440, guid: b9612506109169c4c808c88215f2f7ea, type: 3}
     message: You can customize the game settings to your liking
     arrowPos: {x: -546, y: -225}
     bubblePos: {x: -15, y: 374}
@@ -925,7 +1000,7 @@ MonoBehaviour:
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -334.985
-  - background: {fileID: -6639508963165645709, guid: f415c869e65285549953feb8a03d108c, type: 3}
+  - background: {fileID: -6373148361495392248, guid: c50c9478807af8849a21fe39922a9ec8, type: 3}
     message: Here are the recipes. Change pages to find the recipe you need.
     arrowPos: {x: -1101, y: 167}
     bubblePos: {x: -15, y: 374}
@@ -938,7 +1013,7 @@ MonoBehaviour:
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -8.868
-  - background: {fileID: -1298867634476495366, guid: 8bfbecc9f312e6546b728310ceb08311, type: 3}
+  - background: {fileID: -3752992105490577416, guid: 2389ffa8d69548441a0f55fac892068c, type: 3}
     message: When the mouse cursor hovers over a food ingredients, its name will
       appear.
     arrowPos: {x: -84, y: -14}
@@ -1058,8 +1133,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255370
-  m_fontColor: {r: 0.039849162, g: 1, b: 0, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1076,8 +1151,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1151,6 +1226,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 752298842}
   - {fileID: 781790073}
   - {fileID: 2801022}
   - {fileID: 1301158830}
@@ -1377,7 +1453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.054250807, b: 0, a: 0.972549}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.972549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1438,7 +1514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -282, y: -498}
+  m_AnchoredPosition: {x: -280, y: -489}
   m_SizeDelta: {x: 180.3792, y: 38.7339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1502233357
