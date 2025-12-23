@@ -144,17 +144,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2801021}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9576512, w: -0.28793105}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1245142234}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -213.468}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1142, y: 401}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -704, y: 92}
+  m_SizeDelta: {x: 161.3427, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2801023
 MonoBehaviour:
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -876,92 +876,92 @@ MonoBehaviour:
   steps:
   - background: {fileID: -4989202849244842441, guid: b6c4d93640ff1bc42a0a9153500b179a, type: 3}
     message: You can customize the game settings to your liking
-    arrowPos: {x: -400, y: -179}
+    arrowPos: {x: -546, y: -225}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 35.665
+    arrowRotation: 0
   - background: {fileID: -57773446560480228, guid: 226b6e4d5e7942e45afcaa5162a8f6b5, type: 3}
     message: Don't forget to enter your username!
-    arrowPos: {x: 455, y: 46}
+    arrowPos: {x: 119, y: 10}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 155.655
+    arrowRotation: 180
   - background: {fileID: -57773446560480228, guid: 226b6e4d5e7942e45afcaa5162a8f6b5, type: 3}
     message: You can change the language and turn the sound on and off. But I recommend
       keeping the sound on.
-    arrowPos: {x: -362, y: -202}
+    arrowPos: {x: 96, y: -164}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 16.0001
+    arrowRotation: 180
   - background: {fileID: 6391582411394987839, guid: 5d1a851440c99ac4482ebcc4c7ccba73, type: 3}
     message: You can track your ranking on the leaderboard.
-    arrowPos: {x: -102, y: -139}
+    arrowPos: {x: -495, y: -110}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 45.415
+    arrowRotation: 36.969
   - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
     message: If you're scared, you can exit the game by pressing the exit button
       before it's too late.
-    arrowPos: {x: 666, y: -350}
+    arrowPos: {x: 129, y: -246}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: -65.599
+    arrowRotation: -44.656
   - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
     message: Start the game by pressing the "go to table" button.
-    arrowPos: {x: -678, y: -406}
+    arrowPos: {x: -559, y: -243}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: -154.475
+    arrowRotation: -144.684
   - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
     message: The goal of the game is to deliver the food the creatures need within
       the given time. If you fail, you'll have to face the consequences.
-    arrowPos: {x: -1012, y: -722}
+    arrowPos: {x: -1101, y: 167}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -154.475
   - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
     message: You can view the recipes by clicking on the recipe book.
-    arrowPos: {x: 599, y: 121}
+    arrowPos: {x: 100, y: -4}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 28.669
+    arrowRotation: -334.985
   - background: {fileID: -6639508963165645709, guid: f415c869e65285549953feb8a03d108c, type: 3}
     message: Here are the recipes. Change pages to find the recipe you need.
-    arrowPos: {x: -1012, y: -722}
+    arrowPos: {x: -1101, y: 167}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 0
   - background: {fileID: 6598062238682498081, guid: 0056b43682af6434abb4753990bad2c4, type: 3}
     message: Once you find the necessary ingredients, you can drag and drop them
       onto the plate.
-    arrowPos: {x: -2, y: -33}
+    arrowPos: {x: -536, y: -285}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 237.464
+    arrowRotation: -8.868
   - background: {fileID: -1298867634476495366, guid: 8bfbecc9f312e6546b728310ceb08311, type: 3}
     message: When the mouse cursor hovers over a food ingredients, its name will
       appear.
-    arrowPos: {x: -59, y: -224}
+    arrowPos: {x: -84, y: -14}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 386.441
+    arrowRotation: -114.949
   - background: {fileID: 5848174008359968192, guid: ecb950fbb0f6fff4988ec30fab5056c9, type: 3}
     message: Don't worry if you accidentally drag the wrong ingredient onto the plate.
       You can undo it by clicking on it.
-    arrowPos: {x: -58, y: -281}
+    arrowPos: {x: -355, y: -179}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 307.676
+    arrowRotation: -64.971
   - background: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
     message: But there has to be a price. Every wrong ingredient reduces the game's
       time.
-    arrowPos: {x: -664, y: 270}
+    arrowPos: {x: -704, y: 92}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
-    arrowRotation: 496.117
+    arrowRotation: -213.468
   - background: {fileID: -384047691540871226, guid: 5918799efdc34d543a6ea5f3cf4ac3da, type: 3}
     message: 'Have fun. My advice is: don''t anger the creatures.'
-    arrowPos: {x: -776, y: 939}
+    arrowPos: {x: -1101.167, y: 939}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 496.117
@@ -1245,7 +1245,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1295922339
 RectTransform:
