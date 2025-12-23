@@ -20,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/optionsMenu.unity
     guid: 97c441aa1f8744619b6fd4f1df3f0199
-  - enabled: 0
-    path: Assets/Scenes/jumpscare_old.unity
-    guid: c5fa822e99b2fa74ba64c18cc1f6b5d6
   - enabled: 1
     path: Assets/Scenes/jumpscare.unity
     guid: e96fae835b297f44e9b9c7975ec7e2d5
@@ -32,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/leaderboard.unity
     guid: daaf08cdb53c7494183e1c9933aa9a0e
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: f61bf0fcd584ea046920bc78341998f5
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 977ff2af7f2824b07b045752e735172b, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

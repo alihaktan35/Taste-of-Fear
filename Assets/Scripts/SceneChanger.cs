@@ -8,7 +8,7 @@ public class SceneChanger : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
-        
+
         // Toplam sahne sayısını kontrol et
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
@@ -17,16 +17,21 @@ public class SceneChanger : MonoBehaviour
         else
         {
             Debug.Log("Son sahnedesiniz!");
-            // İsterseniz ilk sahneye dönebilir: SceneManager.LoadScene(0);
         }
     }
-    
+
     // İsme göre sahne yükleme
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
-    
+
+    // YENİ: How to Play butonuna basıldığında Tutorial sahnesine gider
+    public void OpenHowToPlay()
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
+
     // Order01 sahnesine direkt geçiş
     public void LoadOrder01()
     {
@@ -35,25 +40,25 @@ public class SceneChanger : MonoBehaviour
 
         SceneManager.LoadScene("order01");
     }
-    
+
     // OptionsMenu (Settings) sahnesini aç
     public void OpenSettings()
     {
         SceneManager.LoadScene("optionsMenu");
     }
-    
+
     // Ana menüye geri dön
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu"); // Ana sahnenizin adını buraya yazın
+        SceneManager.LoadScene("MainMenu");
     }
-    
+
     // Oyundan çık
     public void QuitGame()
     {
         Application.Quit();
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#endif
     }
 }
