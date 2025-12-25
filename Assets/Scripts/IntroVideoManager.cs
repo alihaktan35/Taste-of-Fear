@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -13,31 +13,36 @@ public class IntroVideoManager : MonoBehaviour
 
     void Awake()
     {
+        // Set sound to ON by default every time the game starts
+        PlayerPrefs.SetInt("Sound", 1); // 1 for ON
+        AudioListener.volume = 1f;
+        PlayerPrefs.Save();
+
         GameObject fadeObj = GameObject.Find("FadePanel");
         if (fadeObj == null)
         {
-            Debug.LogError("FadePanel bulunamadı! İsmini kontrol et.");
+            Debug.LogError("FadePanel not found! Check the name.");
             return;
         }
 
         fadePanel = fadeObj.GetComponent<CanvasGroup>();
         if (fadePanel == null)
         {
-            Debug.LogError("FadePanel üzerinde CanvasGroup yok!");
+            Debug.LogError("CanvasGroup not found on FadePanel!");
         }
     }
 
     void Start()
     {
-        // Başlangıçta ekran siyah olsun
+        // Start with a black screen
         fadePanel.alpha = 1f;
 
-        // Videoyu ekrana tam oturması için aspect ratio'yu ayarla
+        // Adjust aspect ratio to fit the screen
         videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
 
         videoPlayer.loopPointReached += OnVideoEnd;
 
-        // Sahne açılırken fade-in efekti
+        // Fade-in effect when the scene opens
         StartCoroutine(FadeIn());
     }
 
