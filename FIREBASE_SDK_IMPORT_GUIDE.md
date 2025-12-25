@@ -11,11 +11,9 @@ This guide will walk you through importing the necessary Firebase SDK for the Re
 1.  **Go to the Firebase Unity SDK download page:**
     [https://firebase.google.com/download/unity](https://firebase.google.com/download/unity)
 
-2.  Click the "**Download Firebase Unity SDK**" button.
+2.  Download the ZIP file (approx. 1.1 GB).
 
-3.  Download the ZIP file (approx. 150 MB).
-
-4.  **Extract** the contents of the ZIP file to a convenient location on your computer.
+3.  **Extract** the contents of the ZIP file to a convenient location on your computer.
 
 ### STEP 2: Import SDK Packages into Unity
 
