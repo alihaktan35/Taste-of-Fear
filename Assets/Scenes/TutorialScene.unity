@@ -1163,6 +1163,8 @@ MonoBehaviour:
   textDisplay: {fileID: 1193099541}
   arrowRect: {fileID: 2801022}
   bubbleRect: {fileID: 1301158830}
+  nextButton: {fileID: 714931879}
+  backButton: {fileID: 725109419}
 --- !u!4 &1030617368
 Transform:
   m_ObjectHideFlags: 0
