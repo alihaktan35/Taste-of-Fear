@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // Required for scene management
 
 public class TutorialManager : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class TutorialManager : MonoBehaviour
     public TutorialStep[] steps;
     private int currentIndex = 0;
 
-    [Header("UI Bağlantıları")]
+    [Header("UI References")]
     public Image bgDisplay;
     public TextMeshProUGUI textDisplay;
     public RectTransform arrowRect;
@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour
     public void Next()
     {
         if (currentIndex < steps.Length - 1) { currentIndex++; UpdateUI(); }
-        else { Skip(); } // Son adımdaysa ana menüye gitsin
+
     }
 
     public void Back()
