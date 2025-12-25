@@ -64,69 +64,99 @@ public class LeaderboardManager : MonoBehaviour
     /// <param name="score">Score to submit</param>
     public void SubmitScore(string username, int score)
     {
-        // Validate Firebase ready
         if (!FirebaseManager.Instance.ValidateFirebaseReady())
         {
             OnScoreSubmitted?.Invoke(false, "No internet connection");
-            Debug.LogWarning("Cannot submit score: Firebase not ready or no internet");
             return;
         }
 
-        // Anti-cheat validation
-        if (score > GameConstants.MAX_VALID_SCORE)
+        if (score > GameConstants.MAX_VALID_SCORE || score < 0)
         {
-            Debug.LogError($"Score rejected: {score} exceeds maximum valid score {GameConstants.MAX_VALID_SCORE}");
             OnScoreSubmitted?.Invoke(false, "Invalid score");
             return;
         }
 
-        if (score < 0)
-        {
-            Debug.LogError("Score rejected: negative value");
-            OnScoreSubmitted?.Invoke(false, "Invalid score");
-            return;
-        }
-
-        // Sanitize username
         if (string.IsNullOrEmpty(username))
         {
             username = GameConstants.DEFAULT_USERNAME;
         }
 
-        // Create entry
-        LeaderboardEntry entry = new LeaderboardEntry(username, score);
+        var db = FirebaseManager.Instance.Database.Child(LEADERBOARD_PATH);
 
-        // Generate unique key for this entry
-        string entryKey = FirebaseManager.Instance.Database
-            .Child(LEADERBOARD_PATH)
-            .Push().Key;
-
-        // Create JSON data
-        Dictionary<string, object> entryData = new Dictionary<string, object>
+        db.OrderByChild("username").EqualTo(username).GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            { "username", entry.username },
-            { "score", entry.score },
-            { "timestamp", entry.timestamp }
-        };
-
-        // Submit to Firebase
-        FirebaseManager.Instance.Database
-            .Child(LEADERBOARD_PATH)
-            .Child(entryKey)
-            .SetValueAsync(entryData)
-            .ContinueWithOnMainThread(task =>
+            if (task.IsFaulted)
             {
-                if (task.IsCompleted && !task.IsFaulted)
+                Debug.LogError($"Failed to query leaderboard: {task.Exception}");
+                OnScoreSubmitted?.Invoke(false, "Submission failed");
+                return;
+            }
+
+            if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                string existingEntryKey = null;
+                int existingScore = -1;
+
+                if (snapshot.Exists)
                 {
-                    Debug.Log($"Score submitted successfully: {username} - {score}");
-                    OnScoreSubmitted?.Invoke(true, "Score submitted!");
+                    foreach (DataSnapshot childSnapshot in snapshot.Children)
+                    {
+                        existingEntryKey = childSnapshot.Key;
+                        existingScore = Convert.ToInt32(childSnapshot.Child("score").Value);
+                        break; 
+                    }
+                }
+
+                if (existingEntryKey != null)
+                {
+                    if (score > existingScore)
+                    {
+                        // Update existing score
+                        Dictionary<string, object> updateData = new Dictionary<string, object>
+                        {
+                            { "score", score },
+                            { "timestamp", ServerValue.Timestamp }
+                        };
+                        db.Child(existingEntryKey).UpdateChildrenAsync(updateData).ContinueWithOnMainThread(updateTask => {
+                            if (updateTask.IsCompleted && !updateTask.IsFaulted)
+                            {
+                                OnScoreSubmitted?.Invoke(true, "High score updated!");
+                            }
+                            else
+                            {
+                                OnScoreSubmitted?.Invoke(false, "Update failed");
+                            }
+                        });
+                    }
+                    else
+                    {
+                        OnScoreSubmitted?.Invoke(true, "Score not higher");
+                    }
                 }
                 else
                 {
-                    Debug.LogError($"Failed to submit score: {task.Exception}");
-                    OnScoreSubmitted?.Invoke(false, "Submission failed");
+                    // Create new entry
+                    string newKey = db.Push().Key;
+                    Dictionary<string, object> newEntry = new Dictionary<string, object>
+                    {
+                        { "username", username },
+                        { "score", score },
+                        { "timestamp", ServerValue.Timestamp }
+                    };
+                    db.Child(newKey).SetValueAsync(newEntry).ContinueWithOnMainThread(newTask => {
+                         if (newTask.IsCompleted && !newTask.IsFaulted)
+                        {
+                            OnScoreSubmitted?.Invoke(true, "Score submitted!");
+                        }
+                        else
+                        {
+                            OnScoreSubmitted?.Invoke(false, "Submission failed");
+                        }
+                    });
                 }
-            });
+            }
+        });
     }
 
     /// <summary>

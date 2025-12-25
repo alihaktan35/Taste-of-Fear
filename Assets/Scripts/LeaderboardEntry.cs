@@ -31,7 +31,7 @@ public class LeaderboardEntry
     {
         this.username = username;
         this.score = score;
-        this.timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        this.timestamp = 0; // Timestamp will be set by server
     }
 
     /// <summary>
