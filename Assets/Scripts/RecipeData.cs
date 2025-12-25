@@ -36,22 +36,9 @@ public class RecipeData : ScriptableObject
         // Check each required ingredient
         foreach (RecipeIngredient recipeIng in ingredients)
         {
-            // Türkçe karakterleri doğru karşılaştırmak için manuel kontrol
-            bool found = false;
-            int foundQuantity = 0;
-
-            foreach (var kvp in providedIngredients)
-            {
-                // Case-insensitive ve culture-insensitive karşılaştırma
-                if (string.Equals(kvp.Key, recipeIng.ingredientName, StringComparison.OrdinalIgnoreCase))
-                {
-                    found = true;
-                    foundQuantity = kvp.Value;
-                    break;
-                }
-            }
-
-            if (!found || foundQuantity != recipeIng.quantity)
+            // Use TryGetValue for efficient, case-insensitive lookup
+            // This works because the dictionary was created with StringComparer.OrdinalIgnoreCase
+            if (!providedIngredients.TryGetValue(recipeIng.ingredientName, out int providedQuantity) || providedQuantity != recipeIng.quantity)
             {
                 return false;
             }
