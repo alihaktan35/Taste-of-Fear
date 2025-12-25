@@ -652,7 +652,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 306, y: -491}
+  m_AnchoredPosition: {x: 320, y: -491}
   m_SizeDelta: {x: 208.9512, y: 78.936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &714931881
@@ -785,7 +785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -886, y: -488}
+  m_AnchoredPosition: {x: -872, y: -488}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &725109421
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steps:
   - background: {fileID: -7251139898531407440, guid: b9612506109169c4c808c88215f2f7ea, type: 3}
-    message: You can customize the game settings to your liking
+    message: You can customize the game settings to your liking.
     arrowPos: {x: -546, y: -225}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
@@ -1075,8 +1075,10 @@ MonoBehaviour:
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 180
   - background: {fileID: -57773446560480228, guid: 226b6e4d5e7942e45afcaa5162a8f6b5, type: 3}
-    message: You can change the language and turn the sound on and off. But I recommend
-      keeping the sound on.
+    message: 'You can change the language and turn the sound on and off.
+
+      But
+      I recommend keeping the sound on.'
     arrowPos: {x: 96, y: -164}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
@@ -1088,8 +1090,8 @@ MonoBehaviour:
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 36.969
   - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
-    message: If you're scared, you can exit the game by pressing the exit button
-      before it's too late.
+    message: "If you're scared, you can exit the game \nby pressing the exit button
+      before it's too late."
     arrowPos: {x: 129, y: -246}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
@@ -1120,29 +1122,33 @@ MonoBehaviour:
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 0
   - background: {fileID: 6598062238682498081, guid: 0056b43682af6434abb4753990bad2c4, type: 3}
-    message: Once you find the necessary ingredients, you can drag and drop them
-      onto the plate.
+    message: 'Once you find the necessary ingredients,
+
+      you can drag and drop
+      them onto the plate.'
     arrowPos: {x: -536, y: -285}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -8.868
   - background: {fileID: -3752992105490577416, guid: 2389ffa8d69548441a0f55fac892068c, type: 3}
-    message: When the mouse cursor hovers over a food ingredients, its name will
-      appear.
+    message: "When the mouse cursor hovers over \na food ingredients, its name will
+      appear."
     arrowPos: {x: -84, y: -14}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -114.949
   - background: {fileID: 5848174008359968192, guid: ecb950fbb0f6fff4988ec30fab5056c9, type: 3}
-    message: Don't worry if you accidentally drag the wrong ingredient onto the plate.
-      You can undo it by clicking on it.
+    message: 'Don''t worry if you accidentally drag the wrong ingredient
+
+      onto
+      the plate. You can undo it by clicking on it.'
     arrowPos: {x: -355, y: -179}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -64.971
   - background: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
-    message: But there has to be a price. Every wrong ingredient reduces the game's
-      time.
+    message: "But there has to be a price. \nEvery wrong ingredient reduces the game's
+      time."
     arrowPos: {x: -704, y: 92}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
@@ -1206,8 +1212,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: -44}
-  m_SizeDelta: {x: 576.8481, y: 202.2554}
+  m_AnchoredPosition: {x: -6.4522, y: -34.8059}
+  m_SizeDelta: {x: 812.7781, y: 198.6436}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1193099540
 CanvasRenderer:
@@ -1271,8 +1277,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
