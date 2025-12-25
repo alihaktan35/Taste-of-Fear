@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement; // SAHNE YÖNETÝMÝ ÝÇÝN ÞART
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -20,18 +20,20 @@ public class TutorialManager : MonoBehaviour
     public TutorialStep[] steps;
     private int currentIndex = 0;
 
-    [Header("UI Baðlantýlarý")]
+    [Header("UI BaÄŸlantÄ±larÄ±")]
     public Image bgDisplay;
     public TextMeshProUGUI textDisplay;
     public RectTransform arrowRect;
     public RectTransform bubbleRect;
+    public GameObject nextButton;
+    public GameObject backButton;
 
     void Start() { UpdateUI(); }
 
     public void Next()
     {
         if (currentIndex < steps.Length - 1) { currentIndex++; UpdateUI(); }
-        else { Skip(); } // Son adýmdaysa ana menüye gitsin
+        else { Skip(); } // Son adÄ±mdaysa ana menÃ¼ye gitsin
     }
 
     public void Back()
@@ -39,10 +41,8 @@ public class TutorialManager : MonoBehaviour
         if (currentIndex > 0) { currentIndex--; UpdateUI(); }
     }
 
-    // YENÝ: Skip (Atla) butonu için fonksiyon
     public void Skip()
     {
-        // "StartMenu" yazýsýnýn sahne adýyla birebir ayný olduðundan emin olun
         SceneManager.LoadScene("StartMenu");
     }
 
@@ -57,5 +57,16 @@ public class TutorialManager : MonoBehaviour
         bubbleRect.anchoredPosition = current.bubblePos;
         bubbleRect.sizeDelta = current.bubbleSize;
         arrowRect.rotation = Quaternion.Euler(0, 0, current.arrowRotation);
+
+        // Show/hide buttons
+        if (backButton != null)
+        {
+            backButton.SetActive(currentIndex > 0);
+        }
+
+        if (nextButton != null)
+        {
+            nextButton.SetActive(currentIndex < steps.Length - 1);
+        }
     }
 }
