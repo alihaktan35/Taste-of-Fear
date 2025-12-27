@@ -323,6 +323,14 @@ MonoBehaviour:
     m_Localized: LEADERBOARD
     m_Metadata:
       m_Items: []
+  - m_Id: 15761471778287616
+    m_Localized: 'SCORE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15761741711110144
+    m_Localized: 'REMAINING TIME:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

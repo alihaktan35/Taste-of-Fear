@@ -321,6 +321,14 @@ MonoBehaviour:
     m_Localized: "L\u0130DERL\u0130K TABLOSU"
     m_Metadata:
       m_Items: []
+  - m_Id: 15761471778287616
+    m_Localized: 'SKOR:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15761741711110144
+    m_Localized: "KALAN S\xDCRE:"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -273,6 +273,14 @@ MonoBehaviour:
     m_Key: leader_board
     m_Metadata:
       m_Items: []
+  - m_Id: 15761471778287616
+    m_Key: btn_score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15761741711110144
+    m_Key: remaining_time
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
