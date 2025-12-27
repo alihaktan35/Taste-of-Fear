@@ -169,6 +169,18 @@ MonoBehaviour:
     m_Localized: "\u0130yi e\u011Flenceler. Sana tavsiyem yarat\u0131klar\u0131 k\u0131zd\u0131rma."
     m_Metadata:
       m_Items: []
+  - m_Id: 15718808219774976
+    m_Localized: KAYDET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15719196033511424
+    m_Localized: "Kullan\u0131c\u0131 ad\u0131n\u0131 gir..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15719532957757440
+    m_Localized: "KULLANICI ADINI G\u0130R:"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -145,6 +145,18 @@ MonoBehaviour:
     m_Key: tutorial_step_15
     m_Metadata:
       m_Items: []
+  - m_Id: 15718808219774976
+    m_Key: btn_save_usarname_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15719196033511424
+    m_Key: place_holder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15719532957757440
+    m_Key: username_label
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
