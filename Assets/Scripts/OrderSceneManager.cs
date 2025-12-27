@@ -1,18 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Localization; // Localization kütüphanesi
-using UnityEngine.Localization.Settings; // Ayarlar için gerekli
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class OrderSceneManager : MonoBehaviour
 {
     [Header("UI References")]
     public Image characterImage;
     public Button goToTableButton;
-    public Text speechBubbleText; // Standart UI Text kullanıyorsan bu kalsın
+    public Text speechBubbleText;
 
     [Header("Localization Settings")]
-    [Tooltip("Tablodaki 'order_speech_text' anahtarını buraya sürükleyin")]
     public LocalizedString speechLocalizedString;
 
     [Header("Sound")]
@@ -20,17 +19,15 @@ public class OrderSceneManager : MonoBehaviour
 
     void Start()
     {
-        // 1. Yeni siparişi ve verileri hazırla
-        GameFlowManager.Instance.PrepareNewOrder();
+        if (GameFlowManager.Instance != null)
+        {
+            GameFlowManager.Instance.PrepareNewOrder();
+        }
 
-        // 2. Görselleri ve metinleri güncelle
         UpdateCharacterDisplay();
         UpdateSpeechBubbleText();
-
-        // 3. Karakter sesini oynat
         PlayCharacterGreetingSound();
 
-        // 4. Buton dinleyicisini ayarla
         if (goToTableButton != null)
         {
             goToTableButton.onClick.RemoveAllListeners();
@@ -40,7 +37,8 @@ public class OrderSceneManager : MonoBehaviour
 
     private void UpdateCharacterDisplay()
     {
-        if (characterImage == null) return;
+        if (characterImage == null || GameFlowManager.Instance == null) return;
+
         CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
         if (currentCharacter != null)
         {
@@ -50,48 +48,32 @@ public class OrderSceneManager : MonoBehaviour
 
     private void UpdateSpeechBubbleText()
     {
-        if (speechBubbleText == null) return;
+        if (speechBubbleText == null || GameFlowManager.Instance == null) return;
 
         CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
         RecipeData currentRecipe = GameFlowManager.Instance.currentRecipe;
 
-        if (currentCharacter == null || currentRecipe == null)
-        {
-            Debug.LogError("[OrderSceneManager] Karakter veya Yemek verisi eksik!");
-            return;
-        }
+        if (currentCharacter == null || currentRecipe == null) return;
 
-        // --- DINAMIK ISIMLERI TABLODAN CEKME ---
+        // GÜVENLİ KEY OLUŞTURMA: ToLowerInvariant kullanıyoruz
+        string charKey = "char_" + currentCharacter.characterName.Trim().ToLowerInvariant().Replace(" ", "_");
+        string foodKey = "food_" + currentRecipe.recipeName.Trim().ToLowerInvariant().Replace(" ", "_");
 
-        // Karakter Key oluştur (Örn: char_golge)
-        string charKey = "char_" + currentCharacter.characterName.ToLower();
         string localizedCharName = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", charKey);
-
-        // Yemek Key oluştur (Örn: food_zehirli_mantar_sepeti)
-        // İsimdeki boşlukları alt tire yapar ve küçük harfe çevirir
-        string foodKey = "food_" + currentRecipe.recipeName.Replace(" ", "_").ToLower();
         string localizedFoodName = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", foodKey);
-
-        // --- METNI SMART FORMAT ILE BIRLESTIRME ---
 
         if (speechLocalizedString != null && !speechLocalizedString.IsEmpty)
         {
-            // {0} yerine Karakter İsmi, {1} yerine Yemek İsmi gider
             speechLocalizedString.Arguments = new object[] { localizedCharName, localizedFoodName };
             speechBubbleText.text = speechLocalizedString.GetLocalizedString();
         }
-        else
-        {
-            Debug.LogWarning("[OrderSceneManager] Speech Localized String referansı seçilmemiş!");
-        }
     }
 
-    private void OnGoToTableClicked()
+    public void OnGoToTableClicked()
     {
-        RecipeData currentRecipe = GameFlowManager.Instance.currentRecipe;
-        if (currentRecipe != null)
+        if (GameFlowManager.Instance != null && GameFlowManager.Instance.currentRecipe != null)
         {
-            TableSceneManager.LoadTableSceneWithRecipe(currentRecipe.recipeName);
+            TableSceneManager.LoadTableSceneWithRecipe(GameFlowManager.Instance.currentRecipe.recipeName);
         }
     }
 
@@ -102,4 +84,4 @@ public class OrderSceneManager : MonoBehaviour
             characterSoundPlayer.PlayCharacterGreeting();
         }
     }
-}
+} // <--- Bu parantez CS1513 hatasını çözer

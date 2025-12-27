@@ -226,6 +226,91 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 266358423701422163
+  - m_Id: 15743801771126784
+    m_Localized: Brain Salad
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15743875683151872
+    m_Localized: Grilled Monster Heart
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15743953470713856
+    m_Localized: Tentacle Stew
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15743953630097408
+    m_Localized: Eyeball Soup
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15743963360882688
+    m_Localized: Disgusting Pizza
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744182303551488
+    m_Localized: Blood Lake Sauce
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744203719667712
+    m_Localized: Bloody Syringes
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744208379539456
+    m_Localized: Lizard Tails
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744215128174592
+    m_Localized: Severed Vein Spaghetti
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744499632009216
+    m_Localized: "Maggot Canap\xE9"
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744503457214464
+    m_Localized: Vomit Candy
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744503759204352
+    m_Localized: Finger Sausages
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744503893422080
+    m_Localized: Creature Ribs
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744751755816960
+    m_Localized: Poisonous Mushroom Basket
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744754712801280
+    m_Localized: Zombie Brain Cake
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744756822536192
+    m_Localized: Rotten Tooth Cake
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
+  - m_Id: 15744759246843904
+    m_Localized: Spider Eggs
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422163
   references:
     version: 2
     RefIds:
@@ -240,3 +325,20 @@ MonoBehaviour:
         - id: 15741023799701504
         - id: 15741017252392960
         - id: 15741016992346112
+        - id: 15743801771126784
+        - id: 15743875683151872
+        - id: 15743953470713856
+        - id: 15743953630097408
+        - id: 15743963360882688
+        - id: 15744182303551488
+        - id: 15744759246843904
+        - id: 15744756822536192
+        - id: 15744754712801280
+        - id: 15744751755816960
+        - id: 15744503893422080
+        - id: 15744503759204352
+        - id: 15744503457214464
+        - id: 15744499632009216
+        - id: 15744215128174592
+        - id: 15744208379539456
+        - id: 15744203719667712
