@@ -181,6 +181,18 @@ MonoBehaviour:
     m_Localized: "KULLANICI ADINI G\u0130R:"
     m_Metadata:
       m_Items: []
+  - m_Id: 15723671464931328
+    m_Localized: "MASAYA G\u0130T"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15723866105802752
+    m_Localized: "OYUNDAN \xC7IK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15724086692638720
+    m_Localized: "S\u0130PAR\u0130\u015E ALINIYOR..."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

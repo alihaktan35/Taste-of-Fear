@@ -183,6 +183,18 @@ MonoBehaviour:
     m_Localized: 'SET USERNAME:'
     m_Metadata:
       m_Items: []
+  - m_Id: 15723671464931328
+    m_Localized: GO TO TABLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15723866105802752
+    m_Localized: QUIT GAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15724086692638720
+    m_Localized: RECEIVING ORDER...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
