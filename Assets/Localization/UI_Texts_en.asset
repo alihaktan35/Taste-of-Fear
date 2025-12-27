@@ -129,6 +129,24 @@ MonoBehaviour:
       the given time. If you fail, you'll have to face.
     m_Metadata:
       m_Items: []
+  - m_Id: 15713013402923008
+    m_Localized: You can view the recipes by clicking on the recipe book.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15713439443546112
+    m_Localized: Here are the recipes. Change pages to find the recipe you need.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15713831556444160
+    m_Localized: Once you find necessary ingredients, you can drag and drop them
+      onto the plate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15714320717148160
+    m_Localized: Here's just one of those delicious dishes. I'm sure you're craving
+      it.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

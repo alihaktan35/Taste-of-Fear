@@ -127,6 +127,25 @@ MonoBehaviour:
       tamamlamak. E\u011Fer ba\u015Faramazsan sonu\xE7lar\u0131na katlanacaks\u0131n."
     m_Metadata:
       m_Items: []
+  - m_Id: 15713013402923008
+    m_Localized: .Yemeklerin tariflerine tarif defterinden bakabilirsiniz.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15713439443546112
+    m_Localized: "\u0130\u015Fte tarifler. Sayfay\u0131 de\u011Fi\u015Ftirerek istedi\u011Fn
+      tarife gidebilirsin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15713831556444160
+    m_Localized: "\xD6nce gerekli malzemeleri bul, sonra s\xFCr\xFCkleyip taba\u011Fa
+      b\u0131rak."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15714320717148160
+    m_Localized: "\u0130\u015Fte lezzetli yemeklerimden sadece biri. Eminim can\u0131n
+      \xE7ekmi\u015Ftir."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -109,6 +109,22 @@ MonoBehaviour:
     m_Key: tutorial_step_6
     m_Metadata:
       m_Items: []
+  - m_Id: 15713013402923008
+    m_Key: tutorial_step_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15713439443546112
+    m_Key: tutorial_step_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15713831556444160
+    m_Key: tutorial_step_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15714320717148160
+    m_Key: tutorial_step_10
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
