@@ -1131,7 +1131,7 @@ MonoBehaviour:
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -8.868
   - background: {fileID: -8993107613648043832, guid: 3eba956604f5be3439c0ddfc676cfe24, type: 3}
-    message: 'Have fun. My advice is: don''t anger the creatures.'
+    message: Here's just one of those delicious dishes. I'm sure you're craving it.
     arrowPos: {x: -63, y: -158}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
@@ -1160,7 +1160,8 @@ MonoBehaviour:
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -213.468
   - background: {fileID: 2183784087680008851, guid: efa51c20d7b45164ba17ba5cc10353f1, type: 3}
-    message: 'Have fun. My advice is: don''t anger the creatures.'
+    message: If you're really scared, you can press the Esc key to catch your breath
+      for a bit.
     arrowPos: {x: -1101.167, y: 939}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
