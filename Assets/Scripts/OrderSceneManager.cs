@@ -1,171 +1,105 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Localization; // Localization kütüphanesi
+using UnityEngine.Localization.Settings; // Ayarlar için gerekli
 
-/// <summary>
-/// order01 sahnesini yoneten script
-/// GameFlowManager'dan karakter ve yemek bilgisini alir
-/// Karakteri gosterir ve GO TO TABLE butonuna yemek bilgisini aktarir
-/// </summary>
 public class OrderSceneManager : MonoBehaviour
 {
     [Header("UI References")]
-    [Tooltip("Canvas > background > character (karakterin gorseli)")]
     public Image characterImage;
-
-    [Tooltip("GO TO TABLE butonu (goToButton)")]
     public Button goToTableButton;
+    public Text speechBubbleText; // Standart UI Text kullanıyorsan bu kalsın
 
-    [Tooltip("Canvas > background > speechBubble > text_speechBubble (konusma balonu metni)")]
-    public Text speechBubbleText;
+    [Header("Localization Settings")]
+    [Tooltip("Tablodaki 'order_speech_text' anahtarını buraya sürükleyin")]
+    public LocalizedString speechLocalizedString;
 
     [Header("Sound")]
-    [Tooltip("Karakter ses efekti oynatici (CharacterSoundPlayer script'i olan obje)")]
     public CharacterSoundPlayer characterSoundPlayer;
 
     void Start()
     {
-        // GameFlowManager'dan yeni bir siparis hazirla
+        // 1. Yeni siparişi ve verileri hazırla
         GameFlowManager.Instance.PrepareNewOrder();
 
-        // Karakter gorselini guncelle
+        // 2. Görselleri ve metinleri güncelle
         UpdateCharacterDisplay();
-
-        // Konusma balonu metnini guncelle
         UpdateSpeechBubbleText();
 
-        // Karakter giris sesini oynat
+        // 3. Karakter sesini oynat
         PlayCharacterGreetingSound();
 
-        // GO TO TABLE butonuna listener ekle
+        // 4. Buton dinleyicisini ayarla
         if (goToTableButton != null)
         {
-            // Onceki listener'lari temizle (중ift tiklama onleme)
             goToTableButton.onClick.RemoveAllListeners();
-
-            // Yeni listener ekle
             goToTableButton.onClick.AddListener(OnGoToTableClicked);
         }
-        else
-        {
-            Debug.LogError("[OrderSceneManager] goToTableButton atanmamis!");
-        }
     }
 
-    /// <summary>
-    /// Karakter gorselini gunceller (siparis verme hali)
-    /// </summary>
     private void UpdateCharacterDisplay()
     {
-        if (characterImage == null)
-        {
-            Debug.LogError("[OrderSceneManager] characterImage atanmamis! Inspector'dan atayin.");
-            return;
-        }
-
+        if (characterImage == null) return;
         CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
-        if (currentCharacter == null)
+        if (currentCharacter != null)
         {
-            Debug.LogError("[OrderSceneManager] currentCharacter null! GameFlowManager kontrol edin.");
-            return;
+            characterImage.sprite = currentCharacter.orderSprite;
         }
-
-        // Karakter gorselini degistir (siparis verme hali)
-        characterImage.sprite = currentCharacter.orderSprite;
-
-        Debug.Log($"[OrderSceneManager] Karakter gorseli guncellendi: {currentCharacter.characterName}");
     }
 
-    /// <summary>
-    /// Konusma balonu metnini karakter ve siparis bilgisine gore gunceller
-    /// </summary>
     private void UpdateSpeechBubbleText()
     {
-        if (speechBubbleText == null)
-        {
-            Debug.LogError("[OrderSceneManager] speechBubbleText atanmamis! Inspector'dan atayin.");
-            return;
-        }
+        if (speechBubbleText == null) return;
 
         CharacterData currentCharacter = GameFlowManager.Instance.currentCharacter;
         RecipeData currentRecipe = GameFlowManager.Instance.currentRecipe;
 
         if (currentCharacter == null || currentRecipe == null)
         {
-            Debug.LogError("[OrderSceneManager] currentCharacter veya currentRecipe null!");
+            Debug.LogError("[OrderSceneManager] Karakter veya Yemek verisi eksik!");
             return;
         }
 
-        // Karakter adini Ingilizceye cevir
-        string characterTitle = GetCharacterTitle(currentCharacter.characterName);
+        // --- DINAMIK ISIMLERI TABLODAN CEKME ---
 
-        // Dinamik metin olustur
-        string speechText = $"Hey! It is {characterTitle}.\n" +
-                           $"Welcome to the game.\n" +
-                           $"I want {currentRecipe.recipeName}.\n" +
-                           $"When you are ready,\n" +
-                           $"press the button\n" +
-                           $"named \"Go To Table\".";
+        // Karakter Key oluştur (Örn: char_golge)
+        string charKey = "char_" + currentCharacter.characterName.ToLower();
+        string localizedCharName = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", charKey);
 
-        speechBubbleText.text = speechText;
+        // Yemek Key oluştur (Örn: food_zehirli_mantar_sepeti)
+        // İsimdeki boşlukları alt tire yapar ve küçük harfe çevirir
+        string foodKey = "food_" + currentRecipe.recipeName.Replace(" ", "_").ToLower();
+        string localizedFoodName = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", foodKey);
 
-        Debug.Log($"[OrderSceneManager] Konusma balonu guncellendi: {characterTitle} - {currentRecipe.recipeName}");
-    }
+        // --- METNI SMART FORMAT ILE BIRLESTIRME ---
 
-    /// <summary>
-    /// Karakter adini Ingilizce unvana cevirir
-    /// </summary>
-    private string GetCharacterTitle(string characterName)
-    {
-        switch (characterName.ToLower())
+        if (speechLocalizedString != null && !speechLocalizedString.IsEmpty)
         {
-            case "golge":
-                return "Mr. Shadow";
-            case "hayalet":
-                return "Mr. Ghost";
-            case "palyaco":
-                return "Mr. Clown";
-            case "vampir":
-                return "Mr. Vampire";
-            case "zombie":
-                return "Mr. Zombie";
-            default:
-                Debug.LogWarning($"[OrderSceneManager] Bilinmeyen karakter adi: {characterName}");
-                return "Mr. " + characterName;
+            // {0} yerine Karakter İsmi, {1} yerine Yemek İsmi gider
+            speechLocalizedString.Arguments = new object[] { localizedCharName, localizedFoodName };
+            speechBubbleText.text = speechLocalizedString.GetLocalizedString();
+        }
+        else
+        {
+            Debug.LogWarning("[OrderSceneManager] Speech Localized String referansı seçilmemiş!");
         }
     }
 
-    /// <summary>
-    /// GO TO TABLE butonuna tiklandiginda cagrilir
-    /// table01 sahnesine gecer ve yemek bilgisini aktarir
-    /// </summary>
     private void OnGoToTableClicked()
     {
         RecipeData currentRecipe = GameFlowManager.Instance.currentRecipe;
-
-        if (currentRecipe == null)
+        if (currentRecipe != null)
         {
-            Debug.LogError("[OrderSceneManager] currentRecipe null! table01'e gecilemedi.");
-            return;
+            TableSceneManager.LoadTableSceneWithRecipe(currentRecipe.recipeName);
         }
-
-        Debug.Log($"[OrderSceneManager] GO TO TABLE - Yemek: {currentRecipe.recipeName}");
-
-        // TableSceneManager'in static metodunu kullanarak table01'e gec
-        TableSceneManager.LoadTableSceneWithRecipe(currentRecipe.recipeName);
     }
 
-    /// <summary>
-    /// Karakter giris sesini oynatir
-    /// </summary>
     private void PlayCharacterGreetingSound()
     {
         if (characterSoundPlayer != null)
         {
             characterSoundPlayer.PlayCharacterGreeting();
-        }
-        else
-        {
-            Debug.LogWarning("[OrderSceneManager] characterSoundPlayer atanmamis! Ses calmayi atliyorum.");
         }
     }
 }

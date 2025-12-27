@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: tr
   m_SharedData: {fileID: 11400000, guid: 55e2dcfd8627b40318bf276c0d13d876, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 266358423701422164
   m_TableData:
   - m_Id: 7137648640
     m_Localized: "BA\u015ELA"
@@ -193,6 +194,47 @@ MonoBehaviour:
     m_Localized: "S\u0130PAR\u0130\u015E ALINIYOR..."
     m_Metadata:
       m_Items: []
+  - m_Id: 15736527241572352
+    m_Localized: "Selam! Ben {0}. {1} istiyorum. Haz\u0131r olunca butona bas."
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422164
+  - m_Id: 15741016992346112
+    m_Localized: "Bay G\xF6lge"
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422164
+  - m_Id: 15741017252392960
+    m_Localized: Bay Hayalet
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422164
+  - m_Id: 15741023799701504
+    m_Localized: "Bay Palya\xE7o"
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422164
+  - m_Id: 15741034730057728
+    m_Localized: Bay Vampir
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422164
+  - m_Id: 15741046012735488
+    m_Localized: Bay Zombi
+    m_Metadata:
+      m_Items:
+      - rid: 266358423701422164
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 266358423701422164
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 15736527241572352
+        - id: 15741046012735488
+        - id: 15741034730057728
+        - id: 15741023799701504
+        - id: 15741017252392960
+        - id: 15741016992346112

@@ -169,6 +169,30 @@ MonoBehaviour:
     m_Key: btn_receiving_order
     m_Metadata:
       m_Items: []
+  - m_Id: 15736527241572352
+    m_Key: order_speech_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15741016992346112
+    m_Key: char_golge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15741017252392960
+    m_Key: char_hayalet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15741023799701504
+    m_Key: char_palyaco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15741034730057728
+    m_Key: char_vampir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15741046012735488
+    m_Key: char_zombie
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -814,7 +814,19 @@ MonoBehaviour:
   characterImage: {fileID: 1989073375}
   goToTableButton: {fileID: 1153400021}
   speechBubbleText: {fileID: 1399585376}
+  speechLocalizedString:
+    m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15736527241572352
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   characterSoundPlayer: {fileID: 879002487}
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1182522929
 Transform:
   m_ObjectHideFlags: 0
@@ -1165,8 +1177,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -97.2009, y: 170.91}
-  m_SizeDelta: {x: 753.2734, y: 341.82}
+  m_AnchoredPosition: {x: -84, y: 163}
+  m_SizeDelta: {x: 504.3456, y: 341.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1399585376
 MonoBehaviour:
