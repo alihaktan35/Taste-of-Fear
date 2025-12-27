@@ -82,6 +82,22 @@ MonoBehaviour:
     m_Localized: HOW TO PLAY?
     m_Metadata:
       m_Items: []
+  - m_Id: 15701432258490368
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15702132409462784
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15702443182223360
+    m_Localized: Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15703163193225216
+    m_Localized: LEADERBOARD
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

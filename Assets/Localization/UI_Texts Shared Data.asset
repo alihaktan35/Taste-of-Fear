@@ -65,6 +65,22 @@ MonoBehaviour:
     m_Key: btn_how_to_play
     m_Metadata:
       m_Items: []
+  - m_Id: 15701432258490368
+    m_Key: btn_next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15702132409462784
+    m_Key: btn_back_btn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15702443182223360
+    m_Key: btn_skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15703163193225216
+    m_Key: btn_leader_board_button
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

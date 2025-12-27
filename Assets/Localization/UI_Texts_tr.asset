@@ -80,6 +80,22 @@ MonoBehaviour:
     m_Localized: NASIL OYNANIR?
     m_Metadata:
       m_Items: []
+  - m_Id: 15701432258490368
+    m_Localized: "\u0130leri"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15702132409462784
+    m_Localized: Geri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15702443182223360
+    m_Localized: "Ge\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15703163193225216
+    m_Localized: "L\u0130DERL\u0130K TABLOSU"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
