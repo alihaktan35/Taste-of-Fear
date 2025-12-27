@@ -261,6 +261,18 @@ MonoBehaviour:
     m_Key: "food_\xF6rumcek_yumurtalar\u0131"
     m_Metadata:
       m_Items: []
+  - m_Id: 15759043909611520
+    m_Key: btn_back_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15759553798565888
+    m_Key: loading_leaderboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15759892090155008
+    m_Key: leader_board
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
