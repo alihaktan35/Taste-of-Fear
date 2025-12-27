@@ -128,11 +128,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15713013402923008
-    m_Localized: .Yemeklerin tariflerine tarif defterinden bakabilirsiniz.
+    m_Localized: Yemeklerin tariflerine tarif defterinden bakabilirsiniz.
     m_Metadata:
       m_Items: []
   - m_Id: 15713439443546112
-    m_Localized: "\u0130\u015Fte tarifler. Sayfay\u0131 de\u011Fi\u015Ftirerek istedi\u011Fn
+    m_Localized: "\u0130\u015Fte tarifler. Sayfay\u0131 de\u011Fi\u015Ftirerek istedi\u011Fin
       tarife gidebilirsin."
     m_Metadata:
       m_Items: []
@@ -144,6 +144,29 @@ MonoBehaviour:
   - m_Id: 15714320717148160
     m_Localized: "\u0130\u015Fte lezzetli yemeklerimden sadece biri. Eminim can\u0131n
       \xE7ekmi\u015Ftir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15714931776909312
+    m_Localized: "fareyi malzemelerin \xFCst\xFCne getirirsen malzemenin ad\u0131
+      ekranda belirir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15715422237847552
+    m_Localized: "E\u011Fer taba\u011F\u0131n \xFCzerine yanl\u0131\u015F malzeme
+      koyduysan korkma. \xDCzerine t\u0131klayarak tabaktan geri \xE7\u0131kartabilirsin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15715986522730496
+    m_Localized: "Ama bedelini \xF6demek zorundas\u0131n. Her yanl\u0131\u015F malzeme
+      i\xE7in s\xFCren azal\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15716396855685120
+    m_Localized: "E\u011Fer korktuysan \"ESC\" tu\u015Funa basarak oyunu durdurabilirsin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15716968593846272
+    m_Localized: "\u0130yi e\u011Flenceler. Sana tavsiyem yarat\u0131klar\u0131 k\u0131zd\u0131rma."
     m_Metadata:
       m_Items: []
   references:

@@ -147,6 +147,30 @@ MonoBehaviour:
       it.
     m_Metadata:
       m_Items: []
+  - m_Id: 15714931776909312
+    m_Localized: When the mouse cursor hovers over a food ingredients, its name will
+      appear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15715422237847552
+    m_Localized: Don't worry if you accidentally drag the wrong ingredient onto the
+      plate. You can undo it by clicking on it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15715986522730496
+    m_Localized: But there has to be a price. Every wrong ingredient reduces the
+      game's time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15716396855685120
+    m_Localized: If you're really scared, you can press the "ESC" key to catch your
+      breath for a bit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15716968593846272
+    m_Localized: 'Have fun. My advice is: don''t anger the creatures.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
