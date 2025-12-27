@@ -78,6 +78,10 @@ MonoBehaviour:
 '
     m_Metadata:
       m_Items: []
+  - m_Id: 15700133303513088
+    m_Localized: HOW TO PLAY?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

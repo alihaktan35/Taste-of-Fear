@@ -61,6 +61,10 @@ MonoBehaviour:
     m_Key: pause_quit
     m_Metadata:
       m_Items: []
+  - m_Id: 15700133303513088
+    m_Key: btn_how_to_play
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
