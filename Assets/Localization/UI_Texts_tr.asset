@@ -96,6 +96,37 @@ MonoBehaviour:
     m_Localized: "L\u0130DERL\u0130K TABLOSU"
     m_Metadata:
       m_Items: []
+  - m_Id: 15705433221853184
+    m_Localized: "Oyunu istedi\u011Fin gibi ayarlayabilirsin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15706339631919104
+    m_Localized: "Kullan\u0131c\u0131 ad\u0131n\u0131 girmeyi unutma!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15706756369575936
+    m_Localized: "Oyunun dilini de\u011Fi\u015Ftirebilir, sesi kapat\u0131p a\xE7abilirsin.
+      Ama ses a\xE7\u0131k oynaman\u0131 tavsiye ediyorum."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15707269781745664
+    m_Localized: "S\u0131ralaman\u0131 liderlik tablosundan takip edebilirsin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15708257330622464
+    m_Localized: "E\u011Fer korktuysan \xE7ok ge\xE7 olmadan oyunu terk et oyundan
+      \"\xE7\u0131k\u0131\u015F\" butonuna basarak."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15710779277537280
+    m_Localized: "\"Masaya git\" butonuna basarak oyuna ba\u015Fla."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15711226457452544
+    m_Localized: "Oyunun amac\u0131 verilen s\xFCrede yarat\u0131klar\u0131n sipari\u015Flerini
+      tamamlamak. E\u011Fer ba\u015Faramazsan sonu\xE7lar\u0131na katlanacaks\u0131n."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

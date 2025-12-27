@@ -98,6 +98,37 @@ MonoBehaviour:
     m_Localized: LEADERBOARD
     m_Metadata:
       m_Items: []
+  - m_Id: 15705433221853184
+    m_Localized: You can customize the game settings to your liking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15706339631919104
+    m_Localized: Don't forget to enter your username!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15706756369575936
+    m_Localized: You can change the language and turd the sound on and off. But I
+      recommend keeping the sound on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15707269781745664
+    m_Localized: You can track your ranking on the leaderboard.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15708257330622464
+    m_Localized: If you're scared, you can exit the game by pressing the "exit button"
+      before it's too late.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15710779277537280
+    m_Localized: Start the game by pressing the "go to table" button.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15711226457452544
+    m_Localized: The goal of the game is to deliver the food the creatures need within
+      the given time. If you fail, you'll have to face.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement; // Required for scene management
+using UnityEngine.SceneManagement;
+using UnityEngine.Localization; // 1. Localization kütüphanesini ekledik
 
 public class TutorialManager : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class TutorialManager : MonoBehaviour
     public class TutorialStep
     {
         public Sprite background;
-        [TextArea(3, 5)]
-        public string message;
+        // 2. 'string' yerine 'LocalizedString' kullanarak Inspector'dan seçim yapýlmasýný saðladýk
+        public LocalizedString message;
         public Vector2 arrowPos;
         public Vector2 bubblePos;
         public Vector2 bubbleSize;
@@ -33,7 +34,6 @@ public class TutorialManager : MonoBehaviour
     public void Next()
     {
         if (currentIndex < steps.Length - 1) { currentIndex++; UpdateUI(); }
-
     }
 
     public void Back()
@@ -51,14 +51,18 @@ public class TutorialManager : MonoBehaviour
         TutorialStep current = steps[currentIndex];
 
         bgDisplay.sprite = current.background;
-        textDisplay.text = current.message;
+
+        // 3. Metni yerelleþtirilmiþ olarak ekrana yazdýrýyoruz
+        if (current.message != null)
+        {
+            textDisplay.text = current.message.GetLocalizedString();
+        }
 
         arrowRect.anchoredPosition = current.arrowPos;
         bubbleRect.anchoredPosition = current.bubblePos;
         bubbleRect.sizeDelta = current.bubbleSize;
         arrowRect.rotation = Quaternion.Euler(0, 0, current.arrowRotation);
 
-        // Show/hide buttons
         if (backButton != null)
         {
             backButton.SetActive(currentIndex > 0);

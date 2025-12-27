@@ -81,6 +81,34 @@ MonoBehaviour:
     m_Key: btn_leader_board_button
     m_Metadata:
       m_Items: []
+  - m_Id: 15705433221853184
+    m_Key: tutorial_step_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15706339631919104
+    m_Key: tutorial_step_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15706756369575936
+    m_Key: tutorial_step_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15707269781745664
+    m_Key: tutorial_step_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15708257330622464
+    m_Key: tutorial_step_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15710779277537280
+    m_Key: tutorial_step_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15711226457452544
+    m_Key: tutorial_step_6
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

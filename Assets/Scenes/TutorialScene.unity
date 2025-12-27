@@ -1104,111 +1104,225 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steps:
   - background: {fileID: -7251139898531407440, guid: b9612506109169c4c808c88215f2f7ea, type: 3}
-    message: You can customize the game settings to your liking.
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15705433221853184
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -546, y: -225}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 0
   - background: {fileID: -57773446560480228, guid: 226b6e4d5e7942e45afcaa5162a8f6b5, type: 3}
-    message: Don't forget to enter your username!
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15706339631919104
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: 119, y: 10}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 180
   - background: {fileID: -57773446560480228, guid: 226b6e4d5e7942e45afcaa5162a8f6b5, type: 3}
-    message: 'You can change the language and turn the sound on and off.
-
-      But
-      I recommend keeping the sound on.'
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15706756369575936
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: 96, y: -164}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 180
   - background: {fileID: 6391582411394987839, guid: 5d1a851440c99ac4482ebcc4c7ccba73, type: 3}
-    message: You can track your ranking on the leaderboard.
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15707269781745664
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -495, y: -110}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 36.969
   - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
-    message: "If you're scared, you can exit the game \nby pressing the exit button
-      before it's too late."
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15708257330622464
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: 129, y: -246}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -44.656
   - background: {fileID: 2933878607192560230, guid: 3665de2e788a10f498ca58cb27364614, type: 3}
-    message: Start the game by pressing the "go to table" button.
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15710779277537280
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -559, y: -243}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -144.684
   - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
-    message: The goal of the game is to deliver the food the creatures need within
-      the given time. If you fail, you'll have to face the consequences.
+    message:
+      m_TableReference:
+        m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+      m_TableEntryReference:
+        m_KeyId: 15711226457452544
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -1101, y: 167}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -154.475
   - background: {fileID: -9217567729279445739, guid: d3e54d48e4587ee4db5c43949b4dd729, type: 3}
-    message: You can view the recipes by clicking on the recipe book.
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: 100, y: -4}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -334.985
   - background: {fileID: -6373148361495392248, guid: c50c9478807af8849a21fe39922a9ec8, type: 3}
-    message: Here are the recipes. Change pages to find the recipe you need.
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -1101, y: 167}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 0
   - background: {fileID: 6598062238682498081, guid: 0056b43682af6434abb4753990bad2c4, type: 3}
-    message: 'Once you find the necessary ingredients,
-
-      you can drag and drop
-      them onto the plate.'
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -536, y: -285}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -8.868
   - background: {fileID: -8993107613648043832, guid: 3eba956604f5be3439c0ddfc676cfe24, type: 3}
-    message: Here's just one of those delicious dishes. I'm sure you're craving it.
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -63, y: -158}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -155.645
   - background: {fileID: -3752992105490577416, guid: 2389ffa8d69548441a0f55fac892068c, type: 3}
-    message: "When the mouse cursor hovers over \na food ingredients, its name will
-      appear."
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -84, y: -14}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -114.949
   - background: {fileID: 5848174008359968192, guid: ecb950fbb0f6fff4988ec30fab5056c9, type: 3}
-    message: 'Don''t worry if you accidentally drag the wrong ingredient
-
-      onto
-      the plate. You can undo it by clicking on it.'
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -355, y: -179}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -64.971
   - background: {fileID: -3756466570172516150, guid: 24b0cfc9a4287f1459cf98e967cf8da3, type: 3}
-    message: "But there has to be a price. \nEvery wrong ingredient reduces the game's
-      time."
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -704, y: 92}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: -213.468
   - background: {fileID: 2183784087680008851, guid: efa51c20d7b45164ba17ba5cc10353f1, type: 3}
-    message: If you're really scared, you can press the Esc key to catch your breath
-      for a bit.
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -1101.167, y: 939}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 496.117
   - background: {fileID: -384047691540871226, guid: 5918799efdc34d543a6ea5f3cf4ac3da, type: 3}
-    message: 'Have fun. My advice is: don''t anger the creatures.'
+    message:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     arrowPos: {x: -1101.167, y: 939}
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
@@ -1219,6 +1333,9 @@ MonoBehaviour:
   bubbleRect: {fileID: 1301158830}
   nextButton: {fileID: 714931879}
   backButton: {fileID: 725109419}
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1030617368
 Transform:
   m_ObjectHideFlags: 0
