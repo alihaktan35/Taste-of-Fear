@@ -611,14 +611,6 @@ MonoBehaviour:
   - m_TableReference:
       m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
     m_TableEntryReference:
-      m_KeyId: 15771013102661632
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
-    m_TableEntryReference:
       m_KeyId: 15771017296965632
       m_Key: 
     m_FallbackState: 0
@@ -627,7 +619,47 @@ MonoBehaviour:
   - m_TableReference:
       m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
     m_TableEntryReference:
+      m_KeyId: 15771013102661632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771025954009088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
       m_KeyId: 15771019272482816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771024314036224
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771593996988416
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771591044198400
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -651,39 +683,7 @@ MonoBehaviour:
   - m_TableReference:
       m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
     m_TableEntryReference:
-      m_KeyId: 15771024314036224
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
-    m_TableEntryReference:
-      m_KeyId: 15771025954009088
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
-    m_TableEntryReference:
       m_KeyId: 15771027765948416
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
-    m_TableEntryReference:
-      m_KeyId: 15771591044198400
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
-    m_TableEntryReference:
-      m_KeyId: 15771593996988416
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1309,7 +1309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -638, y: -471}
+  m_AnchoredPosition: {x: -649, y: -465}
   m_SizeDelta: {x: 642.5247, y: 169.2291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008644215
