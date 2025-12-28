@@ -329,6 +329,10 @@ MonoBehaviour:
     m_Localized: "KALAN S\xDCRE:"
     m_Metadata:
       m_Items: []
+  - m_Id: 15764449025290240
+    m_Localized: "YEN\u0130 S\u0130PAR\u0130\u015E"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

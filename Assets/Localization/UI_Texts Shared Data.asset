@@ -281,6 +281,10 @@ MonoBehaviour:
     m_Key: remaining_time
     m_Metadata:
       m_Items: []
+  - m_Id: 15764449025290240
+    m_Key: go_to_order_scene
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

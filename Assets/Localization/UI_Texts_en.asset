@@ -331,6 +331,10 @@ MonoBehaviour:
     m_Localized: 'REMAINING TIME:'
     m_Metadata:
       m_Items: []
+  - m_Id: 15764449025290240
+    m_Localized: NEW ORDER
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
