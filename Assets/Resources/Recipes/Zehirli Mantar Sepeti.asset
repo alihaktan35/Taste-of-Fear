@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Zehirli Mantar Sepeti
   m_EditorClassIdentifier: 
   recipeName: Zehirli Mantar Sepeti
+  recipeNameEn: Poisonous Mushroom Basket
   dishSprite: {fileID: 7113086026679265615, guid: 37f5194565c6e43838f1e1b1d1710ac6, type: 3}
   ingredients:
   - ingredientName: mantar

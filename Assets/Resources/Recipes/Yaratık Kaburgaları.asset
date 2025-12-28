@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "Yarat\u0131k Kaburgalar\u0131"
   m_EditorClassIdentifier: 
   recipeName: "Yarat\u0131k Kaburgalar\u0131"
+  recipeNameEn: Creature Ribs
   dishSprite: {fileID: -868653642198275471, guid: 2d4fe100d560946b3a3dad0a18726f1b, type: 3}
   ingredients:
   - ingredientName: sivri kemik

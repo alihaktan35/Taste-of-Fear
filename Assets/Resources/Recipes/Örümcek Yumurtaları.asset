@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\xD6r\xFCmcek Yumurtalar\u0131"
   m_EditorClassIdentifier: 
   recipeName: "\xD6r\xFCmcek Yumurtalar\u0131"
+  recipeNameEn: Spider Eggs
   dishSprite: {fileID: 1245762849721859130, guid: 60bcf30adf52b4aee877ac6be5dec5cf, type: 3}
   isPoisonous: 0
   ingredients:

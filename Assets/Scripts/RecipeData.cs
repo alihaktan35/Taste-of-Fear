@@ -14,8 +14,18 @@ public class RecipeData : ScriptableObject
 {
     [Header("Recipe Info")]
     public string recipeName; // Turkish name (e.g., "Göz Küresi Çorbası")
+    public string recipeNameEn; // English name (e.g., "Eyeball Soup")
     public Sprite dishSprite; // Final dish image
     public bool isPoisonous = false; // Zehirli mantar sepeti gibi özel tarifler için
+
+    /// <summary>
+    /// Gets the recipe name based on the current language setting
+    /// </summary>
+    public string GetLocalizedName()
+    {
+        bool isTurkish = PlayerPrefs.GetInt("Language", 1) == 1;
+        return isTurkish ? recipeName : (string.IsNullOrEmpty(recipeNameEn) ? recipeName : recipeNameEn);
+    }
 
     [Header("Ingredients")]
     public List<RecipeIngredient> ingredients = new List<RecipeIngredient>();

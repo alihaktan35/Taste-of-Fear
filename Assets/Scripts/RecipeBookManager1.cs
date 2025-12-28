@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro; // TextMeshPro kullandiginiz icin bu zorunludur
 using UnityEngine.UI; // UI elemanlari icin
+using UnityEngine.Localization.Settings;
 
 public class RecipeBookManager : MonoBehaviour
 {
@@ -15,9 +16,15 @@ public class RecipeBookManager : MonoBehaviour
     [System.Serializable]
     public struct Recipe
     {
+        [Header("Turkish")]
         public string recipeName;
-        [TextArea(3, 10)] // Unity Inspector'da daha genis bir metin alani saglar
+        [TextArea(3, 10)]
         public string ingredients;
+
+        [Header("English")]
+        public string recipeNameEn;
+        [TextArea(3, 10)]
+        public string ingredientsEn;
     }
 
     // Tum tariflerin listesi
@@ -35,6 +42,9 @@ public class RecipeBookManager : MonoBehaviour
         nextPageButton.onClick.AddListener(NextPage);
         previousPageButton.onClick.AddListener(PreviousPage);
 
+        // Dil degisikligini dinle
+        LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+
         // Ilk tarifi yukle
         if (allRecipes.Length > 0)
         {
@@ -44,6 +54,42 @@ public class RecipeBookManager : MonoBehaviour
         {
             Debug.LogError("Tarif listesi bos! Lutfen tarifleri girin.");
         }
+    }
+
+    void OnDestroy()
+    {
+        // Event listener'i temizle
+        LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
+    }
+
+    // Dil degistiginde cagirilir
+    private void OnLanguageChanged(UnityEngine.Localization.Locale locale)
+    {
+        if (allRecipes.Length > 0)
+        {
+            UpdatePageContent();
+        }
+    }
+
+    // Mevcut dilin Turkce olup olmadigini kontrol eder
+    private bool IsTurkish()
+    {
+        // LocalizationSettings uzerinden aktif dili kontrol et (daha guvenilir)
+        var currentLocale = LocalizationSettings.SelectedLocale;
+
+        if (currentLocale != null)
+        {
+            // Locale kodu "tr" ise Turkce, degilse Ingilizce
+            bool isTr = currentLocale.Identifier.Code == "tr";
+            Debug.Log($"[RecipeBook] Language Check - Locale: {currentLocale.Identifier.Code}, IsTurkish: {isTr}");
+            return isTr;
+        }
+
+        // Fallback: PlayerPrefs kullan (LocalizationSettings yuklenmemisse)
+        int langValue = PlayerPrefs.GetInt("Language", 1);
+        bool isTurkishFallback = langValue == 1;
+        Debug.Log($"[RecipeBook] Language Check (Fallback) - PlayerPrefs Value: {langValue}, IsTurkish: {isTurkishFallback}");
+        return isTurkishFallback;
     }
 
     // Tarif Kitabini Acma/Kapama fonksiyonu
@@ -57,6 +103,12 @@ public class RecipeBookManager : MonoBehaviour
         if (recipeBookPanel.activeSelf)
         {
             recipeBookPanel.transform.SetAsLastSibling();
+
+            // KRITIK: Kitap acildiginda icerigi guncelle (dil degisikligi icin)
+            if (allRecipes.Length > 0)
+            {
+                UpdatePageContent();
+            }
         }
 
         // Opsiyonel: Kitap acildiginda oyunu duraklatabilirsiniz.
@@ -92,14 +144,48 @@ public class RecipeBookManager : MonoBehaviour
     private void UpdatePageContent()
     {
         Recipe currentRecipe = allRecipes[currentPageIndex];
+        bool isTurkish = IsTurkish();
+
+        // Debug: Mevcut tarif verilerini logla
+        Debug.Log($"[RecipeBook] Recipe #{currentPageIndex + 1}");
+        Debug.Log($"[RecipeBook] TR Name: '{currentRecipe.recipeName}' | EN Name: '{currentRecipe.recipeNameEn}'");
+        Debug.Log($"[RecipeBook] TR Ingredients: '{currentRecipe.ingredients}' | EN Ingredients: '{currentRecipe.ingredientsEn}'");
+
+        // Dile gore tarif adini ve malzemeleri sec
+        string displayName;
+        string displayIngredients;
+
+        if (isTurkish)
+        {
+            // Turkce secili - Turkce verileri kullan
+            displayName = currentRecipe.recipeName;
+            displayIngredients = currentRecipe.ingredients;
+            Debug.Log("[RecipeBook] Using TURKISH data");
+        }
+        else
+        {
+            // Ingilizce secili - Ingilizce verileri kullan, bossa Turkce'ye fallback
+            displayName = !string.IsNullOrEmpty(currentRecipe.recipeNameEn)
+                ? currentRecipe.recipeNameEn
+                : currentRecipe.recipeName;
+
+            displayIngredients = !string.IsNullOrEmpty(currentRecipe.ingredientsEn)
+                ? currentRecipe.ingredientsEn
+                : currentRecipe.ingredients;
+
+            Debug.Log($"[RecipeBook] Using ENGLISH data - Name empty: {string.IsNullOrEmpty(currentRecipe.recipeNameEn)}, Ingredients empty: {string.IsNullOrEmpty(currentRecipe.ingredientsEn)}");
+        }
+
+        // Sayfa numarasi etiketi
+        string recipeLabel = isTurkish ? "Tarif" : "Recipe";
 
         // Sayfa numarasini ve tarif adini guncelle - Alt satira alindi
-        recipeNameText.text = $"Tarif #{currentPageIndex + 1}\n{currentRecipe.recipeName}";
+        recipeNameText.text = $"{recipeLabel} #{currentPageIndex + 1}\n{displayName}";
 
         // Malzeme listesini guncelle - Buyuk X'leri kucuk x'e cevir
-        string formattedIngredients = currentRecipe.ingredients.Replace("X ", "x ");
+        string formattedIngredients = displayIngredients.Replace("X ", "x ");
         ingredientsListText.text = formattedIngredients;
 
-        // Butonlari devre disi birakip/etkinlestirmeyi de ekleyebilirsiniz (dongusel yapmazsaniz)
+        Debug.Log($"[RecipeBook] Final Display - Label: {recipeLabel}, Name: {displayName}");
     }
 }

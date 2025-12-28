@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "Kusmuk \u015Eekerlemesi"
   m_EditorClassIdentifier: 
   recipeName: "Kusmuk \u015Eekerlemesi"
+  recipeNameEn: Vomit Candy
   dishSprite: {fileID: 4918188154861851381, guid: cfee3c8902f5643b8a2f0c42d5845ace, type: 3}
   ingredients:
   - ingredientName: asit

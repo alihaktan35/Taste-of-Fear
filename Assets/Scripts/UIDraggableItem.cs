@@ -260,21 +260,67 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         yield return new WaitForSeconds(1f);
         if (!isHovering) yield break;
 
-        // Generate a localization key for the ingredient.
+        // DEBUG: Log which ingredient is being hovered (helps identify problematic items)
+        Debug.Log($"[IngredientTooltip] Hovering over GameObject: '{gameObject.name}', ingredientName: '{ingredientName}'");
+
+        // SAFEGUARD: Check if ingredientName is valid
+        if (string.IsNullOrEmpty(ingredientName))
+        {
+            Debug.LogError($"[IngredientTooltip] ERROR: ingredientName is null or empty for GameObject: '{gameObject.name}'");
+            if (IngredientTooltip.Instance != null && isHovering)
+            {
+                IngredientTooltip.Instance.ShowTooltip("Unknown Item", eventData.position);
+            }
+            yield break;
+        }
+
+        // Generate a localization key for the ingredient
         string localizationKey = "ingredient_" + GenerateSafeKey(ingredientName);
-        
-        // Asynchronously get the localized string.
+        Debug.Log($"[IngredientTooltip] Looking for localization key: '{localizationKey}'");
+
+        string tooltipText = ingredientName; // Fallback to original name
+
+        // Get localized string asynchronously
         var localizedStringOperation = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI_Texts", localizationKey);
         yield return localizedStringOperation;
 
-        string tooltipText = ingredientName; // Fallback to original name
-        if (localizedStringOperation.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded && localizedStringOperation.Result != localizationKey)
+        // Check result after yield (outside of try-catch since yield cannot be in try block)
+        bool localizationSucceeded = false;
+        if (localizedStringOperation.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
         {
-            tooltipText = localizedStringOperation.Result;
+            string result = localizedStringOperation.Result;
+
+            // SAFEGUARD: Check if result is valid and not an error message
+            if (!string.IsNullOrEmpty(result) &&
+                result != localizationKey &&
+                !result.Contains("Exception") &&
+                !result.Contains("Error") &&
+                result.Length < 100) // Reasonable length check
+            {
+                tooltipText = result;
+                localizationSucceeded = true;
+                Debug.Log($"[IngredientTooltip] Localization SUCCESS: '{localizationKey}' -> '{tooltipText}'");
+            }
+            else
+            {
+                Debug.LogWarning($"[IngredientTooltip] Localization returned invalid result for key: '{localizationKey}'. Result: '{result}'. Using fallback: '{ingredientName}'");
+            }
         }
         else
         {
-            Debug.LogWarning($"[Localization] No translation found for ingredient key: '{localizationKey}'. Falling back to '{ingredientName}'.");
+            Debug.LogWarning($"[IngredientTooltip] Localization operation failed for key: '{localizationKey}'. Using fallback: '{ingredientName}'");
+        }
+
+        if (!localizationSucceeded)
+        {
+            Debug.LogWarning($"[IngredientTooltip] No valid translation found for: '{localizationKey}'. Displaying fallback: '{tooltipText}'");
+        }
+
+        // FINAL SAFEGUARD: If tooltipText is still invalid, use "Unknown Item"
+        if (string.IsNullOrEmpty(tooltipText) || tooltipText.Length > 100)
+        {
+            tooltipText = "Unknown Item";
+            Debug.LogError($"[IngredientTooltip] FINAL FALLBACK triggered for GameObject: '{gameObject.name}'");
         }
 
         if (IngredientTooltip.Instance != null && isHovering)

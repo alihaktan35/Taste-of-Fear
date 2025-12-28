@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Zombi Beyin Keki
   m_EditorClassIdentifier: 
   recipeName: Zombi Beyin Keki
+  recipeNameEn: Zombie Brain Cake
   dishSprite: {fileID: -3326080811657986582, guid: 951666bdeb53344a8aa71e8a2ec45617, type: 3}
   ingredients:
   - ingredientName: beyin

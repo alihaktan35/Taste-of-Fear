@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "Kan G\xF6l\xFC Sosu"
   m_EditorClassIdentifier: 
   recipeName: "Kan G\xF6l\xFC Sosu"
+  recipeNameEn: Blood Lake Sauce
   dishSprite: {fileID: -4317944118839116636, guid: cdcdb7d71fe104c358673bd1dd565744, type: 3}
   ingredients:
   - ingredientName: "parlak kan \u015Fi\u015Fe"

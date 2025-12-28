@@ -226,19 +226,25 @@ GAME_SYSTEM_DOCUMENTATION.md
 PAUSE_MENU_SETUP_GUIDE.md
 
 # ====================================
-# Firebase Unity SDK (Large Files)
+# Firebase Unity SDK - EXCLUDED LARGE FILES
 # ====================================
-# Firebase SDK is 450MB+ and should be installed manually
-# See FIREBASE_SETUP_GUIDE.md and UNITY_FIREBASE_SETUP_GUIDE.md for installation
-/[Aa]ssets/Firebase/
-/[Aa]ssets/Plugins/iOS/Firebase/
-/[Aa]ssets/Plugins/tvOS/Firebase/
-/[Aa]ssets/ExternalDependencyManager/
-/[Aa]ssets/Editor Default Resources/Firebase/
+# Firebase native plugins are ignored because they exceed GitHub's 100MB limit.
+# If you clone this repo, you must Re-Import the Firebase SDK manually.
 
-# Keep Firebase config files (these are small and necessary)
+# Ignore specific large files causing errors
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_6_0.so
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_6_0.bundle
+
+# Ignore all native library extensions generally to be safe
+*.so
+*.bundle
+*.dll
+
+# Keep Firebase config files (Important!)
 !/[Aa]ssets/google-services.json
 !/[Aa]ssets/GoogleService-Info.plist
+
+# Documentation files (not needed in repo)
 FIREBASE_SETUP_GUIDE.md
 FirebaseSecurityRules.json
 UNITY_FIREBASE_SETUP_GUIDE.md

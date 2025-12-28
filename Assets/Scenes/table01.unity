@@ -3810,44 +3810,142 @@ MonoBehaviour:
   allRecipes:
   - recipeName: "G\xD6Z K\xDCRES\u0130 \xC7ORBASI"
     ingredients: "2X G\xD6Z\n1X KARA YOSUN\n3X PIHTILA\u015EMI\u015E KAN \u015E\u0130\u015EE"
+    recipeNameEn: EYEBALL SOUP
+    ingredientsEn: '2X EYEBALL
+
+      1X BLACK MOSS
+
+      3X BOTTLE OF CLOTTED BLOOD'
   - recipeName: "KAN G\xD6L\xDC SOSU"
     ingredients: "2X PARLAK KAN \u015E\u0130\u015EE\n3X S\u0130VR\u0130 KEM\u0130K\n1X
       BAHARAT\n"
+    recipeNameEn: BLOOD LAKE SAUCE
+    ingredientsEn: '2X BOTTLE OF GLOWING BLOOD
+
+      3X SHARP BONE
+
+      1X SPICE'
   - recipeName: KERTENKELE KUYRUKLARI
     ingredients: "4X KERTENKELE KUYRU\u011EU\n1X \u0130R\u0130N TOZU\n2X D\u0130\u015E
       C\u0130PSLER\u0130"
+    recipeNameEn: LIZARD TAILS
+    ingredientsEn: '4X LIZARD TAIL
+
+      1X PUS POWDER
+
+      2X TOOTH CHIPS'
   - recipeName: "KURT\xC7UK KANEPES\u0130"
     ingredients: "4X KURT\xC7UKLAR\n2X \xC7\xDCR\xDCK EKMEK\n1X B\u0130L\u0130NMEYEN
       YA\u011E"
+    recipeNameEn: "MAGGOT CANAP\xC9"
+    ingredientsEn: '4X MAGGOTS
+
+      2X ROTTEN BREAD
+
+      1X UNKNOWN OIL'
   - recipeName: "CANAVAR KALB\u0130 IZGARA"
     ingredients: "1X ET(P\u0130\u015EM\u0130\u015E)\n4X KOYU ZEH\u0130R"
+    recipeNameEn: GRILLED MONSTER HEART
+    ingredientsEn: '1X MEAT (COOKED)
+
+      4X DARK POISON'
   - recipeName: "ZOMB\u0130 BEY\u0130N KEK\u0130"
     ingredients: "1X BEY\u0130N\n2X PIHTILA\u015EMI\u015E KAN \u015E\u0130\u015EE\n2X
       KARA YOSUN\n1X KAFATASI"
+    recipeNameEn: ZOMBIE BRAIN CAKE
+    ingredientsEn: '1X BRAIN
+
+      2X BOTTLE OF CLOTTED BLOOD
+
+      2X BLACK MOSS
+
+      1X
+      SKULL'
   - recipeName: YARATIK KABURGALARI
     ingredients: "4X S\u0130VR\u0130 KEM\u0130K\n1X ET\n2X BAHARAT"
+    recipeNameEn: CREATURE RIBS
+    ingredientsEn: '4X SHARP BONE
+
+      1X MEAT
+
+      2X SPICE'
   - recipeName: "\u0130\u011EREN\xC7 P\u0130ZZA"
     ingredients: "2X \xC7\xDCR\xDCK EKMEK\n1X \u0130R\u0130N TOZU\n2X B\xD6CEK YUMURTASI\n4X
       S\u0130YAH ZEYT\u0130N"
+    recipeNameEn: DISGUSTING PIZZA
+    ingredientsEn: '2X ROTTEN BREAD
+
+      1X PUS POWDER
+
+      2X INSECT EGG
+
+      4X
+      BLACK OLIVE'
   - recipeName: "DOKUNA\xC7 G\xDCVEC\u0130"
     ingredients: "4X DOKUNA\xC7\n1X KOYU ZEH\u0130R\n2X KANAYAN PATATES"
+    recipeNameEn: TENTACLE STEW
+    ingredientsEn: '4X TENTACLE
+
+      1X DARK POISON
+
+      2X BLEEDING POTATO'
   - recipeName: "KES\u0130K DAMAR SPAGETT\u0130"
     ingredients: "2X KARA SPAGETT\u0130\n1X PARLAK KAN \u015E\u0130\u015EE"
+    recipeNameEn: SEVERED VEIN SPAGHETTI
+    ingredientsEn: '2X BLACK SPAGHETTI
+
+      1X BOTTLE OF GLOWING BLOOD'
   - recipeName: "ZEH\u0130RL\u0130 MANTAR SEPET\u0130"
     ingredients: "2X ZEH\u0130RL\u0130 MANTAR\n1X AS\u0130T\n3X KEM\u0130K \xC7UBUKLARI"
+    recipeNameEn: POISONOUS MUSHROOM BASKET
+    ingredientsEn: '2X POISONOUS MUSHROOM
+
+      1X ACID
+
+      3X BONE STICKS'
   - recipeName: "BEY\u0130N SALATASI"
     ingredients: "1X BEY\u0130N\n1X BAL\xC7IK\n2X KERTENKELE KUYRU\u011EU"
+    recipeNameEn: BRAIN SALAD
+    ingredientsEn: '1X BRAIN
+
+      1X SLIME
+
+      2X LIZARD TAIL'
   - recipeName: "\xD6R\xDCMCEK YUMURTALARI"
     ingredients: "1X \xD6R\xDCMCEK\n2X B\xD6CEK YUMURTASI\n1X PIHTILA\u015EMI\u015E
       KAN \u015E\u0130\u015EE"
+    recipeNameEn: SPIDER EGGS
+    ingredientsEn: '1X SPIDER
+
+      2X INSECT EGG
+
+      1X BOTTLE OF CLOTTED BLOOD'
   - recipeName: "KANLI \u015EIRINGA"
     ingredients: "4X \u015EIRINGA\n1X PARLAK KAN \u015E\u0130\u015EE"
+    recipeNameEn: BLOODY SYRINGE
+    ingredientsEn: '4X SYRINGE
+
+      1X BOTTLE OF GLOWING BLOOD'
   - recipeName: "\xC7\xDCR\xDCM\xDC\u015E D\u0130\u015E PASTASI"
     ingredients: "4X \xC7\xDCR\xDCM\xDC\u015E D\u0130\u015ELER\n2X KURAB\u0130YE"
+    recipeNameEn: ROTTEN TOOTH CAKE
+    ingredientsEn: '4X ROTTEN TEETH
+
+      2X COOKIE'
   - recipeName: PARMAK SUCUKLARI(TATLI)
     ingredients: "4X PARMAK\n1X PIHTILA\u015EMI\u015E KAN \u015E\u0130\u015EE"
+    recipeNameEn: SWEET FINGER SAUSAGES
+    ingredientsEn: '4X FINGER
+
+      1X BOTTLE OF CLOTTED BLOOD'
   - recipeName: "KUSMUK \u015EEKERLEMES\u0130"
     ingredients: "2X AS\u0130T\n1X B\u0130L\u0130NMEYEN YA\u011E\n4X KIRMIZI \u015EEKER"
+    recipeNameEn: VOMIT CANDY
+    ingredientsEn: '2X ACID
+
+      1X UNKNOWN OIL
+
+      4X RED SUGAR'
 --- !u!114 &896993980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5229,8 +5327,19 @@ MonoBehaviour:
   recipeDatabase: {fileID: 11400000, guid: a8a70d48311254734975083b05e31a91, type: 2}
   instructionText: {fileID: 1252008523}
   plateController: {fileID: 1126321801}
-  instructionTemplate: The order is XXXX.
+  instructionLocalizedString:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   currentRecipeName: 
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1143781757
 Transform:
   m_ObjectHideFlags: 0

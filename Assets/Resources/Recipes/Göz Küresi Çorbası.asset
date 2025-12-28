@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "G\xF6z K\xFCresi \xC7orbas\u0131"
   m_EditorClassIdentifier: 
   recipeName: "G\xF6z K\xFCresi \xC7orbas\u0131"
+  recipeNameEn: Eyeball Soup
   dishSprite: {fileID: 3557770993379071762, guid: 8869df4d7bcc644258ffa1fe6c340617, type: 3}
   isPoisonous: 0
   ingredients:

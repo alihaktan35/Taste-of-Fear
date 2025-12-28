@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "I\u0307g\u0306renc\u0327 Pizza"
   m_EditorClassIdentifier: 
   recipeName: "\u0130\u011Fren\xE7 Pizza"
+  recipeNameEn: Disgusting Pizza
   dishSprite: {fileID: -1968251753886680769, guid: 57e30b117b9a54773bb47d0f35a31621, type: 3}
   ingredients:
   - ingredientName: "\xE7\xFCr\xFCk ekmek"
