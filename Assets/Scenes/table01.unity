@@ -967,8 +967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cefa4c3905d14cda93f0728cc402c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 90
-  warningTime: 30
+  countdownTime: 50
+  warningTime: 10
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   warningColor: {r: 1, g: 0, b: 0, a: 1}
   jumpscareSceneName: jumpscare
