@@ -1313,7 +1313,7 @@ MonoBehaviour:
     bubblePos: {x: -15, y: 374}
     bubbleSize: {x: 1868.2, y: 270.5148}
     arrowRotation: 496.117
-  - background: {fileID: -384047691540871226, guid: 5918799efdc34d543a6ea5f3cf4ac3da, type: 3}
+  - background: {fileID: -8498138183571263974, guid: 6ebd310f3efd49542a98ef63dbca058e, type: 3}
     message:
       m_TableReference:
         m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
