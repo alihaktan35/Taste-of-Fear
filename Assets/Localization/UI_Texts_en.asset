@@ -343,6 +343,47 @@ MonoBehaviour:
     m_Localized: YOU CAN USE THE RECIPE BOOK BUTTON ON THE RIGHT
     m_Metadata:
       m_Items: []
+  - m_Id: 15771013102661632
+    m_Localized: This dish is a symphony of flavors! My taste buds are dancing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771017296965632
+    m_Localized: I think I just found a piece of heaven on this plate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771019272482816
+    m_Localized: My compliments to the chef! This is Michelin-star quality.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771020920844288
+    m_Localized: The balance of spices is pure magic. How did you do that?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771022699229184
+    m_Localized: Not only was my stomach full, but my soul was nourished too.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771024314036224
+    m_Localized: This is beyond delicious; it's a culinary masterpiece!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771025954009088
+    m_Localized: Every bite tells a story of passion and skill.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771027765948416
+    m_Localized: "I\u2019ve traveled the world, but I\u2019ve never tasted anything
+      quite like this."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771591044198400
+    m_Localized: The texture, the aroma... it's an absolute sensory overload!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771593996988416
+    m_Localized: This meal is worth a thousand miles of travel.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

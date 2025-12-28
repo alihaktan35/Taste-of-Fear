@@ -2,19 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEngine.Localization; // Localization kütüphanesini ekledik
 
 public class KarakterBelirme : MonoBehaviour
 {
     // Inspector'da ayarlanacak değişkenler:
-    public float belirmeSuresi = 3.0f; // Karakterin görünme süresi
+    public float belirmeSuresi = 3.0f;
 
     // Konuşma Balonu Değişkenleri
     public GameObject konusmaBalonuObjesi;
     public TMP_Text metinAlani;
 
-    [TextArea]
-    public string[] rastgeleMetinler; // Inspector'da buraya metinlerinizi gireceksiniz
-
+    // string[] yerine LocalizedString[] kullanarak yerelleştirmeyi aktif ediyoruz.
+    // Inspector'da Size kısmını 10 yaparak 10 farklı metin atayabilirsin.
+    public LocalizedString[] rastgeleMetinler;
 
     private Image karakterImage;
     private Color renk;
@@ -22,7 +23,6 @@ public class KarakterBelirme : MonoBehaviour
     void Start()
     {
         karakterImage = GetComponent<Image>();
-
         renk = karakterImage.color;
 
         // Başlangıçta tamamen görünmez yap
@@ -40,16 +40,12 @@ public class KarakterBelirme : MonoBehaviour
         while (gecenZaman < belirmeSuresi)
         {
             float alfaOrani = gecenZaman / belirmeSuresi;
-
             renk.a = alfaOrani;
             karakterImage.color = renk;
-
             gecenZaman += Time.deltaTime;
-
             yield return null;
         }
 
-        // Belirme bittiğinde, tam görünür olduğundan emin ol
         renk.a = 1f;
         karakterImage.color = renk;
 
@@ -59,33 +55,29 @@ public class KarakterBelirme : MonoBehaviour
 
     void KonusmaBalonuGoster()
     {
-        // Bağlantıların Kontrolü
         if (konusmaBalonuObjesi == null || metinAlani == null)
         {
-            Debug.LogError("Konuşma balonu veya metin alanı Inspector'da atanmadı! Lütfen bağlantıları kontrol edin.");
+            Debug.LogError("Konuşma balonu veya metin alanı Inspector'da atanmadı!");
             return;
         }
 
         string secilenMetin = "";
 
-        if (rastgeleMetinler.Length == 0)
+        // Eğer Inspector'da 10 tane LocalizedString atadıysan Length otomatik 10 olacaktır.
+        if (rastgeleMetinler == null || rastgeleMetinler.Length == 0)
         {
-            // Metin dizisi boşsa, uyarı ver ve metni boş bırak
-            Debug.LogWarning("Rastgele metin dizisi Inspector'da boş bırakıldı! Konuşma balonu boş gösteriliyor.");
-            secilenMetin = "";
+            Debug.LogWarning("Rastgele metin dizisi boş!");
         }
         else
         {
-            // Dizi doluysa, rastgele metin seç
+            // 0 ile rastgeleMetinler.Length (yani 10) arasında bir sayı seçer
             int rastgeleIndex = Random.Range(0, rastgeleMetinler.Length);
-            secilenMetin = rastgeleMetinler[rastgeleIndex];
+
+            // Seçilen index'teki metni o anki sistem dilinde getirir
+            secilenMetin = rastgeleMetinler[rastgeleIndex].GetLocalizedString();
         }
 
-        // Balonu görünür yap ve metni ata
-        konusmaBalonuObjesi.SetActive(true); // <<-- BURASI ONU AÇIK TUTAN YER
+        konusmaBalonuObjesi.SetActive(true);
         metinAlani.text = secilenMetin;
-
-        // Bu fonksiyonda, konuşma balonunu kapatan (SetActive(false)) hiçbir kod yoktur.
-        // Başka bir script kapatmıyorsa, açık kalacaktır.
     }
 }

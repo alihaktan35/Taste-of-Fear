@@ -293,6 +293,46 @@ MonoBehaviour:
     m_Key: instruction_text_2
     m_Metadata:
       m_Items: []
+  - m_Id: 15771013102661632
+    m_Key: karakter_metin_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771017296965632
+    m_Key: karakter_metin_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771019272482816
+    m_Key: karakter_metin_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771020920844288
+    m_Key: karakter_metin_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771022699229184
+    m_Key: karakter_metin_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771024314036224
+    m_Key: karakter_metin_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771025954009088
+    m_Key: karakter_metin_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771027765948416
+    m_Key: karakter_metin_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771591044198400
+    m_Key: karakter_metin_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771593996988416
+    m_Key: karakter_metin_9
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

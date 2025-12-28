@@ -178,7 +178,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3e7bb7bd23e454fda9fc410bace7abaf, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -203,8 +203,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 65
+  m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &292169811
@@ -347,6 +347,9 @@ MonoBehaviour:
   konusmaBalonuObjesi: {fileID: 995906774}
   metinAlani: {fileID: 292169810}
   rastgeleMetinler: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &611648325
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,14 +608,89 @@ MonoBehaviour:
   konusmaBalonuObjesi: {fileID: 995906774}
   metinAlani: {fileID: 292169810}
   rastgeleMetinler:
-  - '"This was the best thing I''ve ever eaten! Compliments to the chef!"'
-  - '"Incredible! Every bite was like heaven. I will definitely be coming back!"'
-  - '"Beyond delicious! The ingredients were so fresh, and the balance of everything
-    was perfect."'
-  - '"Wow, this is truly a work of art! Not only was my stomach full, but my soul
-    was nourished."'
-  - '"It was a perfect experience! I will recommend this dish to everyone. This is
-    my favorite restaurant now!"'
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771013102661632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771017296965632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771019272482816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771020920844288
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771022699229184
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771024314036224
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771025954009088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771027765948416
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771591044198400
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:55e2dcfd8627b40318bf276c0d13d876
+    m_TableEntryReference:
+      m_KeyId: 15771593996988416
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1059968776
 GameObject:
   m_ObjectHideFlags: 0
