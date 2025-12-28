@@ -536,6 +536,10 @@ MonoBehaviour:
     m_Localized: tabak
     m_Metadata:
       m_Items: []
+  - m_Id: 16071436882927616
+    m_Localized: "\xD6NCE KULLANICI ADI BEL\u0130RLE!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

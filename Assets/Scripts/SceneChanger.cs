@@ -1,8 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI; // Changed from TMPro
 
 public class SceneChanger : MonoBehaviour
 {
+    public Text warningUsernameText; // Changed from TextMeshProUGUI
+    private Coroutine showWarningCoroutine;
+
+    void Start()
+    {
+        if (warningUsernameText != null)
+        {
+            warningUsernameText.gameObject.SetActive(false);
+        }
+    }
+
     // Bir sonraki sahneye geçiş (Build Settings sırasına göre)
     public void LoadNextScene()
     {
@@ -35,10 +48,27 @@ public class SceneChanger : MonoBehaviour
     // Order01 sahnesine direkt geçiş
     public void LoadOrder01()
     {
-        // Yeni oyun başlarken skoru ve oyun verilerini sıfırla
-        GameFlowManager.Instance.ResetGameData();
+        if (UsernameManager.Instance.HasUsername())
+        {
+            // Yeni oyun başlarken skoru ve oyun verilerini sıfırla
+            GameFlowManager.Instance.ResetGameData();
+            SceneManager.LoadScene("order01");
+        }
+        else
+        {
+            if (showWarningCoroutine == null)
+            {
+                showWarningCoroutine = StartCoroutine(ShowWarning(3f));
+            }
+        }
+    }
 
-        SceneManager.LoadScene("order01");
+    private IEnumerator ShowWarning(float duration)
+    {
+        warningUsernameText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        warningUsernameText.gameObject.SetActive(false);
+        showWarningCoroutine = null;
     }
 
     // OptionsMenu (Settings) sahnesini aç
