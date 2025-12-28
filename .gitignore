@@ -252,3 +252,13 @@ UNITY_FIREBASE_SETUP_GUIDE.md
 # Visual Studio Configuration (Internal)
 # ====================================
 .vsconfig
+Assets/Firebase/Editor/Firebase.Editor.dll.meta
+Assets/ExternalDependencyManager/Editor/README.md.meta
+Assets/ExternalDependencyManager/Editor/LICENSE.meta
+Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.meta
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.186_manifest.txt.meta
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md.meta
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.VersionHandlerImpl.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.PackageManagerResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.JarResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.IOSResolver.dll.meta
