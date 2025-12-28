@@ -197,7 +197,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15736527241572352
-    m_Localized: Hi! I am {0}. I want {1}. Press the button when ready.
+    m_Localized: Hi! I am {0}. I want {1}.
     m_Metadata:
       m_Items:
       - rid: 266358423701422163
@@ -381,7 +381,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15771593996988416
-    m_Localized: This meal is worth a thousand miles of travel.
+    m_Localized: "I’ve traveled the world, but I’ve never tasted anything
+      quite like this."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771593996988417
+    m_Localized: Press the button when ready.
     m_Metadata:
       m_Items: []
   references:

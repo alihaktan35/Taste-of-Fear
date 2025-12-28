@@ -12,7 +12,8 @@ public class OrderSceneManager : MonoBehaviour
     public Text speechBubbleText;
 
     [Header("Localization Settings")]
-    public LocalizedString speechLocalizedString;
+    public string greetingKey = "order_greeting";
+    public string instructionKey = "order_instruction_button";
 
     [Header("Sound")]
     public CharacterSoundPlayer characterSoundPlayer;
@@ -55,18 +56,16 @@ public class OrderSceneManager : MonoBehaviour
 
         if (currentCharacter == null || currentRecipe == null) return;
 
-        // GÜVENLİ KEY OLUŞTURMA: ToLowerInvariant kullanıyoruz
         string charKey = "char_" + currentCharacter.characterName.Trim().ToLowerInvariant().Replace(" ", "_");
         string foodKey = "food_" + currentRecipe.recipeName.Trim().ToLowerInvariant().Replace(" ", "_");
 
         string localizedCharName = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", charKey);
         string localizedFoodName = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", foodKey);
 
-        if (speechLocalizedString != null && !speechLocalizedString.IsEmpty)
-        {
-            speechLocalizedString.Arguments = new object[] { localizedCharName, localizedFoodName };
-            speechBubbleText.text = speechLocalizedString.GetLocalizedString();
-        }
+        string greeting = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", greetingKey, new object[] { localizedCharName, localizedFoodName });
+        string instruction = LocalizationSettings.StringDatabase.GetLocalizedString("UI_Texts", instructionKey);
+
+        speechBubbleText.text = $"{greeting} {instruction}";
     }
 
     public void OnGoToTableClicked()

@@ -195,7 +195,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15736527241572352
-    m_Localized: "Selam! Ben {0}. {1} istiyorum. Haz\u0131r olunca butona bas."
+    m_Localized: "Selam! Ben {0}. {1} istiyorum."
     m_Metadata:
       m_Items:
       - rid: 266358423701422164
@@ -381,7 +381,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15771593996988416
-    m_Localized: "Bu yemek bin kilometre yol gitmeye de\u011Fer."
+    m_Localized: "Bu yemek bin kilometre yol gitmeye değer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771593996988417
+    m_Localized: "Hazır olunca butona bas."
     m_Metadata:
       m_Items: []
   references:

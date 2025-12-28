@@ -170,7 +170,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15736527241572352
-    m_Key: order_speech_text
+    m_Key: order_greeting
     m_Metadata:
       m_Items: []
   - m_Id: 15741016992346112
@@ -198,7 +198,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15743875683151872
-    m_Key: "food_canavar_kalbi_\u0131zgara"
+    m_Key: "food_canavar_kalbi_izgara"
     m_Metadata:
       m_Items: []
   - m_Id: 15743953470713856
@@ -331,6 +331,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15771593996988416
     m_Key: karakter_metin_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15771593996988417
+    m_Key: order_instruction_button
     m_Metadata:
       m_Items: []
   m_Metadata:
