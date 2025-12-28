@@ -247,3 +247,8 @@ UNITY_FIREBASE_SETUP_GUIDE.md
 # Claude AI Agent (Internal)
 # ====================================
 .claude/
+
+# ====================================
+# Visual Studio Configuration (Internal)
+# ====================================
+.vsconfig
