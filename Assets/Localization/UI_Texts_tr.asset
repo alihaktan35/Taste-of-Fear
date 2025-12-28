@@ -333,6 +333,14 @@ MonoBehaviour:
     m_Localized: "YEN\u0130 S\u0130PAR\u0130\u015E"
     m_Metadata:
       m_Items: []
+  - m_Id: 15766066747371520
+    m_Localized: "S\u0130PAR\u0130\u015E\u0130N\u0130Z XXXX"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15766389637476352
+    m_Localized: "SA\u011E \xDCSTTEK\u0130 TAR\u0130F DEFTER\u0130N\u0130 KULLANAB\u0130L\u0130RS\u0130N."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -285,6 +285,14 @@ MonoBehaviour:
     m_Key: go_to_order_scene
     m_Metadata:
       m_Items: []
+  - m_Id: 15766066747371520
+    m_Key: instruction_text_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15766389637476352
+    m_Key: instruction_text_2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
