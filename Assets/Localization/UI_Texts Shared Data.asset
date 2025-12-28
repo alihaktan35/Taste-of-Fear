@@ -170,7 +170,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15736527241572352
-    m_Key: order_greeting
+    m_Key: order_speech_text
     m_Metadata:
       m_Items: []
   - m_Id: 15741016992346112
@@ -194,35 +194,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15743801771126784
-    m_Key: "food_beyin_salatas\u0131\t\t\t"
+    m_Key: food_beyin_salatasi
     m_Metadata:
       m_Items: []
   - m_Id: 15743875683151872
-    m_Key: "food_canavar_kalbi_izgara"
+    m_Key: food_canavar_kalbi_izgara
     m_Metadata:
       m_Items: []
   - m_Id: 15743953470713856
-    m_Key: "food_dokuna\xE7_g\xFCveci"
+    m_Key: food_dokunac_guveci
     m_Metadata:
       m_Items: []
   - m_Id: 15743953630097408
-    m_Key: "food_g\xF6z_k\xFCresi_\xE7orbas\u0131"
+    m_Key: food_goz_kuresi_corbasi
     m_Metadata:
       m_Items: []
   - m_Id: 15743963360882688
-    m_Key: "food_i\u011Fren\xE7_pizza"
+    m_Key: food_igrenc_pizza
     m_Metadata:
       m_Items: []
   - m_Id: 15744182303551488
-    m_Key: "food_kan_g\xF6l\xFC_sosu"
+    m_Key: food_kan_golu_sosu
     m_Metadata:
       m_Items: []
   - m_Id: 15744203719667712
-    m_Key: "food_kanl\u0131_\u015F\u0131r\u0131ngalar"
+    m_Key: food_kanli_siringalar
     m_Metadata:
       m_Items: []
   - m_Id: 15744208379539456
-    m_Key: "food_kertenkele_kuyruklar\u0131"
+    m_Key: food_kertenkele_kuyruklari
     m_Metadata:
       m_Items: []
   - m_Id: 15744215128174592
@@ -230,19 +230,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15744499632009216
-    m_Key: "food_kurt\xE7uk_kanepesi"
+    m_Key: food_kurtcuk_kanepesi
     m_Metadata:
       m_Items: []
   - m_Id: 15744503457214464
-    m_Key: "food_kusmuk_\u015Fekerlemesi"
+    m_Key: food_kusmuk_sekerlemesi
     m_Metadata:
       m_Items: []
   - m_Id: 15744503759204352
-    m_Key: "food_parmak_sucuklar\u0131_(tatl\u0131)"
+    m_Key: food_parmak_sucuklari_(tatli)
     m_Metadata:
       m_Items: []
   - m_Id: 15744503893422080
-    m_Key: "food_yarat\u0131k_kaburgalar\u0131"
+    m_Key: food_yaratik_kaburgalari
     m_Metadata:
       m_Items: []
   - m_Id: 15744751755816960
@@ -254,11 +254,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15744756822536192
-    m_Key: "food_\xE7\xFCr\xFCm\xFC\u015F_di\u015F_pastas\u0131"
+    m_Key: food_curumus_dis_pastasi
     m_Metadata:
       m_Items: []
   - m_Id: 15744759246843904
-    m_Key: "food_\xF6rumcek_yumurtalar\u0131"
+    m_Key: food_orumcek_yumurtalari
     m_Metadata:
       m_Items: []
   - m_Id: 15759043909611520
@@ -333,8 +333,156 @@ MonoBehaviour:
     m_Key: karakter_metin_9
     m_Metadata:
       m_Items: []
-  - m_Id: 15771593996988417
-    m_Key: order_instruction_button
+  - m_Id: 15912236752035840
+    m_Key: ingredient_asit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007360
+    m_Key: ingredient_bagirsak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007361
+    m_Key: ingredient_baharat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007362
+    m_Key: ingredient_balcik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007363
+    m_Key: ingredient_bardak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007364
+    m_Key: ingredient_beyin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007365
+    m_Key: ingredient_bilinmeyen_yag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007366
+    m_Key: ingredient_bocek_yumurtasi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007367
+    m_Key: ingredient_curuk_ekmek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007368
+    m_Key: ingredient_curumus_disler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007369
+    m_Key: ingredient_dis_cipsleri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007370
+    m_Key: ingredient_dokunac
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007371
+    m_Key: ingredient_et_(pismis)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007372
+    m_Key: ingredient_et
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007373
+    m_Key: ingredient_goz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007374
+    m_Key: ingredient_irin_tozu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007375
+    m_Key: ingredient_kafatasi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007376
+    m_Key: ingredient_kalp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007377
+    m_Key: ingredient_kanayan_patates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007378
+    m_Key: ingredient_kara_spagetti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007379
+    m_Key: ingredient_kara_yosun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007380
+    m_Key: ingredient_kemik_cubugu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007381
+    m_Key: ingredient_kertenkele_kuyrugu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007382
+    m_Key: ingredient_kirmizi_seker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007383
+    m_Key: ingredient_koyu_zehir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007384
+    m_Key: ingredient_kurabiye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007385
+    m_Key: ingredient_kurtcuklar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007386
+    m_Key: ingredient_mantar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007387
+    m_Key: ingredient_metal_kap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007388
+    m_Key: ingredient_orumcek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007389
+    m_Key: ingredient_parlak_kan_sise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007390
+    m_Key: ingredient_parmak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007391
+    m_Key: ingredient_pihtilanmis_kan_sise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007392
+    m_Key: ingredient_sivri_kemik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007393
+    m_Key: ingredient_siyah_zeytin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007394
+    m_Key: ingredient_seker_kasesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007395
+    m_Key: ingredient_siringa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007396
+    m_Key: ingredient_tabak
     m_Metadata:
       m_Items: []
   m_Metadata:

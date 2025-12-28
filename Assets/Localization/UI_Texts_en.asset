@@ -197,7 +197,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15736527241572352
-    m_Localized: Hi! I am {0}. I want {1}.
+    m_Localized: Hi! I am {0}. I want {1}. Press the button when ready.
     m_Metadata:
       m_Items:
       - rid: 266358423701422163
@@ -381,12 +381,160 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15771593996988416
-    m_Localized: "I’ve traveled the world, but I’ve never tasted anything
+    m_Localized: "I\u2019ve traveled the world, but I\u2019ve never tasted anything
       quite like this."
     m_Metadata:
       m_Items: []
-  - m_Id: 15771593996988417
-    m_Localized: Press the button when ready.
+  - m_Id: 15912236752035840
+    m_Localized: Acid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007360
+    m_Localized: Intestine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007361
+    m_Localized: Spice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007362
+    m_Localized: Slime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007363
+    m_Localized: Glass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007364
+    m_Localized: Brain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007365
+    m_Localized: Unknown Oil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007366
+    m_Localized: Insect Egg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007367
+    m_Localized: Rotten Bread
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007368
+    m_Localized: Rotten Teeth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007369
+    m_Localized: Teeth Crisps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007370
+    m_Localized: Tentacle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007371
+    m_Localized: Meat (cooked)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007372
+    m_Localized: Meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007373
+    m_Localized: Eye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007374
+    m_Localized: Pus Powder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007375
+    m_Localized: Skull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007376
+    m_Localized: Heart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007377
+    m_Localized: Bleeding Potato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007378
+    m_Localized: Black Spaghetti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007379
+    m_Localized: Black Moss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007380
+    m_Localized: Bone Stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007381
+    m_Localized: Lizard Tail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007382
+    m_Localized: Red Sugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007383
+    m_Localized: Dark Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007384
+    m_Localized: Cookie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007385
+    m_Localized: Maggots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007386
+    m_Localized: Mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007387
+    m_Localized: Metal Bowl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007388
+    m_Localized: Spider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007389
+    m_Localized: Bright Blood Bottle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007390
+    m_Localized: Finger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007391
+    m_Localized: Clotted Blood Bottle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007392
+    m_Localized: Sharp Bone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007393
+    m_Localized: Black Olive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007394
+    m_Localized: Sugar Bowl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007395
+    m_Localized: Syringe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15912236773007396
+    m_Localized: Plate
     m_Metadata:
       m_Items: []
   references:

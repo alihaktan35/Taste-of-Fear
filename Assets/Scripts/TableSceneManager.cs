@@ -95,21 +95,15 @@ public class TableSceneManager : MonoBehaviour
 
     private IEnumerator UpdateInstructionTextCoroutine()
     {
-        // --- Resiliently find Food Name ---
+        // --- Resiliently find Food Name with Safe Fallback ---
         string localizedFoodName = null;
         string originalRecipeName = currentRecipe.recipeName;
 
-        StringBuilder sb = new StringBuilder(originalRecipeName.ToLowerInvariant().Trim());
-        sb.Replace('ç', 'c'); sb.Replace('ğ', 'g'); sb.Replace('ı', 'i'); sb.Replace('ö', 'o'); sb.Replace('ş', 's'); sb.Replace('ü', 'u');
-        sb.Replace('Ç', 'c'); sb.Replace('Ğ', 'g'); sb.Replace('İ', 'i'); sb.Replace('Ö', 'o'); sb.Replace('Ş', 's'); sb.Replace('Ü', 'u');
-        sb.Replace(' ', '_');
-        
         string[] possibleKeys = new string[]
         {
+            "food_" + GenerateSafeKey(originalRecipeName), // ASCII-safe key should be the first choice
             "food_" + originalRecipeName.Trim().ToLower().Replace(" ", "_"),
-            "food_" + originalRecipeName.Trim().ToLowerInvariant().Replace(" ", "_"),
-            "food_" + sb.ToString(),
-            "food_" + originalRecipeName.Trim().ToLower().Replace(" ", "_") + "\t\t\t"
+            "food_" + originalRecipeName.Trim().ToLowerInvariant().Replace(" ", "_")
         };
         
         foreach (var key in possibleKeys)
@@ -120,23 +114,36 @@ public class TableSceneManager : MonoBehaviour
             if (foodNameOp.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded && foodNameOp.Result != key)
             {
                 localizedFoodName = foodNameOp.Result;
-                Debug.Log($"SUCCESS: Found translation for '{originalRecipeName}' using key: '{key}'");
-                break;
+                break; // Exit loop on success
             }
         }
         
+        // If no translation found after all attempts, use the original name as a safe fallback.
         if (localizedFoodName == null)
         {
-            localizedFoodName = $"[No Translation: {originalRecipeName}]";
-            Debug.LogError($"FAILURE: Could not find any translation for recipe '{originalRecipeName}'. Checked multiple key variations.");
+            localizedFoodName = originalRecipeName;
+            Debug.LogError($"[Localization] Failed to find any valid translation for recipe '{originalRecipeName}'. Falling back to original name.");
         }
 
         // Set arguments and get the final string
-        instructionLocalizedString.Arguments = new object[] { localizedFoodName.ToUpper() }; // The original string was uppercase
+        instructionLocalizedString.Arguments = new object[] { localizedFoodName.ToUpper() };
         var instructionOp = instructionLocalizedString.GetLocalizedStringAsync();
         yield return instructionOp;
         
         instructionText.text = instructionOp.Result ?? "Loading...";
+    }
+
+    private string GenerateSafeKey(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+        
+        StringBuilder sb = new StringBuilder(text.ToLowerInvariant().Trim());
+        sb.Replace('ç', 'c'); sb.Replace('ğ', 'g'); sb.Replace('ı', 'i');
+        sb.Replace('ö', 'o'); sb.Replace('ş', 's'); sb.Replace('ü', 'u');
+        sb.Replace('Ç', 'c'); sb.Replace('Ğ', 'g'); sb.Replace('İ', 'i');
+        sb.Replace('Ö', 'o'); sb.Replace('Ş', 's'); sb.Replace('Ü', 'u');
+        sb.Replace(' ', '_');
+        return sb.ToString();
     }
 
     public static void LoadTableSceneWithRecipe(string recipeName)

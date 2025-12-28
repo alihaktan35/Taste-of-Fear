@@ -1,7 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using System.Text;
 
 /// <summary>
 /// Makes UI ingredient items draggable with clone-based drag system
@@ -214,69 +218,68 @@ public class UIDraggableItem : MonoBehaviour, IPointerDownHandler, IDragHandler,
         }
     }
 
-    // ========== TOOLTIP SYSTEM ==========
+    // ========== LOCALIZED TOOLTIP SYSTEM ==========
 
-    /// <summary>
-    /// Called when pointer enters the ingredient area
-    /// Starts a coroutine to show tooltip after 1 second delay
-    /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Only show tooltip for original ingredients, not clones
-        if (isClone)
-            return;
-
+        if (isClone) return;
         isHovering = true;
-
-        // Start coroutine to show tooltip after delay
-        if (showTooltipCoroutine != null)
-        {
-            StopCoroutine(showTooltipCoroutine);
-        }
+        if (showTooltipCoroutine != null) StopCoroutine(showTooltipCoroutine);
         showTooltipCoroutine = StartCoroutine(ShowTooltipAfterDelay(eventData));
     }
 
-    /// <summary>
-    /// Called when pointer exits the ingredient area
-    /// Cancels tooltip and hides it if visible
-    /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
         isHovering = false;
-
-        // Cancel tooltip coroutine
         if (showTooltipCoroutine != null)
         {
             StopCoroutine(showTooltipCoroutine);
             showTooltipCoroutine = null;
         }
-
-        // Hide tooltip
         if (IngredientTooltip.Instance != null)
         {
             IngredientTooltip.Instance.HideTooltip();
         }
     }
+    
+    private string GenerateSafeKey(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+        
+        StringBuilder sb = new StringBuilder(text.ToLowerInvariant().Trim());
+        sb.Replace('ç', 'c'); sb.Replace('ğ', 'g'); sb.Replace('ı', 'i');
+        sb.Replace('ö', 'o'); sb.Replace('ş', 's'); sb.Replace('ü', 'u');
+        sb.Replace('Ç', 'c'); sb.Replace('Ğ', 'g'); sb.Replace('İ', 'i');
+        sb.Replace('Ö', 'o'); sb.Replace('Ş', 's'); sb.Replace('Ü', 'u');
+        sb.Replace(' ', '_');
+        return sb.ToString();
+    }
 
-    /// <summary>
-    /// Coroutine that waits 1 second before showing the tooltip
-    /// Updates tooltip position while hovering
-    /// </summary>
     private System.Collections.IEnumerator ShowTooltipAfterDelay(PointerEventData eventData)
     {
-        // Wait for 1 second
         yield return new WaitForSeconds(1f);
+        if (!isHovering) yield break;
 
-        // Check if still hovering
-        if (!isHovering)
-            yield break;
+        // Generate a localization key for the ingredient.
+        string localizationKey = "ingredient_" + GenerateSafeKey(ingredientName);
+        
+        // Asynchronously get the localized string.
+        var localizedStringOperation = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI_Texts", localizationKey);
+        yield return localizedStringOperation;
 
-        // Show tooltip
-        if (IngredientTooltip.Instance != null)
+        string tooltipText = ingredientName; // Fallback to original name
+        if (localizedStringOperation.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded && localizedStringOperation.Result != localizationKey)
         {
-            IngredientTooltip.Instance.ShowTooltip(ingredientName, eventData.position);
+            tooltipText = localizedStringOperation.Result;
+        }
+        else
+        {
+            Debug.LogWarning($"[Localization] No translation found for ingredient key: '{localizationKey}'. Falling back to '{ingredientName}'.");
+        }
 
-            // Keep updating tooltip position while hovering
+        if (IngredientTooltip.Instance != null && isHovering)
+        {
+            IngredientTooltip.Instance.ShowTooltip(tooltipText, eventData.position);
             while (isHovering)
             {
                 IngredientTooltip.Instance.UpdateTooltipPosition(Input.mousePosition);
