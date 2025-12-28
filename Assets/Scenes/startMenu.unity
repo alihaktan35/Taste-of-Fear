@@ -1817,7 +1817,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 305890829}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadNextScene
+        m_MethodName: LoadOrder01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
