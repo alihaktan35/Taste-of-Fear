@@ -15,10 +15,11 @@ MonoBehaviour:
   recipeName: Zombi Beyin Keki
   recipeNameEn: Zombie Brain Cake
   dishSprite: {fileID: -3326080811657986582, guid: 951666bdeb53344a8aa71e8a2ec45617, type: 3}
+  isPoisonous: 0
   ingredients:
   - ingredientName: beyin
     quantity: 1
-  - ingredientName: "p\u0131ht\u0131lanm\u0131\u015F kan \u015Fi\u015Fe"
+  - ingredientName: "p\u0131ht\u0131la\u015Fm\u0131\u015F kan \u015Fi\u015Fe"
     quantity: 2
   - ingredientName: kara yosun
     quantity: 2
