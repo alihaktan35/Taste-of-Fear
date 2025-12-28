@@ -43,7 +43,14 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] private int failedOrders = 0;
     [SerializeField] private int totalOrders = 0;
 
+    [Header("High Score")]
+    [SerializeField] private int highScore = 0;
 
+    // Kullanilan yemeklerin takibi (tekrar onleme icin)
+    private List<string> usedRecipeNames = new List<string>();
+
+    // PlayerPrefs keys
+    private const string HIGH_SCORE_KEY = "HighScore";
     private const string TOTAL_ORDERS_KEY = "TotalOrders";
     private const string SUCCESSFUL_ORDERS_KEY = "SuccessfulOrders";
     private const string FAILED_ORDERS_KEY = "FailedOrders";
@@ -164,10 +171,7 @@ public class GameFlowManager : MonoBehaviour
     {
         successfulOrders++;
         totalOrders++;
-        
-        // Always submit score - LeaderboardManager will handle high score logic
-        SubmitScoreToLeaderboard(ScoreManager.Instance.GetScore());
-
+        UpdateHighScore();
         SaveGameData();
     }
 
@@ -182,7 +186,27 @@ public class GameFlowManager : MonoBehaviour
 
         // Reset score on jumpscare
         ScoreManager.Instance.ResetScore();
+        UpdateHighScore();
         SaveGameData();
+    }
+
+    /// <summary>
+    /// Compares current score with high score and updates if necessary
+    /// Also submits to Firebase leaderboard if new high score
+    /// </summary>
+    private void UpdateHighScore()
+    {
+        int currentScore = ScoreManager.Instance.GetScore();
+
+        if (currentScore > highScore)
+        {
+            highScore = currentScore;
+            PlayerPrefs.SetInt(HIGH_SCORE_KEY, highScore);
+            PlayerPrefs.Save();
+
+            // Submit to leaderboard (only if new high score)
+            SubmitScoreToLeaderboard(currentScore);
+        }
     }
 
     /// <summary>
@@ -234,6 +258,7 @@ public class GameFlowManager : MonoBehaviour
     /// </summary>
     private void LoadGameData()
     {
+        highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
         totalOrders = PlayerPrefs.GetInt(TOTAL_ORDERS_KEY, 0);
         successfulOrders = PlayerPrefs.GetInt(SUCCESSFUL_ORDERS_KEY, 0);
         failedOrders = PlayerPrefs.GetInt(FAILED_ORDERS_KEY, 0);
@@ -250,7 +275,14 @@ public class GameFlowManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
+    /// <summary>
+    /// Gets the current high score
+    /// </summary>
+    /// <returns>High score value</returns>
+    public int GetHighScore()
+    {
+        return highScore;
+    }
 
     /// <summary>
     /// Gets order statistics
