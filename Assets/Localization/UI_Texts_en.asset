@@ -336,7 +336,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15766066747371520
-    m_Localized: THE ORDER IS XXXX
+    m_Localized: THE ORDER IS {0}
     m_Metadata:
       m_Items: []
   - m_Id: 15766389637476352

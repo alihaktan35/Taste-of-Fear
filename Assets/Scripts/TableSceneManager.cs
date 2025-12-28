@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using System.Collections;
+using System.Text;
 
 public class TableSceneManager : MonoBehaviour
 {
@@ -12,21 +16,37 @@ public class TableSceneManager : MonoBehaviour
     public Text instructionText; // Unity UI Text component
     public UIPlateController plateController;
 
-    [Header("Instruction Text Template")]
-    public string instructionTemplate = "The order is a XXXX.\nDrag the 4 ingredients on the table to the plate to make it."; // Template with XXXX as placeholder
+    [Header("Localization")]
+    public LocalizedString instructionLocalizedString;
 
     [Header("Debug Info")]
     [SerializeField] private string currentRecipeName; // Inspector'da görünür hali
 
     private RecipeData currentRecipe;
 
+    private void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
     void Start()
     {
+        // Ensure the LocalizedString is configured to prevent errors.
+        if (instructionLocalizedString.IsEmpty)
+        {
+            instructionLocalizedString.TableReference = "UI_Texts";
+            instructionLocalizedString.TableEntryReference = "instruction_text_1";
+        }
+        
         // Get the requested recipe
         if (string.IsNullOrEmpty(RequestedRecipeName))
         {
             Debug.LogWarning("No recipe requested! Using default for testing.");
-            // For testing, use first recipe
             if (recipeDatabase != null && recipeDatabase.allRecipes.Count > 0)
             {
                 currentRecipe = recipeDatabase.allRecipes[0];
@@ -34,9 +54,7 @@ public class TableSceneManager : MonoBehaviour
         }
         else
         {
-            // Find the recipe in the database
             currentRecipe = recipeDatabase.GetRecipeByName(RequestedRecipeName);
-
             if (currentRecipe == null)
             {
                 Debug.LogError($"Recipe '{RequestedRecipeName}' not found in database!");
@@ -44,7 +62,6 @@ public class TableSceneManager : MonoBehaviour
             }
         }
 
-        // Set up the scene with this recipe
         SetupRecipe();
     }
 
@@ -56,45 +73,72 @@ public class TableSceneManager : MonoBehaviour
             return;
         }
 
-        // Update debug info for Inspector
         currentRecipeName = currentRecipe.recipeName;
+        UpdateInstructionText();
 
-        Debug.Log($"Setting up recipe: {currentRecipe.recipeName}");
-
-        // Calculate total number of ingredients needed
-        int totalIngredients = 0;
-        foreach (RecipeIngredient ingredient in currentRecipe.ingredients)
-        {
-            totalIngredients += ingredient.quantity;
-        }
-
-        // Update instruction text with recipe name and ingredient count
-        if (instructionText != null)
-        {
-            string recipeNameUpper = currentRecipe.recipeName.ToUpper();
-            string text = instructionTemplate.Replace("XXXX", recipeNameUpper);
-
-            // Replace "4 ingredients" with actual count
-            text = text.Replace("4 ingredients", totalIngredients + " ingredients");
-
-            instructionText.text = text;
-        }
-
-        // Set the recipe in the plate controller
         if (plateController != null)
         {
             plateController.SetRecipe(currentRecipe);
         }
-
-        // Log the required ingredients for debugging
-        Debug.Log($"Required ingredients for {currentRecipe.recipeName}:");
-        foreach (RecipeIngredient ingredient in currentRecipe.ingredients)
-        {
-            Debug.Log($"  - {ingredient.quantity}x {ingredient.ingredientName}");
-        }
+    }
+    
+    private void OnLocaleChanged(Locale obj)
+    {
+        UpdateInstructionText();
     }
 
-    // Static method to load the table scene with a specific recipe
+    private void UpdateInstructionText()
+    {
+        if (instructionText == null || currentRecipe == null) return;
+        StartCoroutine(UpdateInstructionTextCoroutine());
+    }
+
+    private IEnumerator UpdateInstructionTextCoroutine()
+    {
+        // --- Resiliently find Food Name ---
+        string localizedFoodName = null;
+        string originalRecipeName = currentRecipe.recipeName;
+
+        StringBuilder sb = new StringBuilder(originalRecipeName.ToLowerInvariant().Trim());
+        sb.Replace('ç', 'c'); sb.Replace('ğ', 'g'); sb.Replace('ı', 'i'); sb.Replace('ö', 'o'); sb.Replace('ş', 's'); sb.Replace('ü', 'u');
+        sb.Replace('Ç', 'c'); sb.Replace('Ğ', 'g'); sb.Replace('İ', 'i'); sb.Replace('Ö', 'o'); sb.Replace('Ş', 's'); sb.Replace('Ü', 'u');
+        sb.Replace(' ', '_');
+        
+        string[] possibleKeys = new string[]
+        {
+            "food_" + originalRecipeName.Trim().ToLower().Replace(" ", "_"),
+            "food_" + originalRecipeName.Trim().ToLowerInvariant().Replace(" ", "_"),
+            "food_" + sb.ToString(),
+            "food_" + originalRecipeName.Trim().ToLower().Replace(" ", "_") + "\t\t\t"
+        };
+        
+        foreach (var key in possibleKeys)
+        {
+            var foodNameOp = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI_Texts", key);
+            yield return foodNameOp;
+
+            if (foodNameOp.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded && foodNameOp.Result != key)
+            {
+                localizedFoodName = foodNameOp.Result;
+                Debug.Log($"SUCCESS: Found translation for '{originalRecipeName}' using key: '{key}'");
+                break;
+            }
+        }
+        
+        if (localizedFoodName == null)
+        {
+            localizedFoodName = $"[No Translation: {originalRecipeName}]";
+            Debug.LogError($"FAILURE: Could not find any translation for recipe '{originalRecipeName}'. Checked multiple key variations.");
+        }
+
+        // Set arguments and get the final string
+        instructionLocalizedString.Arguments = new object[] { localizedFoodName.ToUpper() }; // The original string was uppercase
+        var instructionOp = instructionLocalizedString.GetLocalizedStringAsync();
+        yield return instructionOp;
+        
+        instructionText.text = instructionOp.Result ?? "Loading...";
+    }
+
     public static void LoadTableSceneWithRecipe(string recipeName)
     {
         RequestedRecipeName = recipeName;
