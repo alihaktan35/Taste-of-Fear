@@ -13,16 +13,16 @@ An indie game that blends horror and time management genres. An experience that 
 ## 🖼️ In-Game Screenshots
 
 ### Main Menu
-![Main Menu](demo-images/1.png)
-*Taste of Fear main menu screen – Dark kitchen atmosphere*
+![Main Menu](demo-images/main_menu.png)
 
-### Kitchen Scene
-![Kitchen View](demo-images/2.png)
-*Order-taking mechanics – Fear waits behind the counter*
+### Options
+![Options](demo-images/settings.png)
+
+### Receiving Order
+![Receiving Order](demo-images/receivingOrder.png)
 
 ### Gameplay
-![Gameplay Screen](demo-images/3.png)
-*Race against time – Complete the order, survive*
+![Gameplay Screen](demo-images/table.png)
 
 ## Cooking Mechanics:
 <video src="https://github.com/user-attachments/assets/e6ba5f65-c82a-425d-8094-c8e519a60f5b" controls="controls" muted loop width="640" height="360"></video>
