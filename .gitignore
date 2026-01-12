@@ -236,9 +236,16 @@ PAUSE_MENU_SETUP_GUIDE.md
 /[Aa]ssets/ExternalDependencyManager/
 /[Aa]ssets/Editor Default Resources/Firebase/
 
-# Keep Firebase config files (these are small and necessary)
-!/[Aa]ssets/google-services.json
-!/[Aa]ssets/GoogleService-Info.plist
+# ====================================
+# Firebase Config Files (SENSITIVE - Contains API Keys)
+# ====================================
+# IMPORTANT: These files contain Firebase API keys and should NEVER be public
+**/google-services.json
+**/google-services-desktop.json
+**/GoogleService-Info.plist
+**/google-services.json.meta
+**/google-services-desktop.json.meta
+**/GoogleService-Info.plist.meta
 FIREBASE_SETUP_GUIDE.md
 FirebaseSecurityRules.json
 UNITY_FIREBASE_SETUP_GUIDE.md
