@@ -24,9 +24,6 @@ An indie game that blends horror and time management genres. An experience that 
 ### Gameplay
 ![Gameplay Screen](demo-images/table.png)
 
-## Cooking Mechanics:
-<video src="https://github.com/user-attachments/assets/e6ba5f65-c82a-425d-8094-c8e519a60f5b" controls="controls" muted loop width="640" height="360"></video>
-
 ## ✨ Key Features
 - 🏃 Race against time
 - 🍳 Dynamic kitchen and order management
