@@ -5,7 +5,7 @@
 [![Unity](https://img.shields.io/badge/Unity-2022.3+-black.svg)](https://unity.com/)
 [![Platform](https://img.shields.io/badge/Platform-PC%20(Steam)-blue.svg)](https://store.steampowered.com/)
 
-🌐 **[Visit Our Official Website](https://taste-of-fear-website.vercel.app/)** 🌐
+➡️ **[Visit Our Official Website](https://taste-of-fear-website.vercel.app/)** 🌐
 
 ---
 
