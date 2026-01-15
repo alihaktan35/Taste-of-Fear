@@ -12,12 +12,6 @@
 
 ![Taste of Fear Poster](https://i.hizliresim.com/6akhj5r.jpg)
 
-**"When midnight comes, the kitchen becomes a place of terror..."**
-
-**Can you survive when every order could be your last?**
-
-**Fight monster customers. Cook under pressure. Keep your mind safe.**
-
 ---
 
 ## 🎮 About the Game
@@ -160,7 +154,7 @@ This project was made for our university class. All rights belong to our team.
 
 *Made with 💀 and ☕ by the Taste of Fear Team*
 
-**© 2024-2025 | University Project**
+**© 2026 | Academic Project**
 
 ---
 
