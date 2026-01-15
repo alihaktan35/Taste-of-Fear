@@ -2,15 +2,22 @@
 
 **A nightmare-like night in the kitchen. Cook, serve, and survive.**
 
-[![Website](https://img.shields.io/badge/Website-Visit%20Site-success?logo=google-chrome&logoColor=white)](https://taste-of-fear-website.vercel.app/)
 [![Unity](https://img.shields.io/badge/Unity-2022.3+-black.svg)](https://unity.com/)
 [![Platform](https://img.shields.io/badge/Platform-PC%20(Steam)-blue.svg)](https://store.steampowered.com/)
+
+🌐 **[Visit Our Official Website](https://taste-of-fear-website.vercel.app/)** 🌐
 
 ---
 
 ## 🎬 Game Poster
 
-![Taste of Fear Poster](https://i.hizliresim.com/6akhj5r.jpg)
+![Taste of Fear Poster](https://i.hizliresim.com/diovobm.png)
+
+**"When midnight comes, the kitchen becomes a place of terror..."**
+
+**Can you survive when every order could be your last?**
+
+**Fight monster customers. Cook under pressure. Keep your mind safe.**
 
 ---
 
@@ -154,7 +161,7 @@ This project was made for our university class. All rights belong to our team.
 
 *Made with 💀 and ☕ by the Taste of Fear Team*
 
-**© 2026 | Academic Project**
+**© 2024-2025 | University Project**
 
 ---
 
