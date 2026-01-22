@@ -58,16 +58,16 @@ If you fail to deliver on time, scary monsters will jump at you.
 ## 🖼️ Game Screenshots
 
 ### Main Menu
-![Main Menu](demo-images/main_menu.png)
+![Main Menu](https://i.hizliresim.com/ms82fcl.png)
 
 ### Settings
-![Options](demo-images/settings.png)
+![Options](https://i.hizliresim.com/6ri7zgi.png)
 
 ### Getting Orders
-![Receiving Order](demo-images/receivingOrder.png)
+![Receiving Order](https://i.hizliresim.com/h92vg7h.png)
 
 ### Playing the Game
-![Gameplay](demo-images/table.png)
+![Gameplay](https://i.hizliresim.com/i877af2.png)
 
 ---
 
