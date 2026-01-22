@@ -6,6 +6,8 @@
 [![Platform](https://img.shields.io/badge/Platform-PC%20(Steam)-blue.svg)](https://store.steampowered.com/)
 
 ➡️ **[Visit Our Official Website](https://taste-of-fear-website.vercel.app/)** 🌐
+➡️ **[Watch Our Trailer Video](https://drive.google.com/file/d/1Z9-M5ZRPBcBOqdAjZB9p1GH5oHPZZaVl/view?usp=drive_link
+)** 
 
 ---
 
